@@ -12,6 +12,7 @@ require 'autopairs_config'
 require 'comment_config'
 require 'vim-better-whitespace_config'
 require 'neotree_config'
+require 'flutter'
 require 'autoload'
 require 'keymap'
 

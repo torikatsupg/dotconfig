@@ -151,6 +151,8 @@ require 'packer'.startup(function(use)
   use { 'rcarriga/nvim-dap-ui' }
   use { 'theHamsta/nvim-dap-virtual-text' }
 
+  use {'akinsho/flutter-tools.nvim' }
+
 
 end)
 

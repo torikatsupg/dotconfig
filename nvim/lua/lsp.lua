@@ -65,6 +65,12 @@ require('lspconfig')['tsserver'].setup {
   flags = lsp_flags,
 }
 
+require'lspconfig'.dartls.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+
+
 require("lsp-colors").setup({
   Error = "#db4b4b",
   Warning = "#e0af68",
