@@ -33,20 +33,21 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers {
   function(server_name) -- default handler (optional)
     require("lspconfig")[server_name].setup {
-      on_attach = on_attach
+      on_attach = on_attach,
+      flags = lsp_flags
     }
   end,
 }
 
+-- only lspconfig ==================================================================
+require'lspconfig'.tsserver.setup {}
+require'lspconfig'.dartls.setup {}
 require 'lspconfig'.sumneko_lua.setup {
-  on_attach = on_attach,
-  flags = lsp_flags,
   settings = {
     Lua = {
       runtime = { version = 'LuaJIT', },
@@ -60,23 +61,13 @@ require 'lspconfig'.sumneko_lua.setup {
   },
 }
 
-require('lspconfig')['tsserver'].setup {
-  on_attach = on_attach,
-  flags = lsp_flags,
-}
 
-require'lspconfig'.dartls.setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-}
-
-
-require("lsp-colors").setup({
-  Error = "#db4b4b",
-  Warning = "#e0af68",
-  Information = "#0db9d7",
-  Hint = "#10B981"
-})
+-- require("lsp-colors").setup({
+--   Error = "#db4b4b",
+--   Warning = "#e0af68",
+--   Information = "#0db9d7",
+--   Hint = "#10B981"
+-- })
 
 require("trouble").setup {
   -- your configuration comes here

@@ -29,3 +29,6 @@ vim.opt.termguicolors = true
 -- vim.opt.nofoldenable=true
 
 vim.g.camelcasemotion_key = '<leader>'
+
+vim.cmd[[:command E NeoTreeFloat]]
+
