@@ -1,7 +1,4 @@
 return function()
-  vim.opt.spell = true
-  vim.opt.spelllang = { 'en_us' }
-
   local cmp = require 'cmp'
   local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 

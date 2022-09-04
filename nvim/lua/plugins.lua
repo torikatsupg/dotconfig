@@ -5,7 +5,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
-require 'packer'.startup({
+require'packer'.startup({
   function(use)
     use { 'wbthomason/packer.nvim', opt = true }
     use {
@@ -16,17 +16,19 @@ require 'packer'.startup({
       'nvim-lualine/lualine.nvim',
       config = require'plugin.lualine_rc',
       requires = {
-        { 'EdenEast/nightfox.nvim' },
         { 'SmiteshP/nvim-navic' },
         { 'kyazdani42/nvim-web-devicons' },
+        { 'EdenEast/nightfox.nvim' },
       },
     }
     use {
       'j-hui/fidget.nvim',
       config = require'plugin.fidget_rc'
     }
-    -- TODO(torikatsu): 入れる
-    -- use { 'norcalli/nvim-colorizer.lua' }
+    use {
+      'norcalli/nvim-colorizer.lua',
+      config = require 'plugin.nvim-colorizer_rc'
+    }
     use {
       'neovim/nvim-lspconfig',
       config = require'plugin.nvim-lspconfig_rc'
@@ -50,7 +52,6 @@ require 'packer'.startup({
       'akinsho/flutter-tools.nvim',
       config = require'plugin.flutter-tools_rc',
     }
-
     use {
       'folke/trouble.nvim',
       config = require'plugin.trouble_rc',
@@ -107,7 +108,10 @@ require 'packer'.startup({
       'nvim-telescope/telescope.nvim',
       config = require'plugin.telescope_rc',
       requires = {
-        { 'nvim-telescope/telescope-fzf-native.nvim' },
+        {
+          'nvim-telescope/telescope-fzf-native.nvim',
+          run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+        },
         {
           'nvim-telescope/telescope-frecency.nvim',
           requires = {
@@ -118,7 +122,6 @@ require 'packer'.startup({
     }
     -- NOTE(torikatsu): this plugins is not necessary, but it's required by vim-cmp
     -- use { 'L3MON4D3/LuaSnip' }
-    -- TODO(torikatsu): separate configuration
     use {
       'nvim-treesitter/nvim-treesitter',
       config = require'plugin.nvim-treesitter_rc',
@@ -174,7 +177,7 @@ require 'packer'.startup({
       branch = "v2.x",
       requires = {
         "nvim-lua/plenary.nvim",
-        "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+        "kyazdani42/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
       },
     }
