@@ -8,11 +8,6 @@ scrolling:
   history: 100000
   multiplier: 3
 
-shell:
-  program: /bin/zsh
-  args:
-   - --login
-
 font:
   normal:
     style: Regular
@@ -32,8 +27,8 @@ font:
     family: 'JetBrainsMono Nerd Font Mono'
 
 
-env:
-  TERM: alacritty
+#env:
+#  TERM: alacritty
 
 
   # Nightfox Alacritty Colors
