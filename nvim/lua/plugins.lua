@@ -194,6 +194,30 @@ require 'packer'.startup({
     use { 'tpope/vim-surround' }
     use { 'ntpeters/vim-better-whitespace' }
     -- TODO(torikatsu): いれたい https://github.com/segeljakt/vim-silicon
+    --
+    use {
+      'TimUntersberger/neogit',
+      config = require 'plugin.neogit_rc',
+      requires = {
+        { 'nvim-lua/plenary.nvim' },
+        {
+          'sindrets/diffview.nvim',
+          requires = {
+            { 'plenary.nvim' },
+            { 'nvim-web-devicons' },
+          }
+        }
+      }
+    }
+    use {
+      'akinsho/git-conflict.nvim',
+      config = require 'plugin.git-conflict_rc'
+    }
+    use {
+      'lewis6991/gitsigns.nvim',
+      config = require 'plugin.gitsigns_rc'
+    }
+
     if packer_bootstrap then
       require('packer').sync()
     end
