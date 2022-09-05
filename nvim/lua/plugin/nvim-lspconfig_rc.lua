@@ -1,20 +1,5 @@
 return function()
   local config = require'lspconfig'
-  config.tsserver.setup {}
-  config.dartls.setup {}
-  config.sumneko_lua.setup {
-    settings = {
-      Lua = {
-        runtime = { version = 'LuaJIT', },
-        diagnostics = { globals = { 'vim', 'hs' }, },
-        workspace = {
-          library = vim.api.nvim_get_runtime_file("", true),
-        },
-        telemetry = { enable = false, },
-      },
-    },
-  }
-
   vim.diagnostic.config({
     virtual_text = false,
     signs = true,
@@ -28,5 +13,48 @@ return function()
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
   end
+
+
+  local on_attach = function(client, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    require("nvim-navic").attach(client, bufnr)
+  end
+
+  local lsp_flags = {
+    debounce_text_changes = 150,
+  }
+
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+  )
+
+  config.tsserver.setup {
+
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+  }
+  config.dartls.setup {
+
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+  }
+  config.sumneko_lua.setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    settings = {
+      Lua = {
+        runtime = { version = 'LuaJIT', },
+        diagnostics = { globals = { 'vim', 'hs' }, },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = { enable = false, },
+      },
+    },
+  }
+
 
 end

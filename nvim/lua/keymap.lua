@@ -1,23 +1,73 @@
--- neotree
+local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
-local neo_tree = require'neo-tree'
-vim.keymap.set('n', '<leader><space>', function()vim.cmd[[NeoTreeFloat]]end, opts)
 
--- lsp
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+-- neotree
+keymap('n', '<leader><space>', function()vim.cmd[[NeoTreeFloat]]end, opts)
 
 -- hop
 local hop = require 'hop'
-vim.keymap.set("n", "<leader>f", hop.hint_char1, opts)
+keymap("n", "<leader>f", hop.hint_char1, opts)
 
 -- telescope
 local builtin = require("telescope.builtin")
-local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<leader>ff", builtin.find_files, opts)
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, opts)
-vim.keymap.set("n", "<leader>fb", builtin.buffers, opts)
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, opts)
+keymap("n", "<leader>ff", builtin.find_files, opts)
+keymap("n", "<leader>fg", builtin.live_grep, opts)
+keymap("n", "<leader>fb", builtin.buffers, opts)
+keymap("n", "<leader>fh", builtin.help_tags, opts)
+
+-- lsp
+keymap('n', '<space>e', vim.diagnostic.open_float, opts)
+-- keymap('n', '[d', vim.diagnostic.goto_prev, opts)
+-- keymap('n', ']d', vim.diagnostic.goto_next, opts)
+keymap('n', '<space>q', vim.diagnostic.setloclist, opts)
+keymap('n', 'gD', vim.lsp.buf.declaration, opts)
+keymap('n', 'gd', vim.lsp.buf.definition, opts)
+-- keymap('n', 'K', vim.lsp.buf.hover, opts)
+keymap('n', 'gi', vim.lsp.buf.implementation, opts)
+keymap('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+keymap('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+keymap('n', '<space>wl', function()
+  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end, opts)
+keymap('n', '<space>D', vim.lsp.buf.type_definition, opts)
+-- keymap('n', '<space>rn', vim.lsp.buf.rename, opts)
+-- keymap('n', '<space>ca', vim.lsp.buf.code_action, opts)
+-- keymap('n', 'gr', vim.lsp.buf.references, opts)
+keymap('n', '<space>f', vim.lsp.buf.formatting, opts)
+
+
+-- lspsaga
+keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
+keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
+keymap("v", "<leader>ca", "<cmd>Lspsaga range_code_action<CR>", opts)
+keymap("n", "gr", "<cmd>Lspsaga rename<CR>", opts)
+-- keymap("n", "gd", "<cmd>Lspsaga preview_definition<CR>", opts)
+keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
+keymap("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
+keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+keymap("n", "[E", function()
+  require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, opts)
+keymap("n", "]E", function()
+  require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, opts)
+keymap("n","<leader>o", "<cmd>LSoutlineToggle<CR>",opts)
+keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
+-- Float terminal
+-- keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", opts)
+-- if you want pass somc cli command into terminal you can do like this
+-- open lazygit in lspsaga float terminal
+-- keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
+-- close floaterm
+-- keymap("t", "<A-d>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
+
+-- trouble
+keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
+keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
+keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
+keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", opts)
+keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opts)
+keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", opts)
 
