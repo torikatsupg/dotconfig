@@ -1,8 +1,11 @@
 return function()
-  local navic = require("nvim-navic")
+  require("mason").setup()
+  require("mason-lspconfig").setup()
+
   local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    navic.attach(client, bufnr)
+    require("nvim-navic").attach(client, bufnr)
+
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
@@ -25,13 +28,14 @@ return function()
     debounce_text_changes = 150,
   }
 
-  require("mason").setup()
-  require("mason-lspconfig").setup()
   require("mason-lspconfig").setup_handlers {
-    function(server_name) -- default handler (optional)
+    function(server_name)
       require("lspconfig")[server_name].setup {
         on_attach = on_attach,
-        flags = lsp_flags
+        flags = lsp_flags,
+        capabilities = require('cmp_nvim_lsp').update_capabilities(
+          vim.lsp.protocol.make_client_capabilities()
+        )
       }
     end,
   }

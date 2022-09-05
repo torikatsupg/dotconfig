@@ -1,7 +1,8 @@
 return function()
-  require'lspconfig'.tsserver.setup {}
-  require'lspconfig'.dartls.setup {}
-  require 'lspconfig'.sumneko_lua.setup {
+  local config = require'lspconfig'
+  config.tsserver.setup {}
+  config.dartls.setup {}
+  config.sumneko_lua.setup {
     settings = {
       Lua = {
         runtime = { version = 'LuaJIT', },
@@ -13,4 +14,19 @@ return function()
       },
     },
   }
+
+  vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = false,
+  })
+
+  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
+
 end

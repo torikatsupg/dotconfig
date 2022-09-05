@@ -32,3 +32,5 @@ vim.g.camelcasemotion_key = '<leader>'
 
 vim.cmd[[:command E NeoTreeFloat]]
 
+vim.opt.cmdheight = 0
+vim.opt.clipboard = 'unnamedplus'

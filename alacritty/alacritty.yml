@@ -1,12 +1,17 @@
 window:
   decorations: None
-  dimensions:
-    columns: 200
-    lines: 60
+    # dimensions:
+    #   columns: 200
+    #   lines: 60
 
 scrolling:
   history: 100000
   multiplier: 3
+
+shell:
+  program: /bin/zsh
+  args:
+   - --login
 
 font:
   normal:
@@ -21,12 +26,14 @@ font:
     style: Italic
     size: 12.0
     family: 'JetBrainsMono Nerd Font Mono'
-  use_thin_strokes: true
+  bold_italic:
+    style: Bold Italic
+    size: 12.0
+    family: 'JetBrainsMono Nerd Font Mono'
 
 
 env:
-  # LANG: 'ja_JP.UTF-8'
-  TERM: xterm-256color
+  TERM: alacritty
 
 
   # Nightfox Alacritty Colors
