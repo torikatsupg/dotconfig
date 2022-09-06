@@ -191,7 +191,13 @@ require 'packer'.startup({
     }
     use { 'bkad/CamelCaseMotion' }
     use { 'myusuf3/numbers.vim' }
-    use { 'tpope/vim-surround' }
+    use {
+      'tpope/vim-surround',
+      requires = {
+        'tpope/vim-repeat',
+        config = require 'plugin.vim-repeat_rc'
+      }
+    }
     use { 'ntpeters/vim-better-whitespace' }
     -- TODO(torikatsu): いれたい https://github.com/segeljakt/vim-silicon
     --
