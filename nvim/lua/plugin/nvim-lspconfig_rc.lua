@@ -28,8 +28,18 @@ return function()
   vim.lsp.protocol.make_client_capabilities()
   )
 
-  config.tsserver.setup {
+  config.eslint.setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+  }
+  config.prettier.setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+  }
 
+  config.tsserver.setup {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
