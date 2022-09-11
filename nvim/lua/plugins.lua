@@ -47,6 +47,10 @@ require 'packer'.startup({
       'neovim/nvim-lspconfig',
       config = require 'plugin.nvim-lspconfig_rc'
     }
+    use {
+      'rcarriga/nvim-notify',
+      config = require 'plugin.nvim-notify_rc'
+    }
     -- dap
     -- use {
     --   'mfussenegger/nvim-dap',
@@ -96,7 +100,14 @@ require 'packer'.startup({
         {
           'saadparwaiz1/cmp_luasnip',
           requires = {
-            'L3MON4D3/LuaSnip'
+            {
+              'L3MON4D3/LuaSnip',
+              config = require 'plugin.luasnip_rc',
+              requires = {
+                'rafamadriz/friendly-snippets'
+              }
+            }
+
           }
         },
       },
@@ -124,11 +135,10 @@ require 'packer'.startup({
         },
       },
     }
-    -- NOTE(torikatsu): this plugins is not necessary, but it's required by vim-cmp
-    -- use { 'L3MON4D3/LuaSnip' }
     use {
       'nvim-treesitter/nvim-treesitter',
       config = require 'plugin.nvim-treesitter_rc',
+      run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
       requires = {
         { 'JoosepAlviste/nvim-ts-context-commentstring' },
         { 'p00f/nvim-ts-rainbow' },

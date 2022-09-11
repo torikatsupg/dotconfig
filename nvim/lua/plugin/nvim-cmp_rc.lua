@@ -33,7 +33,7 @@ return function()
   local cmp_type = {
     buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
-    luasnip = "[LuaSnip]",
+    luasnip = "[Snip]",
     nvim_lua = "[Lua]",
     latex_symbols = "[LaTeX]",
   }
@@ -79,12 +79,15 @@ return function()
     }),
     snippet = {
       expand = function(args)
-        require'luasnip'.lsp_expand(args.body)
+        require 'luasnip'.lsp_expand(args.body)
       end
     },
+    completion = {
+      keyword_length = 2
+    }
   }
 
-  for _, cmd_type in ipairs({':', '@'}) do
+  for _, cmd_type in ipairs({ ':', '@' }) do
     cmp.setup.cmdline(cmd_type, {
       sources = {
         { name = 'cmdline_history' },
@@ -92,7 +95,7 @@ return function()
     })
   end
 
-  for _, cmd_type in ipairs({'/', '?'}) do
+  for _, cmd_type in ipairs({ '/', '?' }) do
     cmp.setup.cmdline(cmd_type, {
       sources = {
         { name = 'buffer' },

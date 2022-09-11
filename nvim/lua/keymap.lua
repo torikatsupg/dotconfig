@@ -77,3 +77,9 @@ keymap('n', '<leader>tb', '<cmd>Gitsigns toggle_current_line_blame<CR>', opts)
 keymap('n', '<leader>hd', '<cmd>Gitsigns diffthis<CR>', opts)
 keymap('n', '<leader>hD', '<cmd>lua require"gitsigns".diffthis("~")<CR>', opts)
 
+
+-- # luasnip
+keymap("i", "<Tab>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+keymap("i", "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+keymap("s", "<Tab>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+keymap("s", "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
