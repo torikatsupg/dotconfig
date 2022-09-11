@@ -38,14 +38,17 @@ return function()
     flags = lsp_flags,
     capabilities = capabilities,
   }
-
   config.tsserver.setup {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
   }
   config.dartls.setup {
-
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+  }
+  config.yamlls.setup {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
@@ -65,6 +68,4 @@ return function()
       },
     },
   }
-
-
 end
