@@ -233,6 +233,10 @@ require 'packer'.startup({
       'lewis6991/gitsigns.nvim',
       config = require 'plugin.gitsigns_rc'
     }
+    use {
+      'folke/which-key.nvim',
+      config = require 'plugin.which-key_rc'
+    }
 
     if packer_bootstrap then
       require('packer').sync()
