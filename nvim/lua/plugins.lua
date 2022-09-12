@@ -64,6 +64,10 @@ require 'packer'.startup({
       ft = { 'dart' }
     }
     use {
+      'simrat39/rust-tools.nvim',
+      config = require 'plugin.rust-tools_rc'
+    }
+    use {
       'folke/trouble.nvim',
       config = require 'plugin.trouble_rc',
       requires = {
