@@ -83,3 +83,9 @@ keymap("i", "<C-l>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
 keymap("i", "<C-L>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 keymap("s", "<C-l>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
 keymap("s", "<C-L>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+
+keymap("n", "<leader>tr", "<cmd>lua require'neotest'.run.run()<CR>", opts)
+keymap("n", "<leader>tR", "<cmd>lua require'neotest'.run.run(vim.fn.expand('%'))<CR>", opts)
+keymap("n", "<leader>to", "<cmd>lua require'neotest'.output.open()<CR>", opts)
+keymap("n", "<leader>ts", "<cmd>lua require'neotest'.summary.toggle()<CR>", opts)
+

@@ -241,6 +241,16 @@ require 'packer'.startup({
       'folke/which-key.nvim',
       config = require 'plugin.which-key_rc'
     }
+    use {
+      "nvim-neotest/neotest",
+      config = require 'plugin.neotest_rc',
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        "antoinemadec/FixCursorHold.nvim",
+        'sidlatau/neotest-dart',
+      }
+    }
 
     if packer_bootstrap then
       require('packer').sync()
