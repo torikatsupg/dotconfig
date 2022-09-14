@@ -79,7 +79,7 @@ keymap('n', '<leader>hD', '<cmd>lua require"gitsigns".diffthis("~")<CR>', opts)
 
 
 -- # luasnip
-keymap("i", "<Tab>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
-keymap("i", "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
-keymap("s", "<Tab>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
-keymap("s", "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+keymap("i", "<C-l>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+keymap("i", "<C-L>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+keymap("s", "<C-l>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+keymap("s", "<C-L>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
