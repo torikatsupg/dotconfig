@@ -1,4 +1,8 @@
 return function()
-  require('nightfox').setup({})
+  require('nightfox').setup({
+    options = {
+      transparent = true,
+    }
+  })
   vim.cmd("colorscheme duskfox")
 end
