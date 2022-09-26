@@ -146,10 +146,10 @@ require 'packer'.startup({
       requires = {
         { 'JoosepAlviste/nvim-ts-context-commentstring' },
         { 'p00f/nvim-ts-rainbow' },
-        {
-          'haringsrob/nvim_context_vt',
-          config = require 'plugin.nvim-context-vt_rc',
-        },
+        -- {
+        --   'haringsrob/nvim_context_vt',
+        --   config = require 'plugin.nvim-context-vt_rc',
+        -- },
         {
           'm-demare/hlargs.nvim',
           config = require 'plugin.hlargs_rc'
@@ -168,7 +168,10 @@ require 'packer'.startup({
     }
     use {
       'petertriho/nvim-scrollbar',
-      config = require 'plugin.nvim-scrollbar_rc'
+      config = require 'plugin.nvim-scrollbar_rc',
+      requires = {
+        'kevinhwang91/nvim-hlslens'
+      }
     }
     use {
       'phaazon/hop.nvim',
