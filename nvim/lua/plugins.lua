@@ -52,12 +52,20 @@ require 'packer'.startup({
       config = require 'plugin.nvim-notify_rc'
     }
     -- dap
-    -- use {
-    --   'mfussenegger/nvim-dap',
-    --   config = require'plugin.dap_rc'
-    -- }
-    -- use { 'rcarriga/nvim-dap-ui' }
-    -- use { 'theHamsta/nvim-dap-virtual-text' }
+    use {
+      'mfussenegger/nvim-dap',
+      config = require 'plugin.dap_rc',
+      requires = {
+        {
+          'theHamsta/nvim-dap-virtual-text',
+          config = require 'plugin.nvim-dap-virtual-text_rc',
+        },
+        {
+          'rcarriga/nvim-dap-ui',
+          config = require 'plugin.nvim-da-ui_rc'
+      }
+      }
+    }
     use {
       'akinsho/flutter-tools.nvim',
       config = require 'plugin.flutter-tools_rc',
@@ -71,7 +79,8 @@ require 'packer'.startup({
       'folke/trouble.nvim',
       config = require 'plugin.trouble_rc',
       requires = {
-        { 'folke/lsp-colors.nvim',
+        {
+          'folke/lsp-colors.nvim',
           config = require 'plugin.lsp-colors_rc'
         },
       },

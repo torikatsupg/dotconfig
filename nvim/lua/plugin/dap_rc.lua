@@ -2,7 +2,27 @@
 return function()
   local dap = require('dap')
 
-  require("nvim-dap-virtual-text").setup({
-    commented = true,
-  })
+  dap.adapters.dart = {
+    type = "executable",
+    command = "flutter",
+    args = { "debug_adapter" }
+  }
+  dap.configurations.dart = {
+    {
+      type = "dart",
+      request = "launch",
+      name = "chrome",
+      program = "${workspaceFolder}/lib/main.dart",
+      cwd = "${workspaceFolder}",
+      toolArgs = { "-d", "chrome" }
+    },
+    {
+      type = "dart",
+      request = "launch",
+      name = "ios",
+      program = "${workspaceFolder}/lib/main.dart",
+      cwd = "${workspaceFolder}",
+      toolArgs = { "-d", "iphone" }
+    }
+  }
 end

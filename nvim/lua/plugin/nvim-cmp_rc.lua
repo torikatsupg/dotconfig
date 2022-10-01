@@ -89,6 +89,7 @@ return function()
 
   for _, cmd_type in ipairs({ ':', '@' }) do
     cmp.setup.cmdline(cmd_type, {
+      mapping = cmp.mapping.preset.cmdline(),
       sources = {
         { name = 'cmdline_history' },
       },
@@ -97,6 +98,7 @@ return function()
 
   for _, cmd_type in ipairs({ '/', '?' }) do
     cmp.setup.cmdline(cmd_type, {
+      mapping = cmp.mapping.preset.cmdline(),
       sources = {
         { name = 'buffer' },
         { name = 'cmdline_history'
@@ -109,4 +111,5 @@ return function()
     'confirm_done',
     cmp_autopairs.on_confirm_done()
   )
+
 end

@@ -1,8 +1,8 @@
 local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local opts = { noremap = true, silent = false }
 
 -- neotree
-keymap('n', '<leader><space>', function()vim.cmd[[NeoTreeFloat]]end, opts)
+keymap('n', '<leader><space>', function() vim.cmd [[NeoTreeFloat]] end, opts)
 
 -- hop
 local hop = require 'hop'
@@ -53,7 +53,7 @@ end, opts)
 keymap("n", "]E", function()
   require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
 end, opts)
-keymap("n","<leader>o", "<cmd>LSoutlineToggle<CR>",opts)
+keymap("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts)
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 -- Float terminal
 -- keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", opts)
@@ -88,4 +88,20 @@ keymap("n", "<leader>tr", "<cmd>lua require'neotest'.run.run()<CR>", opts)
 keymap("n", "<leader>tR", "<cmd>lua require'neotest'.run.run(vim.fn.expand('%'))<CR>", opts)
 keymap("n", "<leader>to", "<cmd>lua require'neotest'.output.open()<CR>", opts)
 keymap("n", "<leader>ts", "<cmd>lua require'neotest'.summary.toggle()<CR>", opts)
+
+-- # dap
+keymap('n', '<F1>', '<cmd>lua require("dapui").eval()<CR>', opts)
+keymap('n', '<F2>', '<cmd>DapToggleBreakpoint<CR>', opts)
+keymap('n', '<F3>', '<cmd>lua require("dap").run_last()<CR>', opts)
+keymap('n', '<F4>', '<cmd>lua require("dapui").toggle()<CR>', opts)
+keymap('n', '<F5>', '<cmd>DapContinue<CR>', opts)
+
+keymap('n', '<F10>', '<cmd>DapStepOver<CR>', opts)
+keymap('n', '<F11>', '<cmd>DapStepInto<CR>', opts)
+keymap('n', '<F12>', '<cmd>DapStepOut<CR>', opts)
+keymap('n', '<leader>dr', '<cmd>lua require("dap").repl.open()<CR>', opts)
+
+keymap('n', '<leader>de', '<cmd>lua require("dap").set_exception_breakpoints({"uncaughted"})<CR>', opts)
+keymap('n', '<leader>da', '<cmd>lua require("dap").set_exception_breakpoints({"all"})<CR>', opts)
+keymap('n', '<leader>dc', '<cmd>lua require("dap").set_exception_breakpoints({})<CR>', opts)
 
