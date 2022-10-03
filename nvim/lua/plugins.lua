@@ -63,7 +63,7 @@ require 'packer'.startup({
         {
           'rcarriga/nvim-dap-ui',
           config = require 'plugin.nvim-da-ui_rc'
-      }
+        }
       }
     }
     use {
@@ -262,6 +262,10 @@ require 'packer'.startup({
         "antoinemadec/FixCursorHold.nvim",
         'sidlatau/neotest-dart',
       }
+    }
+    use {
+      'vim-scripts/vim-auto-save',
+      config = require 'plugin.vim-auto-save_rc'
     }
 
     if packer_bootstrap then
