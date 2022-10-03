@@ -1,13 +1,13 @@
 return function()
   require("nvim-dap-virtual-text").setup {
-    enabled = true,
-    enabled_commands = true,
-    highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
-    highlight_new_as_changed = true,
-    show_stop_reason = true,
-    commented = false,
-    only_first_definition = true,
-    all_references = true, -- show virtual text on all all references of the variable (not only definitions)
+    -- enabled = true,
+    -- enabled_commands = true,
+    -- highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
+    -- highlight_new_as_changed = true,
+    -- show_stop_reason = true,
+    -- commented = false,
+    -- only_first_definition = true,
+    -- all_references = true, -- show virtual text on all all references of the variable (not only definitions)
     -- filter_references_pattern = '<module',
     -- experimental features:
     -- virt_text_pos = 'eol', -- position of virtual text, see `:h nvim_buf_set_extmark()`
