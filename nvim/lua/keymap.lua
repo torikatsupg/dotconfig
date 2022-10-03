@@ -99,9 +99,10 @@ keymap('n', '<F5>', '<cmd>DapContinue<CR>', opts)
 keymap('n', '<F10>', '<cmd>DapStepOver<CR>', opts)
 keymap('n', '<F11>', '<cmd>DapStepInto<CR>', opts)
 keymap('n', '<F12>', '<cmd>DapStepOut<CR>', opts)
-keymap('n', '<leader>dr', '<cmd>lua require("dap").repl.open()<CR>', opts)
+keymap('n', '<leader>dr', '<cmd>lua require("dap").repl.toggle()<CR>', opts)
 
 keymap('n', '<leader>de', '<cmd>lua require("dap").set_exception_breakpoints({"uncaughted"})<CR>', opts)
 keymap('n', '<leader>da', '<cmd>lua require("dap").set_exception_breakpoints({"all"})<CR>', opts)
 keymap('n', '<leader>dc', '<cmd>lua require("dap").set_exception_breakpoints({})<CR>', opts)
+
 
