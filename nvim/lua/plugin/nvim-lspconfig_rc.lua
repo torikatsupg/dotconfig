@@ -1,3 +1,21 @@
+function setup_prettier()
+  local status, prettier = pcall(require, "prettier")
+  if (not status) then return end
+  prettier.setup {
+    bin = 'prettierd',
+    filetypes = {
+      "css",
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "json",
+      "scss",
+      "less"
+    }
+  }
+end
+
 return function()
   local config = require 'lspconfig'
   vim.diagnostic.config({
@@ -33,11 +51,11 @@ return function()
     flags = lsp_flags,
     capabilities = capabilities,
   }
-  config.prettier.setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-  }
+  -- config.prettier.setup {
+  --   on_attach = on_attach,
+  --   flags = lsp_flags,
+  --   capabilities = capabilities,
+  -- }
   config.tsserver.setup {
     on_attach = on_attach,
     flags = lsp_flags,
@@ -68,5 +86,6 @@ return function()
       },
     },
   }
-end
 
+  setup_prettier()
+end
