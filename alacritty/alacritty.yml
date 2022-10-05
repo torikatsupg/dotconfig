@@ -10,26 +10,19 @@ scrolling:
   multiplier: 3
 
 font:
+  size: 14.0
   normal:
     style: Regular
-    size: 12.0
     family: 'JetBrainsMono Nerd Font Mono'
   bold:
     style: Bold
-    size: 12.0
     family: 'JetBrainsMono Nerd Font Mono'
   italic:
     style: Italic
-    size: 12.0
     family: 'JetBrainsMono Nerd Font Mono'
   bold_italic:
     style: Bold Italic
-    size: 12.0
     family: 'JetBrainsMono Nerd Font Mono'
-
-
-#env:
-#  TERM: alacritty
 
 
   # Nightfox Alacritty Colors
@@ -66,3 +59,4 @@ schemes:
       - { index: 17, color: '0xeb98c3' }
 
 colors: *duskfox
+
