@@ -156,10 +156,6 @@ function avd() {
   emulator -avd $(emulator -list-avds | head -n1) &>/dev/null &
 }
 
-# for vscode-insiders
-alias code=code-insiders
-
-# vscode alias
 alias -g vim=nvim
 alias zshrc="vim ~/.zshrc"
 alias Alacritty="vim ~/dotconfig/alacritty/alacritty.yml"
