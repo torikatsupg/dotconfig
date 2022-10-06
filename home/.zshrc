@@ -39,9 +39,6 @@ eval "$(jenv init -)"
 # enable JAVA_HOME
 jenv enable-plugin export
 
-# for npm completation
-eval "$("npm completation")"
-
 # no beep
 setopt no_beep
 setopt nolistbeep
@@ -97,6 +94,17 @@ function peco-cdr () {
   fi
 }
 zle -N peco-cdr
+
+# ghq
+function peco-ghq () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-ghq
 
 # memo
 function memo() {
@@ -187,6 +195,8 @@ bindkey -M viins '^R' peco-history-selection
 bindkey -M vicmd '^R' peco-history-selection
 bindkey -M viins '^G' peco-cdr
 bindkey -M vicmd '^G' peco-cdr
+bindkey -M viins '^]' peco-ghq
+bindkey -M vicmd '^]' peco-ghq
 
 bindkey -M viins '∆' jq-complete
 bindkey -M vicmd '∆' jq-complete
