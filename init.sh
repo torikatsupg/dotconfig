@@ -1,17 +1,17 @@
 #!/bin/sh
 
 base=`pwd`
-echo $base
 
 # install zinit
 # sh -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 
 # linking
-ln -s "$base/home/.zshrc ~/.zshrc"
-ln -s "$base/home/.zshrc ~/.zshrc"
-ln -s "$base/home/.tmux.conf ~/.tmux.conf"
-ln -s "$base/nvim ~/.config/nvim"
-ln -s "$base/alacritty ~/.config/alacritty"
+mkdir -p ~/.hammerspoon
+ln -s "$base/home/.zshrc" ~/.zshrc
+ln -s "$base/home/.tmux.conf" ~/.tmux.conf
+ln -s "$base/nvim" ~/.config/nvim
+ln -s "$base/alacritty" ~/.config/alacritty
+ln -s "$base/hammerspoon/init.lua" ~/.hammerspoon/init.lua
 
 # check requirement
 which rg
