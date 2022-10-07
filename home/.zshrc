@@ -156,6 +156,8 @@ function avd() {
   emulator -avd $(emulator -list-avds | head -n1) &>/dev/null &
 }
 
+alias -g xargs="xargs -P$(sysctl -n hw.logicalcpu)"
+
 alias -g vim=nvim
 alias zshrc="vim ~/.zshrc"
 alias Alacritty="vim ~/dotconfig/alacritty/alacritty.yml"
