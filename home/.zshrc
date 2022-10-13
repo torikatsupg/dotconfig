@@ -66,7 +66,7 @@ zle -N vi-yank-xclip
 
 
 # backward-kill-word with directory delimiter
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>|'
 
 # peco setting
 function peco-history-selection() {
@@ -156,8 +156,7 @@ function avd() {
   emulator -avd $(emulator -list-avds | head -n1) &>/dev/null &
 }
 
-alias -g xargs="xargs -P$(sysctl -n hw.logicalcpu)"
-
+alias -g nproc="sysctl -n hw.logicalcpu"
 alias -g vim=nvim
 alias zshrc="vim ~/.zshrc"
 alias Alacritty="vim ~/dotconfig/alacritty/alacritty.yml"
@@ -182,6 +181,7 @@ bindkey -M viins "^N" down-line-or-history
 bindkey -M viins "^P" up-line-or-history
 bindkey -M viins "^U" backward-kill-line
 bindkey -M viins "^W" backward-kill-word
+bindkey -M viins "^Y" yank
 bindkey -M vicmd 'y' vi-yank-xclip
 bindkey -M viins '^J' self-insert
 
@@ -198,4 +198,5 @@ bindkey -M vicmd '^]' peco-ghq
 
 bindkey -M viins '∆' jq-complete
 bindkey -M vicmd '∆' jq-complete
+
 
