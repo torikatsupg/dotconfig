@@ -36,8 +36,9 @@ eval "$(nodenv init -)"
 
 # jenv setting
 eval "$(jenv init -)"
-# enable JAVA_HOME
+enable JAVA_HOME
 jenv enable-plugin export
+export ANDROID_HOME=$HOME/Library/Android/sdk
 
 # no beep
 setopt no_beep
@@ -175,7 +176,10 @@ bindkey -M viins "^B" backward-char
 bindkey -M viins "^D" delete-char-or-list
 bindkey -M viins "^E" end-of-line
 bindkey -M viins "^F" forward-char
+bindkey -M vicmd "^F" forward-char
 bindkey -M viins "^H" backward-delete-char
+bindkey -M viins "^?" backward-delete-char
+
 bindkey -M viins "^K" kill-line
 bindkey -M viins "^N" down-line-or-history
 bindkey -M viins "^P" up-line-or-history
@@ -184,6 +188,9 @@ bindkey -M viins "^W" backward-kill-word
 bindkey -M viins "^Y" yank
 bindkey -M vicmd 'y' vi-yank-xclip
 bindkey -M viins '^J' self-insert
+
+bindkey -M viins 'ƒ' forward-word
+bindkey -M vicmd 'ƒ' forward-word
 
 bindkey -M vicmd "j" down-line
 bindkey -M vicmd "k" up-line
