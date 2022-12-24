@@ -29,8 +29,12 @@ path=(
   $HOME/development/monarch/bin(N-/)
   /Applications/Alacritty.app/Contents/MacOS(N-/)
 	/usr/local/bin(N-/)
+  $HOME/gobin(N-/)
 	$path
 )
+
+export GOBIN=$HOME/gobin
+
 # nodenv setting
 eval "$(nodenv init -)"
 
@@ -157,6 +161,18 @@ function avd() {
   emulator -avd $(emulator -list-avds | head -n1) &>/dev/null &
 }
 
+function githistory() {
+  git --no-pager reflog | awk '$3 == "checkout:" && /moving from/ {print $8}' | uniq | head
+}
+
+function rddpm() {
+  PID=`ps aux | grep -E 'DDPM$' | awk '{print $2}'`;
+  kill $PID;
+  open -aDDPM;
+}
+
+
+
 alias -g nproc="sysctl -n hw.logicalcpu"
 alias -g vim=nvim
 alias zshrc="vim ~/.zshrc"
@@ -168,6 +184,8 @@ alias gic="git commit -m $1"
 alias gip="git push -u origin $1"
 alias gia="git add"
 alias giaa="git add -A"
+
+alias -g 'uniqc'="awk '{ v[$0]++ } END { for ( k in v ) print v[k] "\t" k }'"
 
 # key binds
 bindkey -v
@@ -205,5 +223,3 @@ bindkey -M vicmd '^]' peco-ghq
 
 bindkey -M viins '∆' jq-complete
 bindkey -M vicmd '∆' jq-complete
-
-
