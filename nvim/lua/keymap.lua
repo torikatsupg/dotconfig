@@ -34,8 +34,8 @@ keymap('n', '<space>D', vim.lsp.buf.type_definition, opts)
 -- keymap('n', '<space>rn', vim.lsp.buf.rename, opts)
 -- keymap('n', '<space>ca', vim.lsp.buf.code_action, opts)
 -- keymap('n', 'gr', vim.lsp.buf.references, opts)
-keymap('n', '<space>f', vim.lsp.buf.formatting, opts)
 
+keymap('n', '<space>f', vim.lsp.buf.format, opts)
 
 -- lspsaga
 keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
@@ -104,5 +104,3 @@ keymap('n', '<leader>dr', '<cmd>lua require("dap").repl.toggle()<CR>', opts)
 keymap('n', '<leader>de', '<cmd>lua require("dap").set_exception_breakpoints({"uncaughted"})<CR>', opts)
 keymap('n', '<leader>da', '<cmd>lua require("dap").set_exception_breakpoints({"all"})<CR>', opts)
 keymap('n', '<leader>dc', '<cmd>lua require("dap").set_exception_breakpoints({})<CR>', opts)
-
-

@@ -48,3 +48,8 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.infercase = true
 vim.opt.swapfile = false
+
+vim.opt.completeopt = 'noselect'
+
+
+-- TODO(torikatsu): keymap in completion window

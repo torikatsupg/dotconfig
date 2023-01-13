@@ -62,10 +62,10 @@ return function()
   end
 
   local lsp_flags = {
-    debounce_text_changes = 150,
+    debounce_text_changes = 50,
   }
 
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(
+  local capabilities = require('cmp_nvim_lsp').default_capabilities(
     vim.lsp.protocol.make_client_capabilities()
   )
 

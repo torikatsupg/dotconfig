@@ -30,6 +30,10 @@ return function()
     TypeParameter = '  ',
   }
 
+
+-- cmp_nvim_lsp.update_capabilities is deprecated, use cmp_nvim_lsp.default_capabilities instead. See :h deprecated
+-- This function will be removed in cmp-nvim-lsp version 1.0.0
+
   local cmp_type = {
     buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
@@ -40,6 +44,7 @@ return function()
 
   cmp.setup {
     sources = {
+      { name = 'luasnip' },
       { name = 'nvim_lsp' },
       { name = 'nvim_lsp_document_symbol' },
       { name = 'nvim_lsp_signature_help' },
@@ -52,7 +57,6 @@ return function()
       { name = 'calc' },
       { name = 'emoji' },
       -- { name = 'digraphs' },
-      { name = 'luasnip' },
       { name = 'treesitter' },
     },
     view = {
@@ -83,7 +87,8 @@ return function()
       end
     },
     completion = {
-      keyword_length = 2
+      keyword_length = 2,
+      -- autocomplete = false
     }
   }
 

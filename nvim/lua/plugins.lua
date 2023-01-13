@@ -47,10 +47,10 @@ require 'packer'.startup({
       'neovim/nvim-lspconfig',
       config = require 'plugin.nvim-lspconfig_rc'
     }
-    use {
-      'rcarriga/nvim-notify',
-      config = require 'plugin.nvim-notify_rc'
-    }
+    -- use {
+    --   'rcarriga/nvim-notify',
+    --   config = require 'plugin.nvim-notify_rc'
+    -- }
     -- dap
     use {
       'mfussenegger/nvim-dap',

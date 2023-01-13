@@ -35,6 +35,9 @@ path=(
 
 export GOBIN=$HOME/gobin
 
+# anyenv
+eval "$(anyenv init -)"
+
 # nodenv setting
 eval "$(nodenv init -)"
 
@@ -168,7 +171,7 @@ function githistory() {
 function rddpm() {
   PID=`ps aux | grep -E 'DDPM$' | awk '{print $2}'`;
   kill $PID;
-  open -aDDPM;
+  open -addpm;
 }
 
 
@@ -223,3 +226,10 @@ bindkey -M vicmd '^]' peco-ghq
 
 bindkey -M viins '∆' jq-complete
 bindkey -M vicmd '∆' jq-complete
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/torikatsu/development/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/torikatsu/development/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/torikatsu/development/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/torikatsu/development/google-cloud-sdk/completion.zsh.inc'; fi
