@@ -1,8 +1,10 @@
 return function()
   local saga = require("lspsaga")
-  saga.init_lsp_saga ({
-    code_action_icon = '',
-    border_style = 'rounded'
+  saga.setup ({
+    ui = {
+      code_action = '',
+      border = 'rounded',
+    },
   })
 end
 
