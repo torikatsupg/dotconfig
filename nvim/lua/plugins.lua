@@ -72,6 +72,10 @@ require 'packer'.startup({
       ft = { 'dart' }
     }
     use {
+      'fatih/vim-go',
+      ft = { 'go' }
+    }
+    use {
       'simrat39/rust-tools.nvim',
       config = require 'plugin.rust-tools_rc'
     }

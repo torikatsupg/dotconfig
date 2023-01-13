@@ -233,3 +233,9 @@ if [ -f '/Users/torikatsu/development/google-cloud-sdk/path.zsh.inc' ]; then . '
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/torikatsu/development/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/torikatsu/development/google-cloud-sdk/completion.zsh.inc'; fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/katsuya_torii/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/katsuya_torii/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/katsuya_torii/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/katsuya_torii/google-cloud-sdk/completion.zsh.inc'; fi
