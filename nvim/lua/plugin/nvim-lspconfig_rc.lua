@@ -94,7 +94,7 @@ return function()
     flags = lsp_flags,
     capabilities = capabilities,
   }
-  config.sumneko_lua.setup {
+  config.lua_ls.setup {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,

@@ -1,3 +1,5 @@
+# bind key type
+bindkey -v # zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 # mkdir -p "$(dirname $ZINIT_HOME)"
 # git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
@@ -13,6 +15,7 @@ zinit light zsh-users/zsh-completions
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light paulirish/git-open
 zinit light reegnz/jq-zsh-plugin
+zinit light hlissner/zsh-autopair
 
 # ==================== config =======================
 typeset -U path PATH
@@ -114,6 +117,17 @@ function peco-ghq () {
 }
 zle -N peco-ghq
 
+# tmux
+# function peco-tmux () {
+#   local selected_session=$(tmux ls -F '#S' | peco --query "$LBUFFER")
+#   if [ -n "$selected_session" ]; then
+#     BUFFER="tmux a -t${selected_session}"
+#     zle accept-line
+#   fi
+#   zle clear-screen
+# }
+# zle -N peco-tmux
+
 # memo
 function memo() {
   MEMO_HOME=$HOME/memo
@@ -191,7 +205,6 @@ alias giaa="git add -A"
 alias -g 'uniqc'="awk '{ v[$0]++ } END { for ( k in v ) print v[k] "\t" k }'"
 
 # key binds
-bindkey -v
 bindkey -M viins "^A" beginning-of-line
 bindkey -M viins "^B" backward-char
 bindkey -M viins "^D" delete-char-or-list
@@ -219,10 +232,15 @@ bindkey -M vicmd "k" up-line
 ## custom function bind
 bindkey -M viins '^R' peco-history-selection
 bindkey -M vicmd '^R' peco-history-selection
+
 bindkey -M viins '^G' peco-cdr
 bindkey -M vicmd '^G' peco-cdr
+
 bindkey -M viins '^]' peco-ghq
 bindkey -M vicmd '^]' peco-ghq
+
+# bindkey -M vicmd '^A' peco-tmux
+# bindkey -M viins '^A' peco-tmux
 
 bindkey -M viins '∆' jq-complete
 bindkey -M vicmd '∆' jq-complete

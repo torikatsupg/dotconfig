@@ -1,8 +1,10 @@
 return function()
-  local saga = require("lspsaga")
-  saga.setup ({
+  require("lspsaga").setup({
+    symbols_in_winbar = {
+        enable = false
+    },
     ui = {
-      code_action = '',
+      -- code_action = '',
       border = 'rounded',
     },
   })

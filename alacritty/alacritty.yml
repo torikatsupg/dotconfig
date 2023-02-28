@@ -1,28 +1,30 @@
 window:
   # decorations: None
-    # dimensions:
-    #   columns: 200
-    #   lines: 60
-  opacity: 0.90
+  #   dimensions:
+  #     columns: 200
+  #     lines: 60
+  opacity: 0.87
 
 scrolling:
   history: 100000
   multiplier: 3
 
+env:
+  TERM: alacritty
 font:
-  size: 14.0
+  size: 12.0
   normal:
-    style: Regular
-    family: 'JetBrainsMono Nerd Font Mono'
+    style: Thin
+    family: JetBrainsMono Nerd Font Mono
   bold:
-    style: Bold
-    family: 'JetBrainsMono Nerd Font Mono'
+    style:  Medium
+    family: JetBrainsMono Nerd Font Mono
   italic:
-    style: Italic
-    family: 'JetBrainsMono Nerd Font Mono'
+    style: Thin Italic
+    family: JetBrainsMono Nerd Font Mono
   bold_italic:
-    style: Bold Italic
-    family: 'JetBrainsMono Nerd Font Mono'
+    style: Medium Italic
+    family: JetBrainsMono Nerd Font Mono
 
 
   # Nightfox Alacritty Colors

@@ -9,6 +9,7 @@ base=`pwd`
 mkdir -p ~/.hammerspoon
 ln -s "$base/home/.zshrc" ~/.zshrc
 ln -s "$base/home/.tmux.conf" ~/.tmux.conf
+ln -s "$base/home/.gitconfig" ~/.gitconfig
 ln -s "$base/nvim" ~/.config/nvim
 ln -s "$base/alacritty" ~/.config/alacritty
 ln -s "$base/hammerspoon/init.lua" ~/.hammerspoon/init.lua

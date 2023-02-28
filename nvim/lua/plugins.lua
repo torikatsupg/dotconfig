@@ -1,17 +1,16 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-    install_path })
+  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
   vim.cmd [[packadd packer.nvim]]
 end
 
 require 'packer'.startup({
   function(use)
-    use { 'wbthomason/packer.nvim', opt = true }
+    use { 'wbthomason/packer.nvim' }
     use {
       'EdenEast/nightfox.nvim',
-      config = require 'plugin.nightfox_rc'
+      config =  require 'plugin.nightfox_rc',
     }
     use {
       'nvim-lualine/lualine.nvim',
@@ -47,10 +46,10 @@ require 'packer'.startup({
       'neovim/nvim-lspconfig',
       config = require 'plugin.nvim-lspconfig_rc'
     }
-    -- use {
-    --   'rcarriga/nvim-notify',
-    --   config = require 'plugin.nvim-notify_rc'
-    -- }
+    use {
+      'rcarriga/nvim-notify',
+      config = require 'plugin.nvim-notify_rc'
+    }
     -- dap
     use {
       'mfussenegger/nvim-dap',
@@ -79,16 +78,16 @@ require 'packer'.startup({
       'simrat39/rust-tools.nvim',
       config = require 'plugin.rust-tools_rc'
     }
-    use {
-      'folke/trouble.nvim',
-      config = require 'plugin.trouble_rc',
-      requires = {
-        {
-          'folke/lsp-colors.nvim',
-          config = require 'plugin.lsp-colors_rc'
-        },
-      },
-    }
+    -- use {
+    --   'folke/trouble.nvim',
+    --   config = require 'plugin.trouble_rc',
+    --   requires = {
+    --     {
+    --       'folke/lsp-colors.nvim',
+    --       config = require 'plugin.lsp-colors_rc'
+    --     },
+    --   },
+    -- }
     use {
       'hrsh7th/nvim-cmp',
       config = require 'plugin.nvim-cmp_rc',
@@ -131,9 +130,11 @@ require 'packer'.startup({
     }
     use {
       "glepnir/lspsaga.nvim",
+      commit = 'bd55b175a4546334a197821cd4bfc19ba94e1a82',
       config = require 'plugin.lspsaga_rc',
       requires = {
-        'neovim/nvim-lspconfig'
+        {"nvim-tree/nvim-web-devicons"},
+        {"nvim-treesitter/nvim-treesitter"},
       },
     }
     use {
@@ -183,7 +184,8 @@ require 'packer'.startup({
       'petertriho/nvim-scrollbar',
       config = require 'plugin.nvim-scrollbar_rc',
       requires = {
-        'kevinhwang91/nvim-hlslens'
+        'kevinhwang91/nvim-hlslens',
+        config = require 'plugin.hlslens_rc'
       }
     }
     use {
