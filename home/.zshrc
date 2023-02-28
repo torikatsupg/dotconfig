@@ -24,6 +24,7 @@ path=(
 	$HOME/.nodenv/bin(N-/) # nodenv path
 	$HOME/development/flutter/bin(N-/) # flutter path
 	$HOME/development/deopt_tools/(N-/) # deopt_tools
+  $HOME/.pub-cache/bin(N-/) # pub-cache for fvm
   $HOME/.cargo/bin(N-/) # rust
   $HOME/development/android-platform-tools(N-/) # android tools
   $HOME/Library/Android/sdk/emulator(N-/) # android emulator tool
@@ -201,6 +202,10 @@ alias gic="git commit -m $1"
 alias gip="git push -u origin $1"
 alias gia="git add"
 alias giaa="git add -A"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
 
 alias -g 'uniqc'="awk '{ v[$0]++ } END { for ( k in v ) print v[k] "\t" k }'"
 
