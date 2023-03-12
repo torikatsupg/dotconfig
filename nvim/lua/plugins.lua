@@ -35,6 +35,24 @@ local function init()
     commit = '1d0cf98a561f7fd654c970c49f917d74fafe1530',
     opt = true,
   }
+
+  local treesitter = require 'plugin.treesitter.plugins'
+  use(treesitter.nvim_yati)
+  use(treesitter.nvim_ts_context_commentstring)
+  use(treesitter.nvim_context_vt)
+  use(treesitter.nvim_ts_rainbow)
+  use(treesitter.nvim_ts_autotag)
+  use(treesitter.nvim_autopairs)
+  use(treesitter.vim_matchup)
+
+  local telescope = require 'plugin.telescope.plugins'
+  use(telescope.telescope)
+  use(telescope.ghq)
+  use(telescope.frecency)
+  use(telescope.live_grep_args)
+  use(telescope.media_files)
+  use(telescope.ui_select)
+
   use {
     'EdenEast/nightfox.nvim',
     config = require 'plugin.nightfox_rc',
@@ -171,15 +189,6 @@ local function init()
   }
 
 
-  local telescope = require 'plugin.telescope.plugins'
-  use(telescope.telescope)
-  use(telescope.ghq)
-  use(telescope.frecency)
-  use(telescope.live_grep_args)
-  use(telescope.media_files)
-  use(telescope.ui_select)
-  require 'plugin.treesitter.plugins' (use)
-
   use {
     'petertriho/nvim-scrollbar',
     config = require 'plugin.nvim-scrollbar_rc',
@@ -194,10 +203,11 @@ local function init()
   --   branch = 'v2',
   --
   -- }
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    config = require 'plugin.indent-blankline_rc'
-  }
+  --
+  -- use {
+  --   'lukas-reineke/indent-blankline.nvim',
+  --   config = require 'plugin.indent-blankline_rc'
+  -- }
   -- use {
   --   "folke/todo-comments.nvim",
   --   config = require 'plugin.todo-comments_rc',

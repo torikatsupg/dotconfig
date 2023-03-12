@@ -1,6 +1,6 @@
 local M = {}
 local rc = require 'plugin.telescope.rc'
-local fundations = require 'plugin.foundations'
+local foundations = require 'plugin.foundations.foundations'
 
 M.telescope = {
   'nvim-telescope/telescope.nvim',
@@ -11,8 +11,9 @@ M.telescope = {
   module_pattern = { "telescope.*" },
   setup = rc.setup,
   requires = {
-    fundations.use_plenary,
-    fundations.plenary,
+    foundations.use_plenary,
+    foundations.plenary,
+    foundations.treesitter,
   },
 }
 
