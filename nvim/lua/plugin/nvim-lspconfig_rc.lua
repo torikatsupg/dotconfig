@@ -21,24 +21,6 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts)
   return orig_util_open_floating_preview(contents, syntax, opts)
 end
 
-function setup_prettier()
-  local status, prettier = pcall(require, "prettier")
-  if (not status) then return end
-  prettier.setup {
-    bin = 'prettierd',
-    filetypes = {
-      "css",
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "json",
-      "scss",
-      "less"
-    }
-  }
-end
-
 return function()
   local config = require 'lspconfig'
   vim.diagnostic.config({
@@ -100,16 +82,22 @@ return function()
     capabilities = capabilities,
     settings = {
       Lua = {
-        runtime = { version = 'LuaJIT', },
-        diagnostics = { globals = { 'vim', 'hs' }, },
+        runtime = {
+          version = 'LuaJIT',
+        },
+        diagnostics = {
+          globals = {'vim'},
+        },
         workspace = {
           library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false,
         },
-        telemetry = { enable = false, },
+        telemetry = {
+          enable = false,
+        },
       },
     },
   }
-
   setup_prettier()
 end
 

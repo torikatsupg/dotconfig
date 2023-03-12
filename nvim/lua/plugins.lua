@@ -1,19 +1,19 @@
 -- Install packer
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
+  else
+    return false
   end
-  return false
 end
 
 -- Dependencies
 local packer
 local function init()
-
   ensure_packer()
 
   if packer == nil then
@@ -22,7 +22,7 @@ local function init()
 
   packer.init({
     disable_commands = true,
-    display = {open_fn = require('packer.util').float}
+    display = { open_fn = require('packer.util').float }
   })
 
   packer.reset()
@@ -30,11 +30,16 @@ local function init()
 
   -- Plugins
 
-  use { 'wbthomason/packer.nvim' }
+  use {
+    'wbthomason/packer.nvim',
+    commit = '1d0cf98a561f7fd654c970c49f917d74fafe1530',
+    opt = true,
+  }
   use {
     'EdenEast/nightfox.nvim',
     config = require 'plugin.nightfox_rc',
   }
+
   use {
     'nvim-lualine/lualine.nvim',
     config = require 'plugin.lualine_rc',
@@ -44,14 +49,17 @@ local function init()
       { 'EdenEast/nightfox.nvim' },
     },
   }
+
   use {
     'j-hui/fidget.nvim',
     config = require 'plugin.fidget_rc'
   }
+
   use {
     'norcalli/nvim-colorizer.lua',
     config = require 'plugin.nvim-colorizer_rc'
   }
+
   use {
     'williamboman/mason.nvim',
     config = require 'plugin.mason-lspconfig_rc',
@@ -69,6 +77,7 @@ local function init()
     'neovim/nvim-lspconfig',
     config = require 'plugin.nvim-lspconfig_rc'
   }
+
   use {
     'rcarriga/nvim-notify',
     config = require 'plugin.nvim-notify_rc'
@@ -160,49 +169,17 @@ local function init()
       { "nvim-treesitter/nvim-treesitter" },
     },
   }
-  use {
-    'nvim-telescope/telescope.nvim',
-    config = require 'plugin.telescope_rc',
-    requires = {
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-      },
-      {
-        'nvim-telescope/telescope-frecency.nvim',
-        requires = {
-          { 'tami5/sqlite.lua' }
-        }
-      },
-    },
-  }
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    config = require 'plugin.nvim-treesitter_rc',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-    requires = {
-      { 'JoosepAlviste/nvim-ts-context-commentstring' },
-      { 'p00f/nvim-ts-rainbow' },
-      {
-        'haringsrob/nvim_context_vt',
-        config = require 'plugin.nvim-context-vt_rc',
-      },
-      {
-        'm-demare/hlargs.nvim',
-        config = require 'plugin.hlargs_rc'
-      },
-      {
-        'windwp/nvim-ts-autotag',
-        config = require 'plugin.autotag_rc'
-      },
-      {
-        'windwp/nvim-autopairs',
-        config = require 'plugin.autopairs_rc'
-      },
-      { 'andymass/vim-matchup' },
-      { "yioneko/nvim-yati" },
-    },
-  }
+
+
+  local telescope = require 'plugin.telescope.plugins'
+  use(telescope.telescope)
+  use(telescope.ghq)
+  use(telescope.frecency)
+  use(telescope.live_grep_args)
+  use(telescope.media_files)
+  use(telescope.ui_select)
+  require 'plugin.treesitter.plugins' (use)
+
   use {
     'petertriho/nvim-scrollbar',
     config = require 'plugin.nvim-scrollbar_rc',
@@ -211,25 +188,27 @@ local function init()
       config = require 'plugin.hlslens_rc'
     }
   }
-  use {
-    'phaazon/hop.nvim',
-    config = require 'plugin.hop_rc',
-    branch = 'v2',
-
-  }
+  -- use {
+  --   'phaazon/hop.nvim',
+  --   config = require 'plugin.hop_rc',
+  --   branch = 'v2',
+  --
+  -- }
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = require 'plugin.indent-blankline_rc'
   }
-  use {
-    "folke/todo-comments.nvim",
-    config = require 'plugin.todo-comments_rc',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'folke/trouble.nvim', -- TODO(torikatsu): configure
-      'nvim-telescope/telescope.nvim', -- TODO(torikatsu): configure
-    },
-  }
+  -- use {
+  --   "folke/todo-comments.nvim",
+  --   config = require 'plugin.todo-comments_rc',
+  --   requires = {
+  --     'nvim-lua/plenary.nvim',
+  --     'folke/trouble.nvim',            -- TODO(torikatsu): configure
+  --     'nvim-telescope/telescope.nvim', -- TODO(torikatsu): configure
+  --   },
+  -- }
+
+  use { "nvim-lua/plenary.nvim" }
   use {
     "nvim-neo-tree/neo-tree.nvim",
     config = require 'plugin.neo-tree_rc',
@@ -306,8 +285,10 @@ local plugins = setmetatable({}, {
   end
 })
 
-vim.api.nvim_create_user_command("PackerInstall", function() plugins.install()  end, { bang = true })
-vim.api.nvim_create_user_command("PackerUpdate",  function() plugins.update()   end, { bang = true })
-vim.api.nvim_create_user_command("PackerSync",    function() plugins.sync()     end, { bang = true })
-vim.api.nvim_create_user_command("PackerClean",   function() plugins.clean()    end, { bang = true })
-vim.api.nvim_create_user_command("PackerCompile", function() plugins.compile()  end, { bang = true })
+local cmd = vim.api.nvim_create_user_command
+cmd("PackerInstall", function() plugins.install() end, { bang = true })
+cmd("PackerUpdate", function() plugins.update() end, { bang = true })
+cmd("PackerSync", function() plugins.sync() end, { bang = true })
+cmd("PackerClean", function() plugins.clean() end, { bang = true })
+cmd("PackerCompile", function() plugins.compile() end, { bang = true })
+cmd("PackerRemove", [[:! rm -rf ~/.local/share/nvim]], { bang = true })

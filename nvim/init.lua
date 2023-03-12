@@ -1,4 +1,4 @@
-require 'foundation'
 require 'plugins'
+require 'foundation'
 require 'keymap'
 

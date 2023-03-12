@@ -5,42 +5,16 @@ local opts = { noremap = true, silent = false }
 keymap('n', '<leader><space>', function() vim.cmd [[NeoTreeFloat]] end, opts)
 
 -- hop
-local hop = require 'hop'
-keymap("n", "<leader>f", hop.hint_char1, opts)
+-- local hop = require 'hop'
+-- keymap("n", "<leader>f", hop.hint_char1, opts)
 
--- telescope
-local builtin = require("telescope.builtin")
-keymap("n", "<leader>ff", builtin.find_files, opts)
-keymap("n", "<leader>fg", builtin.live_grep, opts)
-keymap("n", "<leader>fb", builtin.buffers, opts)
-keymap("n", "<leader>fh", builtin.help_tags, opts)
 
--- lsp
--- keymap('n', '<space>e', vim.diagnostic.open_float, opts) TODO
--- keymap('n', '[d', vim.diagnostic.goto_prev, opts)
--- keymap('n', ']d', vim.diagnostic.goto_next, opts)
--- keymap('n', '<space>q', vim.diagnostic.setloclist, opts) TODO
--- keymap('n', 'gD', vim.lsp.buf.declaration, opts)
--- keymap('n', 'gd', vim.lsp.buf.definition, opts)
--- keymap('n', 'K', vim.lsp.buf.hover, opts)
--- keymap('n', 'gi', vim.lsp.buf.implementation, opts) TODO
--- keymap('n', '<C-k>', vim.lsp.buf.signature_help, opts)
--- keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
--- keymap('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
--- keymap('n', '<space>wl', function()
---   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
--- end, opts)
--- keymap('n', '<space>D', vim.lsp.buf.type_definition, opts)
--- keymap('n', '<space>rn', vim.lsp.buf.rename, opts)
--- keymap('n', '<space>ca', vim.lsp.buf.code_action, opts)
--- keymap('n', 'gr', vim.lsp.buf.references, opts)
 
 keymap('n', '<space>f', vim.lsp.buf.format, opts)
 
 
 -- lspsaga
 keymap("n", "gh",           "<cmd>Lspsaga lsp_finder<CR>", opts)
-keymap("n", "ga",           "<cmd>Lspsaga code_action<CR>")
 keymap("v", "ga",           "<cmd>Lspsaga range_code_action<CR>", opts)
 keymap("n", "gr",           "<cmd>Lspsaga rename<CR>", opts)
 keymap("n", "gr",           "<cmd>Lspsaga rename ++project<CR>")
