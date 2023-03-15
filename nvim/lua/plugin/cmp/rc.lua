@@ -4,6 +4,7 @@ M.config_cmp = function()
   local cmp = require 'cmp'
   cmp.setup {
     sources = {},
+    snippet = {},
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -11,15 +12,6 @@ M.config_cmp = function()
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }),
-    -- snippet = {
-    --   expand = function(args)
-    --     require 'luasnip'.lsp_expand(args.body)
-    --   end
-    -- },
-    -- completion = {
-    --   keyword_length = 3,
-    --   autocomplete = false
-    -- },
     view = {
       entries = "custom"
     },
@@ -135,6 +127,17 @@ M.config_cmp_emoji = function()
 end
 
 M.config_cmp_luasnip = function()
+  local cmp = require 'cmp'
+  local config = cmp.get_config()
+  table.insert(config.snippet, {
+    expand = function(args)
+      require'luasnip'.lsp_expand(args.body) 
+    end
+  })
+  table.insert(config.sources,  {
+    name = 'luasnip' })
+  cmp.setup(config)
+  vim.notify('cmp luasnip')
 end
 
 return M

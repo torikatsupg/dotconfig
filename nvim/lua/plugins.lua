@@ -61,7 +61,7 @@ local function init()
   use(cmp.path)
   use(cmp.dictionary)
   use(cmp.emoji)
-  -- use(cmp.luasnip)
+  use(cmp.luasnip)
   -- use(cmp.nvim_lsp)
 
   use {
@@ -177,10 +177,6 @@ local function init()
       "MunifTanjim/nui.nvim",
     },
   }
-  use {
-    'numToStr/Comment.nvim',
-    config = require 'plugin.comment_rc'
-  }
   use { 'bkad/CamelCaseMotion' }
   use { 'myusuf3/numbers.vim' }
   use {
@@ -190,6 +186,7 @@ local function init()
       config = require 'plugin.vim-repeat_rc'
     }
   }
+
   use { 'ntpeters/vim-better-whitespace' }
   -- TODO(torikatsu): いれたい https://github.com/segeljakt/vim-silicon
   --

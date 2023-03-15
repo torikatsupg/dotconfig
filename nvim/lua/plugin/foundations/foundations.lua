@@ -34,8 +34,9 @@ M.nvim_lspconfig = {
 
 M.luasnip = {
   'L3MON4D3/LuaSnip',
-  commit = '009887b76f15d16f69ae1341f86a7862f61cf2a1',
+  tag = 'v1.2.1',
   opt = true,
+  run = "make install_jsregexp",
   module = { 'luasnip' },
   config = rc.config_luasnip,
 }

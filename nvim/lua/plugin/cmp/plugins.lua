@@ -68,18 +68,20 @@ M.emoji = {
   config = rc.config_cmp_emoji,
 }
 
--- M.luasnip = {
---   'saadparwaiz1/cmp_luasnip',
---   opt = true,
---   event = { 'InsertEnter' },
---   requires = {
---     cmp,
---     foundations.luasnip,
---   },
---   wants = {
---     'nvim-cmp',
---     'LuaSnip',
---   }
--- }
+M.luasnip = {
+  'saadparwaiz1/cmp_luasnip',
+  commit = '18095520391186d634a0045dacaa346291096566',
+  opt = true,
+  event = { 'InsertEnter' },
+  config = rc.config_cmp_luasnip,
+  requires = {
+    cmp,
+    foundations.luasnip,
+  },
+  wants = {
+    'nvim-cmp',
+    'LuaSnip',
+  }
+}
 
 return M
