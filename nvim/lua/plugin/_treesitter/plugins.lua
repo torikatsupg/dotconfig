@@ -62,7 +62,7 @@ M.nvim_ts_autotag = {
   'windwp/nvim-ts-autotag',
   commit = 'fdefe46c6807441460f11f11a167a2baf8e4534b',
   opt = true,
-  -- event = { 'BufRead' }, -- need BufRead
+  event = { 'BufRead' }, -- need BufRead
   ft = {
     'html',
     'javascript',
@@ -79,8 +79,6 @@ M.nvim_ts_autotag = {
     'markdown',
     'glimmer','handlebars','hbs'
   },
-
-  -- TODO(torikatsu): specify filetype
   config = rc.config_nvim_ts_autotag,
   requires = {
     foundation.treesitter
