@@ -1,5 +1,6 @@
 local M = {}
 
+local rc = require 'plugin.foundations.rc'
 M.plenary = {
   'nvim-lua/plenary.nvim',
   tag = 'v0.1.3',
@@ -20,19 +21,23 @@ M.treesitter = {
   opt = true,
   module_pattern = { 'nvim-treesitter.*' },
   run = ':TSUpdate',
-  config = function() 
-    require('nvim-treesitter.configs').setup({
-      rainbow = {
-        enable = true,
-        -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
-        -- colors = {}, -- table of hex strings
-        -- termcolors = {} -- table of colour name strings
-      },
-    })
-    vim.notify('setup treesitter')
-  end
+  config = rc.config_treesitter,
+}
+
+M.nvim_lspconfig = {
+  'neovim/nvim-lspconfig',
+  tag = 'v0.1.6',
+  opt = true,
+  event = { "BufReadPre" },
+  config = require 'plugin.foundations.nvim-lspconfig_rc',
+}
+
+M.luasnip = {
+  'L3MON4D3/LuaSnip',
+  commit = '009887b76f15d16f69ae1341f86a7862f61cf2a1',
+  opt = true,
+  module = { 'luasnip' },
+  config = rc.config_luasnip,
 }
 
 return M

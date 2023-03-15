@@ -1,21 +1,7 @@
 local M = {}
 
 local foundation = require 'plugin.foundations.foundations'
-local rc = require 'plugin.treesitter.rc'
-
-M.nvim_yati = {
-  "yioneko/nvim-yati",
-  tag = '0.0.4',
-  opt = true,
-  event = { 'InsertEnter' },
-  config = rc.config_yati,
-  requires = {
-    foundation.treesitter
-  },
-  wants = {
-    'nvim-treesitter'
-  }
-}
+local rc = require 'plugin._treesitter.rc'
 
 M.nvim_ts_context_commentstring = {
   'JoosepAlviste/nvim-ts-context-commentstring',
@@ -50,7 +36,6 @@ M.nvim_ts_rainbow = {
   commit = '840039440e012ad798ef31349b93a5d4365023ff',
   opt = true,
   event = { 'BufRead' },
-  config = rc.config_nvim_ts_rainbow,
   requires = {
     foundation.treesitter
   },
@@ -59,13 +44,43 @@ M.nvim_ts_rainbow = {
   }
 }
 
-M.hlargs = { 'm-demare/hlargs.nvim', config = require 'plugin.hlargs_rc' }
+M.hlargs = {
+   'm-demare/hlargs.nvim',
+   commit = 'a7ad6ed8d6e27ea4dd13fda63fa732e9196ba4ea',
+   opt = true,
+  event = { 'BufRead' },
+    config = rc.config_hlargs,
+  requires = {
+    foundation.treesitter
+  },
+  wants = {
+    'nvim-treesitter'
+  }
+  }
 
 M.nvim_ts_autotag = {
   'windwp/nvim-ts-autotag',
   commit = 'fdefe46c6807441460f11f11a167a2baf8e4534b',
   opt = true,
-  event = { 'InsertEnter' },
+  -- event = { 'BufRead' }, -- need BufRead
+  ft = {
+    'html',
+    'javascript',
+    'typescript',
+    'javascriptreact',
+    'typescriptreact',
+    'svelte',
+    'vue',
+    'tsx',
+    'jsx',
+    'rescript',
+    'xml',
+    'php',
+    'markdown',
+    'glimmer','handlebars','hbs'
+  },
+
+  -- TODO(torikatsu): specify filetype
   config = rc.config_nvim_ts_autotag,
   requires = {
     foundation.treesitter
@@ -74,7 +89,6 @@ M.nvim_ts_autotag = {
     'nvim-treesitter'
   }
 }
-
 
 M.nvim_autopairs = {
   'windwp/nvim-autopairs',
@@ -94,7 +108,7 @@ M.vim_matchup = {
   'andymass/vim-matchup',
   tag = 'v0.7.2',
   opt = true,
-  event = { 'BufRead' },
+  event = { 'CursorHold' },
   config = rc.config_matchup,
   requires = {
     foundation.treesitter
@@ -104,5 +118,18 @@ M.vim_matchup = {
   }
 }
 
+M.nightfox =  {
+  'EdenEast/nightfox.nvim',
+  tag = 'v3.3.0',
+  opt = true,
+  event = {'VimEnter'},
+  config = rc.config_nightfox,
+  requires = {
+    foundation.treesitter
+  },
+  wants = {
+    'nvim-treesitter'
+  },
+}
 
 return M

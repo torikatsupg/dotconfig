@@ -10,12 +10,10 @@ local ensure_packer = function()
     return false
   end
 end
-
 -- Dependencies
 local packer
 local function init()
   ensure_packer()
-
   if packer == nil then
     packer = require('packer')
   end
@@ -36,14 +34,15 @@ local function init()
     opt = true,
   }
 
-  local treesitter = require 'plugin.treesitter.plugins'
-  use(treesitter.nvim_yati)
+  local treesitter = require 'plugin._treesitter.plugins'
   use(treesitter.nvim_ts_context_commentstring)
   use(treesitter.nvim_context_vt)
   use(treesitter.nvim_ts_rainbow)
-  use(treesitter.nvim_ts_autotag)
   use(treesitter.nvim_autopairs)
   use(treesitter.vim_matchup)
+  use(treesitter.nightfox)
+  use(treesitter.nvim_ts_autotag)
+  use(treesitter.hlargs)
 
   local telescope = require 'plugin.telescope.plugins'
   use(telescope.telescope)
@@ -53,10 +52,17 @@ local function init()
   use(telescope.media_files)
   use(telescope.ui_select)
 
-  use {
-    'EdenEast/nightfox.nvim',
-    config = require 'plugin.nightfox_rc',
-  }
+  local mason = require 'plugin.mason.plugins'
+  use(mason.mason)
+  use(mason.mason_lspconfig)
+
+  local cmp = require 'plugin.cmp.plugins'
+  use(cmp.buffer)
+  use(cmp.path)
+  use(cmp.dictionary)
+  use(cmp.emoji)
+  -- use(cmp.luasnip)
+  -- use(cmp.nvim_lsp)
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -78,23 +84,6 @@ local function init()
     config = require 'plugin.nvim-colorizer_rc'
   }
 
-  use {
-    'williamboman/mason.nvim',
-    config = require 'plugin.mason-lspconfig_rc',
-    requires = {
-      { 'neovim/nvim-lspconfig' },
-      {
-        'williamboman/mason-lspconfig.nvim',
-        requires = {
-          { 'hrsh7th/cmp-nvim-lsp' }
-        }
-      },
-    },
-  }
-  use {
-    'neovim/nvim-lspconfig',
-    config = require 'plugin.nvim-lspconfig_rc'
-  }
 
   use {
     'rcarriga/nvim-notify',
@@ -124,10 +113,10 @@ local function init()
     'fatih/vim-go',
     ft = { 'go' }
   }
-  use {
-    'simrat39/rust-tools.nvim',
-    config = require 'plugin.rust-tools_rc'
-  }
+  -- use {
+  --   'simrat39/rust-tools.nvim',
+  --   config = require 'plugin.rust-tools_rc'
+  -- }
   -- use {
   --   'folke/trouble.nvim',
   --   config = require 'plugin.trouble_rc',
@@ -138,46 +127,6 @@ local function init()
   --     },
   --   },
   -- }
-  use {
-    'hrsh7th/nvim-cmp',
-    config = require 'plugin.nvim-cmp_rc',
-    requires = {
-      -- TODO(torikatsu): add fuzz_buffer, fuzzy_path, rg
-      -- TODO(torikatsu): add tmux, zsh
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-calc' },
-      { 'uga-rosa/cmp-dictionary' },
-      { 'dmitmel/cmp-digraphs' },
-      { 'hrsh7th/cmp-omni' },
-      { 'f3fora/cmp-spell' },
-      { 'hrsh7th/cmp-nvim-lsp' }, -- depend on built-in lsp
-      { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
-      { 'hrsh7th/cmp-nvim-lsp-signature-help' },
-      { 'hrsh7th/cmp-path' },
-      { 'hrsh7th/cmp-cmdline' },
-      { 'dmitmel/cmp-cmdline-history' },
-      { 'hrsh7th/cmp-emoji' }, -- TODO(torikatsu): configure
-      {
-        'ray-x/cmp-treesitter',
-        requires = {
-          'nvim-treesitter/nvim-treesitter'
-        }
-      },
-      {
-        'saadparwaiz1/cmp_luasnip',
-        requires = {
-          {
-            'L3MON4D3/LuaSnip',
-            config = require 'plugin.luasnip_rc',
-            requires = {
-              'rafamadriz/friendly-snippets'
-            }
-          }
-
-        }
-      },
-    },
-  }
   use {
     "glepnir/lspsaga.nvim",
     commit = 'bd55b175a4546334a197821cd4bfc19ba94e1a82',
@@ -218,7 +167,6 @@ local function init()
   --   },
   -- }
 
-  use { "nvim-lua/plenary.nvim" }
   use {
     "nvim-neo-tree/neo-tree.nvim",
     config = require 'plugin.neo-tree_rc',
@@ -302,3 +250,4 @@ cmd("PackerSync", function() plugins.sync() end, { bang = true })
 cmd("PackerClean", function() plugins.clean() end, { bang = true })
 cmd("PackerCompile", function() plugins.compile() end, { bang = true })
 cmd("PackerRemove", [[:! rm -rf ~/.local/share/nvim]], { bang = true })
+

@@ -47,39 +47,36 @@ return function()
     debounce_text_changes = 50,
   }
 
-  local capabilities = require('cmp_nvim_lsp').default_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-  )
+  -- local capabilities = require('cmp_nvim_lsp').default_capabilities(
+  --   vim.lsp.protocol.make_client_capabilities()
+  -- )
+  capabilities = function ()
+  end
 
-  config.eslint.setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-  }
-  -- config.prettier.setup {
+  -- config.eslint.setup {
   --   on_attach = on_attach,
   --   flags = lsp_flags,
   --   capabilities = capabilities,
   -- }
-  config.tsserver.setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-  }
-  config.dartls.setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-  }
-  config.yamlls.setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-  }
+  -- config.tsserver.setup {
+  --   on_attach = on_attach,
+  --   flags = lsp_flags,
+  --   capabilities = capabilities,
+  -- }
+  -- config.dartls.setup {
+  --   on_attach = on_attach,
+  --   flags = lsp_flags,
+  --   capabilities = capabilities,
+  -- }
+  -- config.yamlls.setup {
+  --   on_attach = on_attach,
+  --   flags = lsp_flags,
+  --   capabilities = capabilities,
+  -- }
   config.lua_ls.setup {
-    on_attach = on_attach,
+    -- on_attach = on_attach,
     flags = lsp_flags,
-    capabilities = capabilities,
+    -- capabilities = capabilities,
     settings = {
       Lua = {
         runtime = {
@@ -98,6 +95,5 @@ return function()
       },
     },
   }
-  setup_prettier()
 end
 
