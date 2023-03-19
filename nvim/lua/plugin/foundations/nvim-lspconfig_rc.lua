@@ -1,99 +1,56 @@
-vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=#5F5F87 guibg=none ]]
+-- vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=#5F5F87 guibg=none ]]
 
--- ╭─╮
--- │ │
--- ╰─╯
-local border = {
-  { "╭", "FloatBorder" },
-  { "─", "FloatBorder" },
-  { "╮", "FloatBorder" },
-  { "│", "FloatBorder" },
-  { "╯", "FloatBorder" },
-  { "─", "FloatBorder" },
-  { "╰", "FloatBorder" },
-  { "│", "FloatBorder" },
-}
+-- -- ╭─╮
+-- -- │ │
+-- -- ╰─╯
+-- local border = {
+--   { "╭", "FloatBorder" },
+--   { "─", "FloatBorder" },
+--   { "╮", "FloatBorder" },
+--   { "│", "FloatBorder" },
+--   { "╯", "FloatBorder" },
+--   { "─", "FloatBorder" },
+--   { "╰", "FloatBorder" },
+--   { "│", "FloatBorder" },
+-- }
 
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts)
-  opts = opts or {}
-  opts.border = opts.border or border
-  return orig_util_open_floating_preview(contents, syntax, opts)
-end
+-- local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+-- function vim.lsp.util.open_floating_preview(contents, syntax, opts)
+--   opts = opts or {}
+--   opts.border = opts.border or border
+--   return orig_util_open_floating_preview(contents, syntax, opts)
+-- end
 
 return function()
-  local config = require 'lspconfig'
-  vim.diagnostic.config({
-    virtual_text = false,
-    signs = true,
-    underline = true,
-    update_in_insert = false,
-    severity_sort = false,
-  })
+  -- vim.diagnostic.config({
+  --   virtual_text = false,
+  --   signs = true,
+  --   underline = true,
+  --   update_in_insert = false,
+  --   severity_sort = false,
+  -- })
 
-  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
+  -- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  -- for type, icon in pairs(signs) do
+  --   local hl = "DiagnosticSign" .. type
+  --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  -- end
 
+  -- local on_attach = function(client, bufnr)
+  --   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  --   require("nvim-navic").attach(client, bufnr)
+  -- end
 
-  local on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    require("nvim-navic").attach(client, bufnr)
-  end
-
-  local lsp_flags = {
-    debounce_text_changes = 50,
-  }
-
-  -- local capabilities = require('cmp_nvim_lsp').default_capabilities(
-  --   vim.lsp.protocol.make_client_capabilities()
-  -- )
-  capabilities = function ()
-  end
-
-  -- config.eslint.setup {
-  --   on_attach = on_attach,
-  --   flags = lsp_flags,
-  --   capabilities = capabilities,
+  -- local lsp_flags = {
+  --   debounce_text_changes = 50,
   -- }
-  -- config.tsserver.setup {
-  --   on_attach = on_attach,
-  --   flags = lsp_flags,
-  --   capabilities = capabilities,
-  -- }
-  -- config.dartls.setup {
-  --   on_attach = on_attach,
-  --   flags = lsp_flags,
-  --   capabilities = capabilities,
-  -- }
-  -- config.yamlls.setup {
-  --   on_attach = on_attach,
-  --   flags = lsp_flags,
-  --   capabilities = capabilities,
-  -- }
-  config.lua_ls.setup {
-    -- on_attach = on_attach,
-    flags = lsp_flags,
-    -- capabilities = capabilities,
-    settings = {
-      Lua = {
-        runtime = {
-          version = 'LuaJIT',
-        },
-        diagnostics = {
-          globals = {'vim'},
-        },
-        workspace = {
-          library = vim.api.nvim_get_runtime_file("", true),
-          checkThirdParty = false,
-        },
-        telemetry = {
-          enable = false,
-        },
-      },
-    },
-  }
+
+--  local config = require 'lspconfig'
+--  config.lua_ls.setup {
+--    on_attach = on_attach,
+--    flags = lsp_flags,
+--   }
+  -- require'lspconfig'.lua_ls.setup{}
+  vim.lsp.set_log_level("debug")
 end
 

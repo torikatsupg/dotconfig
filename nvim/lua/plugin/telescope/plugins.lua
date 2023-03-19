@@ -11,10 +11,13 @@ M.telescope = {
   module_pattern = { "telescope.*" },
   setup = rc.setup,
   requires = {
-    foundations.use_plenary,
     foundations.plenary,
     foundations.treesitter,
   },
+  wants = {
+    'plenary.nvim',
+    'nvim-treesitter'
+  }
 }
 
 M.ghq = {

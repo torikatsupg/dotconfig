@@ -26,8 +26,8 @@ M.treesitter = {
 
 M.nvim_lspconfig = {
   'neovim/nvim-lspconfig',
-  tag = 'v0.1.6',
   opt = true,
+  module = { 'lspconfig' },
   event = { "BufReadPre" },
   config = require 'plugin.foundations.nvim-lspconfig_rc',
 }

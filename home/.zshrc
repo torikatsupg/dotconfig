@@ -1,4 +1,4 @@
-# bind key type
+#s bind key type
 bindkey -v # zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 # mkdir -p "$(dirname $ZINIT_HOME)"
@@ -17,19 +17,19 @@ zinit light paulirish/git-open
 zinit light reegnz/jq-zsh-plugin
 zinit light hlissner/zsh-autopair
 
+# $HOME/development/flutter/bin(N-/) # flutter path
+# $HOME/.pub-cache/bin(N-/) # pub-cache for fvm
+# $HOME/.pub-cache/bin(N-/)
 # ==================== config =======================
 typeset -U path PATH
 path=(
 	/opt/homebrew/bin(N-/) # homebrew path
 	$HOME/.nodenv/bin(N-/) # nodenv path
-	$HOME/development/flutter/bin(N-/) # flutter path
 	$HOME/development/deopt_tools/(N-/) # deopt_tools
-  $HOME/.pub-cache/bin(N-/) # pub-cache for fvm
   $HOME/.cargo/bin(N-/) # rust
   $HOME/development/android-platform-tools(N-/) # android tools
   $HOME/Library/Android/sdk/emulator(N-/) # android emulator tool
   $HOME/.jenv/bin(N-/)
-  $HOME/.pub-cache/bin(N-/)
   $HOME/development/monarch/bin(N-/)
   /Applications/Alacritty.app/Contents/MacOS(N-/)
 	/usr/local/bin(N-/)
@@ -262,3 +262,27 @@ if [ -f '/Users/katsuya_torii/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/k
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/katsuya_torii/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/katsuya_torii/google-cloud-sdk/completion.zsh.inc'; fi
+
+# for asdf
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
+
+
+# switch arch
+if (( $+commands[sw_vers] )) && (( $+commands[arch] )); then
+	[[ -x /usr/local/bin/brew ]] && alias brew="arch -arch x86_64 /usr/local/bin/brew"
+	alias x64='exec arch -x86_64 /bin/zsh'
+	alias a64='exec arch -arm64e /bin/zsh'
+	switch-arch() {
+		if  [[ "$(uname -m)" == arm64 ]]; then
+			arch=x86_64
+		elif [[ "$(uname -m)" == x86_64 ]]; then
+			arch=arm64e
+		fi
+		exec arch -arch $arch /bin/zsh
+	}
+fi

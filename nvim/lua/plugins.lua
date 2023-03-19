@@ -10,6 +10,7 @@ local ensure_packer = function()
     return false
   end
 end
+
 -- Dependencies
 local packer
 local function init()
@@ -33,6 +34,15 @@ local function init()
     commit = '1d0cf98a561f7fd654c970c49f917d74fafe1530',
     opt = true,
   }
+
+  use {
+    'rcarriga/nvim-notify',
+    config = require 'plugin.nvim-notify_rc'
+  }
+
+  local foundations = require 'plugin.foundations.foundations'
+  use(foundations.nvim_lspconfig)
+  use(foundations.treesitter)
 
   local treesitter = require 'plugin._treesitter.plugins'
   use(treesitter.nvim_ts_context_commentstring)
@@ -62,17 +72,17 @@ local function init()
   use(cmp.dictionary)
   use(cmp.emoji)
   use(cmp.luasnip)
-  -- use(cmp.nvim_lsp)
+  use(cmp.nvim_lsp)
 
-  use {
-    'nvim-lualine/lualine.nvim',
-    config = require 'plugin.lualine_rc',
-    requires = {
-      { 'SmiteshP/nvim-navic' },
-      { 'kyazdani42/nvim-web-devicons' },
-      { 'EdenEast/nightfox.nvim' },
-    },
-  }
+  -- use {
+  --   'nvim-lualine/lualine.nvim',
+  --   config = require 'plugin.lualine_rc',
+  --   requires = {
+  --     { 'SmiteshP/nvim-navic' },
+  --     { 'kyazdani42/nvim-web-devicons' },
+  --     { 'EdenEast/nightfox.nvim' },
+  --   },
+  -- }
 
   use {
     'j-hui/fidget.nvim',
@@ -81,38 +91,37 @@ local function init()
 
   use {
     'norcalli/nvim-colorizer.lua',
-    config = require 'plugin.nvim-colorizer_rc'
+    commit = '36c610a9717cc9ec426a07c8e6bf3b3abcb139d6',
+    config = require 'plugin.nvim-colorizer_rc',
+    opt = true,
+    event = {'BufRead'},
   }
 
 
-  use {
-    'rcarriga/nvim-notify',
-    config = require 'plugin.nvim-notify_rc'
-  }
   -- dap
-  use {
-    'mfussenegger/nvim-dap',
-    config = require 'plugin.dap_rc',
-    requires = {
-      {
-        'theHamsta/nvim-dap-virtual-text',
-        config = require 'plugin.nvim-dap-virtual-text_rc',
-      },
-      {
-        'rcarriga/nvim-dap-ui',
-        config = require 'plugin.nvim-da-ui_rc'
-      }
-    }
-  }
-  use {
-    'akinsho/flutter-tools.nvim',
-    config = require 'plugin.flutter-tools_rc',
-    ft = { 'dart' }
-  }
-  use {
-    'fatih/vim-go',
-    ft = { 'go' }
-  }
+  -- use {
+  --   'mfussenegger/nvim-dap',
+  --   config = require 'plugin.dap_rc',
+  --   requires = {
+  --     {
+  --       'theHamsta/nvim-dap-virtual-text',
+  --       config = require 'plugin.nvim-dap-virtual-text_rc',
+  --     },
+  --     {
+  --       'rcarriga/nvim-dap-ui',
+  --       config = require 'plugin.nvim-da-ui_rc'
+  --     }
+  --   }
+  -- }
+  -- use {
+  --   'akinsho/flutter-tools.nvim',
+  --   config = require 'plugin.flutter-tools_rc',
+  --   ft = { 'dart' }
+  -- }
+  -- use {
+  --   'fatih/vim-go',
+  --   ft = { 'go' }
+  -- }
   -- use {
   --   'simrat39/rust-tools.nvim',
   --   config = require 'plugin.rust-tools_rc'
@@ -133,19 +142,20 @@ local function init()
     config = require 'plugin.lspsaga_rc',
     requires = {
       { "nvim-tree/nvim-web-devicons" },
-      { "nvim-treesitter/nvim-treesitter" },
     },
+    opt = true,
+    event = {'BufRead'}
   }
 
 
-  use {
-    'petertriho/nvim-scrollbar',
-    config = require 'plugin.nvim-scrollbar_rc',
-    requires = {
-      'kevinhwang91/nvim-hlslens',
-      config = require 'plugin.hlslens_rc'
-    }
-  }
+  -- use {
+  --   'petertriho/nvim-scrollbar',
+  --   config = require 'plugin.nvim-scrollbar_rc',
+  --   requires = {
+  --     'kevinhwang91/nvim-hlslens',
+  --     config = require 'plugin.hlslens_rc'
+  --   }
+  -- }
   -- use {
   --   'phaazon/hop.nvim',
   --   config = require 'plugin.hop_rc',
@@ -167,65 +177,71 @@ local function init()
   --   },
   -- }
 
-  use {
-    "nvim-neo-tree/neo-tree.nvim",
-    config = require 'plugin.neo-tree_rc',
-    branch = "v2.x",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    },
-  }
-  use { 'bkad/CamelCaseMotion' }
-  use { 'myusuf3/numbers.vim' }
+  -- use {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   config = require 'plugin.neo-tree_rc',
+  --   branch = "v2.x",
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "kyazdani42/nvim-web-devicons",
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  -- }
+  -- use { 'bkad/CamelCaseMotion' }
+  -- use { 'myusuf3/numbers.vim' }
   use {
     'tpope/vim-surround',
+    opt = true,
+    event = { 'InsertEnter' },
     requires = {
       'tpope/vim-repeat',
-      config = require 'plugin.vim-repeat_rc'
+      config = require 'plugin.vim-repeat_rc',
+      opt = true
+    },
+    wants = {
+      'vim-repeat'
     }
   }
 
-  use { 'ntpeters/vim-better-whitespace' }
+  -- use { 'ntpeters/vim-better-whitespace' }
   -- TODO(torikatsu): いれたい https://github.com/segeljakt/vim-silicon
   --
-  use {
-    'TimUntersberger/neogit',
-    config = require 'plugin.neogit_rc',
-    requires = {
-      { 'nvim-lua/plenary.nvim' },
-      {
-        'sindrets/diffview.nvim',
-        requires = {
-          { 'plenary.nvim' },
-          { 'nvim-web-devicons' },
-        }
-      }
-    }
-  }
-  use {
-    'akinsho/git-conflict.nvim',
-    config = require 'plugin.git-conflict_rc'
-  }
-  use {
-    'lewis6991/gitsigns.nvim',
-    config = require 'plugin.gitsigns_rc'
-  }
+  -- use {
+  --   'TimUntersberger/neogit',
+  --   config = require 'plugin.neogit_rc',
+  --   requires = {
+  --     { 'nvim-lua/plenary.nvim' },
+  --     {
+  --       'sindrets/diffview.nvim',
+  --       requires = {
+  --         { 'plenary.nvim' },
+  --         { 'nvim-web-devicons' },
+  --       }
+  --     }
+  --   }
+  -- }
+  -- use {
+  --   'akinsho/git-conflict.nvim',
+  --   config = require 'plugin.git-conflict_rc'
+  -- }
+  -- use {
+  --   'lewis6991/gitsigns.nvim',
+  --   config = require 'plugin.gitsigns_rc'
+  -- }
   use {
     'folke/which-key.nvim',
     config = require 'plugin.which-key_rc'
   }
-  use {
-    "nvim-neotest/neotest",
-    config = require 'plugin.neotest_rc',
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-      'sidlatau/neotest-dart',
-    }
-  }
+  -- use {
+  --   "nvim-neotest/neotest",
+  --   config = require 'plugin.neotest_rc',
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "antoinemadec/FixCursorHold.nvim",
+  --     'sidlatau/neotest-dart',
+  --   }
+  -- }
   use {
     'vim-scripts/vim-auto-save',
     config = require 'plugin.vim-auto-save_rc'
@@ -247,4 +263,5 @@ cmd("PackerSync", function() plugins.sync() end, { bang = true })
 cmd("PackerClean", function() plugins.clean() end, { bang = true })
 cmd("PackerCompile", function() plugins.compile() end, { bang = true })
 cmd("PackerRemove", [[:! rm -rf ~/.local/share/nvim]], { bang = true })
+cmd("PackerStatus", function() plugins.status() end, { bang = true })
 

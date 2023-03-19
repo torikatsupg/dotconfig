@@ -10,9 +10,37 @@ M.config_mason = function()
 end
 
 M.config_mason_lspconfig = function()
-  require "mason-lspconfig".setup({
-    ensure_installed = { "lua_ls" },
+  local mason_lspconfig= require 'mason-lspconfig'
+  mason_lspconfig.setup({
+    ensure_installed = { "lua_ls", "rust_analyzer" },
     automatic_installation = true,
+  })
+  mason_lspconfig.setup_handlers({
+    function (server)
+      local opts = {
+
+      }
+      if server == 'lua_ls' then
+        opts.settings = {
+          Lua = {
+            runtime = {
+              version = 'LuaJIT',
+            },
+            diagnostics = {
+              globals = {'vim'},
+            },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file("", true),
+              checkThirdParty = false,
+            },
+            telemetry = {
+              enable = false,
+            },
+          },
+        }
+      end
+      require 'lspconfig'[server].setup(opts)
+    end
   })
 end
 

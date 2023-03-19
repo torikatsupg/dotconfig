@@ -16,6 +16,7 @@ M.mason_lspconfig = {
   'williamboman/mason-lspconfig.nvim',
   commit = 'a81503f0019942111fe464209237f8b4e85f4687',
   opt = true,
+  module ={ 'mason-lspconfig' },
  	event = { "BufReadPost", "BufAdd", "BufNewFile" },
   config = rc.config_mason_lspconfig,
   requires = {

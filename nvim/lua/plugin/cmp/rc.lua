@@ -1,69 +1,20 @@
 local M = {}
 
 M.config_cmp = function()
-  local cmp = require 'cmp'
-  cmp.setup {
-    sources = {},
-    snippet = {},
-    mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
-    view = {
-      entries = "custom"
-    },
-    formatting = {
-      fields = {
-        cmp.ItemField.Abbr,
-        cmp.ItemField.Kind,
-        cmp.ItemField.Menu,
-      },
-      format = function(entry, vim_item)
-        local cmp_kinds = {
-          Text = '  ',
-          Method = '  ',
-          Function = '  ',
-          Constructor = '  ',
-          Field = '  ',
-          Variable = '  ',
-          Class = '  ',
-          Interface = '  ',
-          Module = '  ',
-          Property = '  ',
-          Unit = '  ',
-          Value = '  ',
-          Enum = '  ',
-          Keyword = '  ',
-          Snippet = '  ',
-          Color = '  ',
-          File = '  ',
-          Reference = '  ',
-          Folder = '  ',
-          EnumMember = '  ',
-          Constant = '  ',
-          Struct = '  ',
-          Event = '  ',
-          Operator = '  ',
-          TypeParameter = '  ',
-        }
-
-        local cmp_type = {
-          buffer = "[Buffer]",
-          nvim_lsp = "[LSP]",
-          luasnip = "[Snip]",
-          nvim_lua = "[Lua]",
-          latex_symbols = "[LaTeX]",
-        }
-
-        vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
-        vim_item.menu = cmp_type[entry.source.name]
-        return vim_item
-      end,
-    },
+  local cmp = require'cmp'
+  local config = cmp.get_config()
+  config.window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   }
+  config.mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }) 
+  cmp.setup(config)
 end
 
 M.config_buffer = function()
@@ -99,15 +50,6 @@ M.config_cmp_dictionary = function()
   })
 end
 
-M.config_cmp_nvim_lsp = function()
-  local cmp = require 'cmp'
-  local config = cmp.get_config()
-  table.insert(config.sources, {
-       name = 'nvim_lsp',
-  })
-  cmp.setup(config)
-end
-
 M.config_cmp_path = function()
   local cmp = require 'cmp'
   local config = cmp.get_config()
@@ -128,16 +70,56 @@ end
 
 M.config_cmp_luasnip = function()
   local cmp = require 'cmp'
+  local luasnip = require'luasnip'
   local config = cmp.get_config()
-  table.insert(config.snippet, {
-    expand = function(args)
-      require'luasnip'.lsp_expand(args.body) 
-    end
+
+  table.insert(config, {
+    snippet = {
+      expand = function(args)
+        luasnip.lsp_expand(args.body) 
+      end
+    }
   })
   table.insert(config.sources,  {
-    name = 'luasnip' })
+    name = 'luasnip'
+  })
   cmp.setup(config)
-  vim.notify('cmp luasnip')
+end
+
+M.config_cmp_nvim_lsp = function()
+  local cmp = require 'cmp'
+  local nvim_lsp = require 'cmp_nvim_lsp'
+  local lspconfig = require 'lspconfig'
+  local mason_lspconfig = require 'mason-lspconfig'
+  local luasnip = require 'luasnip'
+
+  local config = cmp.get_config()
+  config.snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end
+  }
+
+  mason_lspconfig.setup_handlers({
+    function (server)
+      local capabilities = nvim_lsp.default_capabilities()
+      lspconfig[server].setup({
+        capabilities = capabilities,
+    })
+    end
+  })
+  table.insert(config.sources,  { name = 'nvim_lsp' })
+  cmp.setup(config)
+end
+
+M.config_nvim_lsp_signature_help = function()
+  local cmp = require 'cmp'
+  local config = cmp.get_config()
+  table.insert(config.sources, {
+    name = 'nvim_lsp_signature_help',
+  })
+  cmp.setup(config)
+  vim.notify('nvim lsp')
 end
 
 return M
