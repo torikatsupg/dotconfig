@@ -1,13 +1,21 @@
+
 local m = {}
+
+
 
 -- default
 m.setup = function()
-  local helper = require 'plugin.telescope.helper'
+  local builtin = function(name)
+    return function()
+      return require("telescope.builtin")[name]({})
+    end
+  end
+
   local opts = { noremap = true, silent = false }
-  vim.keymap.set("n", "<Leader>ff", helper.builtin "find_files", opts)
-  vim.keymap.set("n", "<leader>f:", helper.builtin "command_history", opts)
-  vim.keymap.set("n", "<leader>fh", helper.builtin "help_tags", opts)
-  vim.keymap.set("n", "<leader>fm", helper.builtin "marks", opts)
+  vim.keymap.set("n", "<Leader>ff", builtin "find_files", opts)
+  vim.keymap.set("n", "<leader>f:", builtin "command_history", opts)
+  vim.keymap.set("n", "<leader>fh", builtin "help_tags", opts)
+  vim.keymap.set("n", "<leader>fm", builtin "marks", opts)
 end
 
 m.config = function()
@@ -30,30 +38,56 @@ end
 
 -- frecency
 m.setup_frecency = function()
-  local helper = require 'plugin.telescope.helper'
+  -- local helper = require 'plugin.telescope.helper'
+
+  local extensions = function(name, prop)
+    return function()
+      local telescope = require "telescope"
+      telescope.load_extension(name)
+      return telescope.extensions[name][prop]({})
+    end
+  end
   local opts = { noremap = true, silent = false }
-  vim.keymap.set("n", "<Leader>fr", helper.extensions("frecency", "frecency"), opts)
+  vim.keymap.set("n", "<Leader>fr", extensions("frecency", "frecency"), opts)
 end
 
 -- ghq
 m.setup_ghq = function()
-  local helper = require 'plugin.telescope.helper'
+  local extensions = function(name, prop)
+    return function()
+      local telescope = require "telescope"
+      telescope.load_extension(name)
+      return telescope.extensions[name][prop]({})
+    end
+  end
   local opts = { noremap = true, silent = false }
-  vim.keymap.set("n", "<Leader>fq", helper.extensions("ghq", "list"), opts)
+  vim.keymap.set("n", "<Leader>fq", extensions("ghq", "list"), opts)
 end
 
 -- live_grep_args
 m.setup_live_grep_args = function()
-  local helper = require 'plugin.telescope.helper'
+  local extensions = function(name, prop)
+    return function()
+      local telescope = require "telescope"
+      telescope.load_extension(name)
+      return telescope.extensions[name][prop]({})
+    end
+  end
   local opts = { noremap = true, silent = false }
-  vim.keymap.set("n", "<Leader>fg", helper.extensions("live_grep_args", "live_grep_args"), opts)
+  vim.keymap.set("n", "<Leader>fg", extensions("live_grep_args", "live_grep_args"), opts)
 end
 
 -- media_files
 m.setup_media_files = function()
-  local helper = require 'plugin.telescope.helper'
+  local extensions = function(name, prop)
+    return function()
+      local telescope = require "telescope"
+      telescope.load_extension(name)
+      return telescope.extensions[name][prop]({})
+    end
+  end
   local opts = { noremap = true, silent = false }
-  vim.keymap.set("n", "<Leader>fM", helper.extensions("media_files", "media_files"), opts)
+  vim.keymap.set("n", "<Leader>fM", extensions("media_files", "media_files"), opts)
 end
 
 -- ui-select

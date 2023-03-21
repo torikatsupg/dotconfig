@@ -1,7 +1,7 @@
 local M = {}
 
 M.config_cmp = function()
-  local cmp = require'cmp'
+  local cmp = require 'cmp'
   local config = cmp.get_config()
   config.window = {
     completion = cmp.config.window.bordered(),
@@ -13,7 +13,7 @@ M.config_cmp = function()
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  }) 
+  })
   cmp.setup(config)
 end
 
@@ -31,8 +31,8 @@ M.config_cmp_dictionary = function()
   local cmp = require 'cmp'
   local config = cmp.get_config()
   table.insert(config.sources, {
-      name = "dictionary",
-      keyword_length = 4,
+    name = "dictionary",
+    keyword_length = 4,
   })
   cmp.setup(config)
 
@@ -70,17 +70,17 @@ end
 
 M.config_cmp_luasnip = function()
   local cmp = require 'cmp'
-  local luasnip = require'luasnip'
+  local luasnip = require 'luasnip'
   local config = cmp.get_config()
 
   table.insert(config, {
     snippet = {
       expand = function(args)
-        luasnip.lsp_expand(args.body) 
+        luasnip.lsp_expand(args.body)
       end
     }
   })
-  table.insert(config.sources,  {
+  table.insert(config.sources, {
     name = 'luasnip'
   })
   cmp.setup(config)
@@ -101,14 +101,14 @@ M.config_cmp_nvim_lsp = function()
   }
 
   mason_lspconfig.setup_handlers({
-    function (server)
+    function(server)
       local capabilities = nvim_lsp.default_capabilities()
       lspconfig[server].setup({
         capabilities = capabilities,
-    })
+      })
     end
   })
-  table.insert(config.sources,  { name = 'nvim_lsp' })
+  table.insert(config.sources, { name = 'nvim_lsp' })
   cmp.setup(config)
 end
 
@@ -119,7 +119,6 @@ M.config_nvim_lsp_signature_help = function()
     name = 'nvim_lsp_signature_help',
   })
   cmp.setup(config)
-  vim.notify('nvim lsp')
 end
 
 return M
