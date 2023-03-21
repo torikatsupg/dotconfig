@@ -2,7 +2,6 @@ local M = {}
 local rc = require 'plugin.cmp.rc'
 
 local foundations = require 'plugin.foundations.foundations'
-local mason  = require 'plugin.mason.plugins'
 
 local cmp = {
   'hrsh7th/nvim-cmp',
@@ -80,13 +79,11 @@ M.nvim_lsp = {
   requires = {
     cmp,
     foundations.nvim_lspconfig,
-    mason.mason_lspconfig,
     M.luasnip,
   },
   wants = {
     'nvim-cmp',
     'nvim-lspconfig',
-    'mason-lspconfig.nvim',
     'cmp_luasnip',
   },
 } -- depend on built-in lsp

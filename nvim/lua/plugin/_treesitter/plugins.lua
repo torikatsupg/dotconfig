@@ -63,22 +63,6 @@ M.nvim_ts_autotag = {
   commit = 'fdefe46c6807441460f11f11a167a2baf8e4534b',
   opt = true,
   event = { 'BufRead' }, -- need BufRead
-  ft = {
-    'html',
-    'javascript',
-    'typescript',
-    'javascriptreact',
-    'typescriptreact',
-    'svelte',
-    'vue',
-    'tsx',
-    'jsx',
-    'rescript',
-    'xml',
-    'php',
-    'markdown',
-    'glimmer','handlebars','hbs'
-  },
   config = rc.config_nvim_ts_autotag,
   requires = {
     foundation.treesitter

@@ -22,14 +22,34 @@ M.treesitter = {
   module_pattern = { 'nvim-treesitter.*' },
   run = ':TSUpdate',
   config = rc.config_treesitter,
+  -- event = { 'LspAttach' },
+  -- event = { 'BufRead' }
+  event = { 'VimEnter' }
 }
 
 M.nvim_lspconfig = {
   'neovim/nvim-lspconfig',
   opt = true,
   module = { 'lspconfig' },
-  event = { "BufReadPre" },
-  config = require 'plugin.foundations.nvim-lspconfig_rc',
+  cmd = { "LspInfo", "LspLog" },
+  event = { 'BufRead' },
+  config = rc.config_nvim_lspconfig,
+  requires = {
+    {
+      'williamboman/mason.nvim',
+      commit = '698cd0c4f10480991e665f31977650858d625af1',
+      opt = true,
+    },
+    {
+      'williamboman/mason-lspconfig.nvim',
+      commit = 'a81503f0019942111fe464209237f8b4e85f4687',
+      opt = true,
+    },
+  },
+  wants = {
+    'mason.nvim',
+    'mason-lspconfig.nvim',
+  }
 }
 
 M.luasnip = {

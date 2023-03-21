@@ -11,7 +11,6 @@ local ensure_packer = function()
   end
 end
 
-
 -- Dependencies
 local packer
 local function init()
@@ -22,8 +21,12 @@ local function init()
 
   packer.init({
     disable_commands = true,
-    display = { open_fn = require('packer.util').float }
+    display = { open_fn = require('packer.util').float },
+    profile = {
+      enable = false
+    }
   })
+
 
   packer.reset()
   local use = packer.use
@@ -36,20 +39,13 @@ local function init()
     opt = true,
   }
 
-  use {
-    'rcarriga/nvim-notify',
-    config = require 'plugin.nvim-notify_rc',
-    opt = true,
-    event = {'VimEnter'}
-  }
-
   local foundations = require 'plugin.foundations.foundations'
-  use(foundations.nvim_lspconfig)
   use(foundations.treesitter)
+  use(foundations.nvim_lspconfig)
 
   local treesitter = require 'plugin._treesitter.plugins'
   use(treesitter.nvim_ts_context_commentstring)
-  use(treesitter.nvim_context_vt)
+  -- use(treesitter.nvim_context_vt)
   use(treesitter.nvim_ts_rainbow)
   use(treesitter.nvim_autopairs)
   use(treesitter.vim_matchup)
@@ -65,10 +61,6 @@ local function init()
   use(telescope.media_files)
   use(telescope.ui_select)
 
-  local mason = require 'plugin.mason.plugins'
-  use(mason.mason)
-  use(mason.mason_lspconfig)
-
   local cmp = require 'plugin.cmp.plugins'
   use(cmp.buffer)
   use(cmp.path)
@@ -76,6 +68,9 @@ local function init()
   use(cmp.emoji)
   use(cmp.luasnip)
   use(cmp.nvim_lsp)
+
+  local noice = require 'plugin.noice.plugins'
+  use(noice.noice)
 
   -- use {
   --   'nvim-lualine/lualine.nvim',
@@ -89,7 +84,9 @@ local function init()
 
   use {
     'j-hui/fidget.nvim',
-    config = require 'plugin.fidget_rc',
+    config = function()
+      require "fidget".setup {}
+    end,
     opt = true,
     event = { 'BufRead' }
   }
@@ -97,7 +94,9 @@ local function init()
   use {
     'norcalli/nvim-colorizer.lua',
     commit = '36c610a9717cc9ec426a07c8e6bf3b3abcb139d6',
-    config = require 'plugin.nvim-colorizer_rc',
+    config = function()
+      require 'colorizer'.setup()
+    end,
     opt = true,
     event = { 'BufRead' },
   }
@@ -160,6 +159,7 @@ local function init()
       'kevinhwang91/nvim-hlslens',
       config = require 'plugin.hlslens_rc'
     },
+    wants = { 'nvim-hlslens' },
     opt = true,
     event = { 'BufRead' }
   }

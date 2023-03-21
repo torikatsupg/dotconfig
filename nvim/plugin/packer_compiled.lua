@@ -75,7 +75,7 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
-    config = { "\27LJ\2\n:\0\0\4\0\3\1\a4\0\3\0006\1\0\0009\1\1\1'\3\2\0B\1\2\0?\1\0\0L\0\2\0\r%Y-%m-%d\tdate\aos\3€€À™\4·\2\1\0\22\0\14\1\0286\0\0\0'\2\1\0B\0\2\0029\1\2\0009\2\3\0009\3\4\0009\4\5\0009\5\6\0009\6\a\0009\a\b\0003\b\t\0009\t\n\0+\v\0\0005\f\f\0004\r\3\0\18\14\1\0005\16\v\0004\17\3\0\18\18\5\0\18\20\b\0004\21\0\0B\18\3\0?\18\0\0B\14\3\0?\14\0\0=\r\r\fB\t\3\1K\0\1\0\ball\1\0\0\1\0\3\tdscr#Date in the form of YYYY-MM-DD\ttrig\17datedatedate\tnamr\tDate\17add_snippets\0\17dynamic_node\16choice_node\18function_node\16insert_node\14text_node\17snippet_node\fsnippet\fluasnip\frequire\3€€À™\4\0" },
+    config = { "\27LJ\2\n:\0\0\4\0\3\1\a4\0\3\0006\1\0\0009\1\1\1'\3\2\0B\1\2\0?\1\0\0L\0\2\0\r%Y-%m-%d\tdate\aos\3€€À™\4·\2\1\0\22\0\14\1\0286\0\0\0'\2\1\0B\0\2\0029\1\2\0009\2\3\0009\3\4\0009\4\5\0009\5\6\0009\6\a\0009\a\b\0003\b\t\0009\t\n\0+\v\0\0005\f\f\0004\r\3\0\18\14\1\0005\16\v\0004\17\3\0\18\18\5\0\18\20\b\0004\21\0\0B\18\3\0?\18\0\0B\14\3\0?\14\0\0=\r\r\fB\t\3\1K\0\1\0\ball\1\0\0\1\0\3\tnamr\tDate\ttrig\17datedatedate\tdscr#Date in the form of YYYY-MM-DD\17add_snippets\0\17dynamic_node\16choice_node\18function_node\16insert_node\14text_node\17snippet_node\fsnippet\fluasnip\frequire\3€€À™\4\0" },
     load_after = {
       cmp_luasnip = true
     },
@@ -98,7 +98,7 @@ _G.packer_plugins = {
   },
   ["cmp-dictionary"] = {
     after_files = { "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/cmp-dictionary/after/plugin/cmp_dictionary.vim" },
-    config = { "\27LJ\2\n«\2\0\0\6\0\n\0\0206\0\0\0'\2\1\0B\0\2\0029\1\2\0B\1\1\0026\2\3\0009\2\4\0029\4\5\0015\5\6\0B\2\3\0019\2\a\0\18\4\1\0B\2\2\0016\2\0\0'\4\b\0B\2\2\0029\3\a\0025\5\t\0B\3\2\1K\0\1\0\1\0\b\rdocument\2\14max_items\3\n\nasync\2\rcapacity\3\5\ndebug\2\21document_command\16wn %s -over\27first_case_insensitive\1\nexact\3\2\19cmp_dictionary\nsetup\1\0\2\tname\15dictionary\19keyword_length\3\4\fsources\vinsert\ntable\15get_config\bcmp\frequire\0" },
+    config = { "\27LJ\2\n«\2\0\0\6\0\n\0\0206\0\0\0'\2\1\0B\0\2\0029\1\2\0B\1\1\0026\2\3\0009\2\4\0029\4\5\0015\5\6\0B\2\3\0019\2\a\0\18\4\1\0B\2\2\0016\2\0\0'\4\b\0B\2\2\0029\3\a\0025\5\t\0B\3\2\1K\0\1\0\1\0\b\ndebug\2\nasync\2\14max_items\3\n\rcapacity\3\5\21document_command\16wn %s -over\rdocument\2\nexact\3\2\27first_case_insensitive\1\19cmp_dictionary\nsetup\1\0\2\19keyword_length\3\4\tname\15dictionary\fsources\vinsert\ntable\15get_config\bcmp\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -118,13 +118,13 @@ _G.packer_plugins = {
   },
   ["cmp-nvim-lsp"] = {
     after_files = { "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua" },
-    config = { "\27LJ\2\n-\0\1\4\1\2\0\5-\1\0\0009\1\0\0019\3\1\0B\1\2\1K\0\1\0\4À\tbody\15lsp_expand^\0\1\5\2\4\0\n-\1\0\0009\1\0\1B\1\1\2-\2\1\0008\2\0\0029\2\1\0025\4\2\0=\1\3\4B\2\2\1K\0\1\0\1À\2À\17capabilities\1\0\0\nsetup\25default_capabilities¬\2\1\0\n\0\18\0$6\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0026\2\0\0'\4\3\0B\2\2\0026\3\0\0'\5\4\0B\3\2\0026\4\0\0'\6\5\0B\4\2\0029\5\6\0B\5\1\0025\6\t\0003\a\b\0=\a\n\6=\6\a\0059\6\v\0034\b\3\0003\t\f\0>\t\1\bB\6\2\0016\6\r\0009\6\14\0069\b\15\0055\t\16\0B\6\3\0019\6\17\0\18\b\5\0B\6\2\0012\0\0€K\0\1\0\nsetup\1\0\1\tname\rnvim_lsp\fsources\vinsert\ntable\0\19setup_handlers\vexpand\1\0\0\0\fsnippet\15get_config\fluasnip\20mason-lspconfig\14lspconfig\17cmp_nvim_lsp\bcmp\frequire\0" },
+    config = { "\27LJ\2\n-\0\1\4\1\2\0\5-\1\0\0009\1\0\0019\3\1\0B\1\2\1K\0\1\0\3À\tbody\15lsp_expandæ\2\1\0\f\0\23\0'6\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0026\2\0\0'\4\3\0B\2\2\0026\3\0\0'\5\4\0B\3\2\0029\4\5\0B\4\1\0025\5\b\0003\6\a\0=\6\t\5=\5\6\0049\5\n\0026\6\f\0009\6\r\6'\b\14\0009\t\n\0029\t\v\t5\n\16\0009\v\15\1=\v\17\nB\6\4\2=\6\v\0056\5\18\0009\5\19\0059\a\20\0045\b\21\0B\5\3\0019\5\22\0\18\a\4\0B\5\2\0012\0\0€K\0\1\0\nsetup\1\0\1\tname\rnvim_lsp\fsources\vinsert\ntable\17capabilities\1\0\0\25default_capabilities\nforce\15tbl_extend\bvim\19default_config\tutil\vexpand\1\0\0\0\fsnippet\15get_config\fluasnip\14lspconfig\17cmp_nvim_lsp\bcmp\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
     path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp",
-    wants = { "nvim-cmp", "nvim-lspconfig", "mason-lspconfig.nvim", "cmp_luasnip" }
+    wants = { "nvim-cmp", "nvim-lspconfig", "cmp_luasnip" }
   },
   ["cmp-path"] = {
     after_files = { "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/cmp-path/after/plugin/cmp_path.lua" },
@@ -174,19 +174,20 @@ _G.packer_plugins = {
     url = "https://github.com/glepnir/lspsaga.nvim"
   },
   ["mason-lspconfig.nvim"] = {
-    config = { "\27LJ\2\nÌ\2\0\1\t\0\23\0 4\1\0\0\a\0\0\0X\2\21€5\2\18\0005\3\3\0005\4\2\0=\4\4\0035\4\6\0005\5\5\0=\5\a\4=\4\b\0035\4\r\0006\5\t\0009\5\n\0059\5\v\5'\a\f\0+\b\2\0B\5\3\2=\5\14\4=\4\15\0035\4\16\0=\4\17\3=\3\19\2=\2\1\0016\2\20\0'\4\21\0B\2\2\0028\2\0\0029\2\22\2\18\4\1\0B\2\2\1K\0\1\0\nsetup\14lspconfig\frequire\bLua\1\0\0\14telemetry\1\0\1\venable\1\14workspace\flibrary\1\0\1\20checkThirdParty\1\5\26nvim_get_runtime_file\bapi\bvim\16diagnostics\fglobals\1\0\0\1\2\0\0\bvim\fruntime\1\0\0\1\0\1\fversion\vLuaJIT\rsettings\vlua_ls²\1\1\0\5\0\b\0\0146\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\3B\1\2\0019\1\6\0004\3\3\0003\4\a\0>\4\1\3B\1\2\1K\0\1\0\0\19setup_handlers\21ensure_installed\1\0\1\27automatic_installation\2\1\3\0\0\vlua_ls\18rust_analyzer\nsetup\20mason-lspconfig\frequire\0" },
+    load_after = {
+      ["nvim-lspconfig"] = true
+    },
     loaded = false,
     needs_bufread = false,
-    only_cond = false,
     path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/mason-lspconfig.nvim",
-    url = "https://github.com/williamboman/mason-lspconfig.nvim",
-    wants = { "mason.nvim", "nvim-lspconfig" }
+    url = "https://github.com/williamboman/mason-lspconfig.nvim"
   },
   ["mason.nvim"] = {
-    config = { "\27LJ\2\n3\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\nmason\frequire\0" },
+    load_after = {
+      ["nvim-lspconfig"] = true
+    },
     loaded = false,
     needs_bufread = false,
-    only_cond = false,
     path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
@@ -198,6 +199,25 @@ _G.packer_plugins = {
     path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/nightfox.nvim",
     url = "https://github.com/EdenEast/nightfox.nvim",
     wants = { "nvim-treesitter" }
+  },
+  ["noice.nvim"] = {
+    after = { "nvim-notify", "nui.nvim" },
+    config = { "\27LJ\2\nk\0\0\4\2\4\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0-\3\0\0B\1\2\0019\1\3\0-\2\0\0008\1\2\1-\2\1\0008\1\2\0014\3\0\0D\1\2\0\0À\1À\15extensions\19load_extension\14telescope\frequire\20\1\2\3\0\1\0\0033\2\0\0002\0\0€L\2\2\0\0Å\2\1\0\n\0\17\0\0266\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\4\0005\4\3\0=\4\5\3=\3\a\0025\3\b\0=\3\t\2B\0\2\0013\0\n\0005\1\v\0006\2\f\0009\2\r\0029\2\14\2'\4\15\0'\5\16\0\18\6\0\0'\b\1\0'\t\1\0B\6\3\2\18\a\1\0B\2\5\1K\0\1\0\15<Leader>fn\6n\bset\vkeymap\bvim\1\0\2\vsilent\1\fnoremap\2\0\fpresets\1\0\5\18bottom_search\2\20command_palette\2\26long_message_to_split\2\15inc_rename\1\19lsp_doc_border\1\blsp\1\0\0\roverride\1\0\0\1\0\1 cmp.entry.get_documentation\2\nsetup\nnoice\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/noice.nvim",
+    url = "https://github.com/folke/noice.nvim",
+    wants = { "nui.nvim", "nvim-notify" }
+  },
+  ["nui.nvim"] = {
+    load_after = {
+      ["noice.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
   },
   ["nvim-autopairs"] = {
     config = { "\27LJ\2\np\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21disable_filetype\1\0\0\1\2\0\0\20TelescopePrompt\nsetup\19nvim-autopairs\frequire\0" },
@@ -238,18 +258,22 @@ _G.packer_plugins = {
     url = "https://github.com/kevinhwang91/nvim-hlslens"
   },
   ["nvim-lspconfig"] = {
-    config = { "\27LJ\2\n;\0\0\3\0\4\0\0066\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\1K\0\1\0\ndebug\18set_log_level\blsp\bvim\0" },
+    after = { "mason-lspconfig.nvim", "mason.nvim" },
+    commands = { "LspInfo", "LspLog" },
+    config = { "\27LJ\2\n´\2\0\1\t\1\21\0\0304\1\0\0\a\0\0\0X\2\21€5\2\18\0005\3\3\0005\4\2\0=\4\4\0035\4\6\0005\5\5\0=\5\a\4=\4\b\0035\4\r\0006\5\t\0009\5\n\0059\5\v\5'\a\f\0+\b\2\0B\5\3\2=\5\14\4=\4\15\0035\4\16\0=\4\17\3=\3\19\2=\2\1\1-\2\0\0008\2\0\0029\2\20\2\18\4\1\0B\2\2\1K\0\1\0\0À\nsetup\bLua\1\0\0\14telemetry\1\0\1\venable\1\14workspace\flibrary\1\0\1\20checkThirdParty\1\5\26nvim_get_runtime_file\bapi\bvim\16diagnostics\fglobals\1\0\0\1\2\0\0\bvim\fruntime\1\0\0\1\0\1\fversion\vLuaJIT\rsettings\vlua_lsæ\1\1\0\6\0\n\0\0236\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0029\1\3\1B\1\1\0016\1\0\0'\3\4\0B\1\2\0029\2\3\0015\4\6\0005\5\5\0=\5\a\4B\2\2\0019\2\b\0014\4\3\0003\5\t\0>\5\1\4B\2\2\0012\0\0€K\0\1\0\0\19setup_handlers\21ensure_installed\1\0\1\27automatic_installation\2\1\3\0\0\vlua_ls\18rust_analyzer\20mason-lspconfig\nsetup\nmason\14lspconfig\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
     path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig",
-    url = "https://github.com/neovim/nvim-lspconfig"
+    url = "https://github.com/neovim/nvim-lspconfig",
+    wants = { "mason.nvim", "mason-lspconfig.nvim" }
   },
   ["nvim-notify"] = {
-    config = { "\27LJ\2\nD\0\0\4\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0004\3\0\0B\1\2\0016\1\3\0=\0\1\1K\0\1\0\bvim\nsetup\vnotify\frequire\0" },
+    load_after = {
+      ["noice.nvim"] = true
+    },
     loaded = false,
     needs_bufread = false,
-    only_cond = false,
     path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/nvim-notify",
     url = "https://github.com/rcarriga/nvim-notify"
   },
@@ -260,7 +284,8 @@ _G.packer_plugins = {
     needs_bufread = false,
     only_cond = false,
     path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/nvim-scrollbar",
-    url = "https://github.com/petertriho/nvim-scrollbar"
+    url = "https://github.com/petertriho/nvim-scrollbar",
+    wants = { "nvim-hlslens" }
   },
   ["nvim-treesitter"] = {
     config = { "\27LJ\2\nI\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\28nvim-treesitter.configs\frequire\0" },
@@ -304,15 +329,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
-  },
-  nvim_context_vt = {
-    config = { "\27LJ\2\nŠ\1\0\3\b\0\6\0\0176\3\0\0'\5\1\0B\3\2\2\18\6\0\0009\4\2\0B\4\2\2\a\4\3\0X\4\2€+\4\0\0L\4\2\0'\4\4\0009\5\5\3\18\a\0\0B\5\2\2:\5\1\5&\4\5\4L\4\2\0\18get_node_text\t--> \rfunction\ttype\26nvim_context_vt.utils\frequire®\1\1\0\4\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\0023\3\b\0=\3\t\2B\0\2\1K\0\1\0\18custom_parser\0\29disable_virtual_lines_ft\1\2\0\0\tyaml\15disable_ft\1\2\0\0\rmarkdown\1\0\1\fenabled\2\nsetup\20nvim_context_vt\frequire\0" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/nvim_context_vt",
-    url = "https://github.com/haringsrob/nvim_context_vt",
-    wants = { "nvim-treesitter" }
   },
   ["packer.nvim"] = {
     loaded = false,
@@ -440,13 +456,11 @@ local module_lazy_loads = {
   ["^cmp_luasnip"] = "cmp_luasnip",
   ["^lspconfig"] = "nvim-lspconfig",
   ["^luasnip"] = "LuaSnip",
-  ["^mason%-lspconfig"] = "mason-lspconfig.nvim",
   ["^telescop%._extensions%.media_files"] = "telescope-media-files.nvim",
   ["^telescope%._extensions%.frecency"] = "telescope-frecency.nvim",
   ["^telescope%._extensions%.ghq"] = "telescope-ghq.nvim",
   ["^telescope%._extensions%.live_grep_args"] = "telescope-live-grep-args.nvim",
   ["^telescope%._extensions%.ui%-select"] = "telescope-ui-select.nvim",
-  ["mason.*"] = "mason.nvim",
   ["nvim-treesitter.*"] = "nvim-treesitter",
   ["plenary.*"] = "plenary.nvim",
   ["telescope.*"] = "telescope.nvim",
@@ -477,68 +491,58 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Setup for: telescope-media-files.nvim
-time([[Setup for telescope-media-files.nvim]], true)
-try_loadstring("\27LJ\2\nk\0\0\4\2\4\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0-\3\0\0B\1\2\0019\1\3\0-\2\0\0008\1\2\1-\2\1\0008\1\2\0014\3\0\0D\1\2\0\0À\1À\15extensions\19load_extension\14telescope\frequire\20\1\2\3\0\1\0\0033\2\0\0002\0\0€L\2\2\0\0|\1\0\n\0\b\0\0143\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0'\b\a\0'\t\a\0B\6\3\2\18\a\1\0B\2\5\1K\0\1\0\16media_files\15<Leader>fM\6n\bset\vkeymap\bvim\1\0\2\fnoremap\2\vsilent\1\0\0", "setup", "telescope-media-files.nvim")
-time([[Setup for telescope-media-files.nvim]], false)
--- Setup for: telescope.nvim
-time([[Setup for telescope.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\1\2\0\a6\0\0\0'\2\1\0B\0\2\2-\1\0\0008\0\1\0004\2\0\0D\0\2\0\0À\22telescope.builtin\frequire\20\1\1\2\0\1\0\0033\1\0\0002\0\0€L\1\2\0\0°\2\1\0\t\0\14\0+3\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0'\b\a\0B\6\2\2\18\a\1\0B\2\5\0016\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\b\0\18\6\0\0'\b\t\0B\6\2\2\18\a\1\0B\2\5\0016\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\n\0\18\6\0\0'\b\v\0B\6\2\2\18\a\1\0B\2\5\0016\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\f\0\18\6\0\0'\b\r\0B\6\2\2\18\a\1\0B\2\5\1K\0\1\0\nmarks\15<leader>fm\14help_tags\15<leader>fh\20command_history\15<leader>f:\15find_files\15<Leader>ff\6n\bset\vkeymap\bvim\1\0\2\fnoremap\2\vsilent\1\0\0", "setup", "telescope.nvim")
-time([[Setup for telescope.nvim]], false)
 -- Setup for: telescope-ghq.nvim
 time([[Setup for telescope-ghq.nvim]], true)
-try_loadstring("\27LJ\2\nk\0\0\4\2\4\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0-\3\0\0B\1\2\0019\1\3\0-\2\0\0008\1\2\1-\2\1\0008\1\2\0014\3\0\0D\1\2\0\0À\1À\15extensions\19load_extension\14telescope\frequire\20\1\2\3\0\1\0\0033\2\0\0002\0\0€L\2\2\0\0y\1\0\n\0\t\0\0143\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0'\b\a\0'\t\b\0B\6\3\2\18\a\1\0B\2\5\1K\0\1\0\tlist\bghq\15<Leader>fq\6n\bset\vkeymap\bvim\1\0\2\fnoremap\2\vsilent\1\0\0", "setup", "telescope-ghq.nvim")
+try_loadstring("\27LJ\2\nk\0\0\4\2\4\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0-\3\0\0B\1\2\0019\1\3\0-\2\0\0008\1\2\1-\2\1\0008\1\2\0014\3\0\0D\1\2\0\0À\1À\15extensions\19load_extension\14telescope\frequire\20\1\2\3\0\1\0\0033\2\0\0002\0\0€L\2\2\0\0y\1\0\n\0\t\0\0143\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0'\b\a\0'\t\b\0B\6\3\2\18\a\1\0B\2\5\1K\0\1\0\tlist\bghq\15<Leader>fq\6n\bset\vkeymap\bvim\1\0\2\vsilent\1\fnoremap\2\0\0", "setup", "telescope-ghq.nvim")
 time([[Setup for telescope-ghq.nvim]], false)
--- Setup for: mason.nvim
-time([[Setup for mason.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\topen\rmason.ui\frequire\\\1\0\6\0\6\0\t6\0\0\0009\0\1\0009\0\2\0\18\1\0\0'\3\3\0003\4\4\0005\5\5\0B\1\4\1K\0\1\0\1\0\1\tbang\2\0\nMason\29nvim_create_user_command\bapi\bvim\0", "setup", "mason.nvim")
-time([[Setup for mason.nvim]], false)
+-- Setup for: telescope-ui-select.nvim
+time([[Setup for telescope-ui-select.nvim]], true)
+try_loadstring("\27LJ\2\no\2\0\3\0\6\0\n6\0\0\0'\2\1\0B\0\2\0016\0\2\0009\0\3\0009\0\4\0009\0\5\0G\2\0\0A\0\0\1K\0\1\0\16code_action\bbuf\blsp\bvim$telescope._extensions.ui-select\frequire\\\1\0\b\0\a\0\v3\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0\18\a\1\0B\2\5\1K\0\1\0\aga\6n\bset\vkeymap\bvim\1\0\2\vsilent\1\fnoremap\2\0\0", "setup", "telescope-ui-select.nvim")
+time([[Setup for telescope-ui-select.nvim]], false)
 -- Setup for: telescope-frecency.nvim
 time([[Setup for telescope-frecency.nvim]], true)
-try_loadstring("\27LJ\2\nk\0\0\4\2\4\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0-\3\0\0B\1\2\0019\1\3\0-\2\0\0008\1\2\1-\2\1\0008\1\2\0014\3\0\0D\1\2\0\0À\1À\15extensions\19load_extension\14telescope\frequire\20\1\2\3\0\1\0\0033\2\0\0002\0\0€L\2\2\0\0y\1\0\n\0\b\0\0143\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0'\b\a\0'\t\a\0B\6\3\2\18\a\1\0B\2\5\1K\0\1\0\rfrecency\15<Leader>fr\6n\bset\vkeymap\bvim\1\0\2\fnoremap\2\vsilent\1\0\0", "setup", "telescope-frecency.nvim")
+try_loadstring("\27LJ\2\nk\0\0\4\2\4\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0-\3\0\0B\1\2\0019\1\3\0-\2\0\0008\1\2\1-\2\1\0008\1\2\0014\3\0\0D\1\2\0\0À\1À\15extensions\19load_extension\14telescope\frequire\20\1\2\3\0\1\0\0033\2\0\0002\0\0€L\2\2\0\0y\1\0\n\0\b\0\0143\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0'\b\a\0'\t\a\0B\6\3\2\18\a\1\0B\2\5\1K\0\1\0\rfrecency\15<Leader>fr\6n\bset\vkeymap\bvim\1\0\2\vsilent\1\fnoremap\2\0\0", "setup", "telescope-frecency.nvim")
 time([[Setup for telescope-frecency.nvim]], false)
 -- Setup for: telescope-live-grep-args.nvim
 time([[Setup for telescope-live-grep-args.nvim]], true)
-try_loadstring("\27LJ\2\nk\0\0\4\2\4\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0-\3\0\0B\1\2\0019\1\3\0-\2\0\0008\1\2\1-\2\1\0008\1\2\0014\3\0\0D\1\2\0\0À\1À\15extensions\19load_extension\14telescope\frequire\20\1\2\3\0\1\0\0033\2\0\0002\0\0€L\2\2\0\0\127\1\0\n\0\b\0\0143\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0'\b\a\0'\t\a\0B\6\3\2\18\a\1\0B\2\5\1K\0\1\0\19live_grep_args\15<Leader>fg\6n\bset\vkeymap\bvim\1\0\2\fnoremap\2\vsilent\1\0\0", "setup", "telescope-live-grep-args.nvim")
+try_loadstring("\27LJ\2\nk\0\0\4\2\4\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0-\3\0\0B\1\2\0019\1\3\0-\2\0\0008\1\2\1-\2\1\0008\1\2\0014\3\0\0D\1\2\0\0À\1À\15extensions\19load_extension\14telescope\frequire\20\1\2\3\0\1\0\0033\2\0\0002\0\0€L\2\2\0\0\127\1\0\n\0\b\0\0143\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0'\b\a\0'\t\a\0B\6\3\2\18\a\1\0B\2\5\1K\0\1\0\19live_grep_args\15<Leader>fg\6n\bset\vkeymap\bvim\1\0\2\vsilent\1\fnoremap\2\0\0", "setup", "telescope-live-grep-args.nvim")
 time([[Setup for telescope-live-grep-args.nvim]], false)
--- Setup for: telescope-ui-select.nvim
-time([[Setup for telescope-ui-select.nvim]], true)
-try_loadstring("\27LJ\2\no\2\0\3\0\6\0\n6\0\0\0'\2\1\0B\0\2\0016\0\2\0009\0\3\0009\0\4\0009\0\5\0G\2\0\0A\0\0\1K\0\1\0\16code_action\bbuf\blsp\bvim$telescope._extensions.ui-select\frequire\\\1\0\b\0\a\0\v3\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0\18\a\1\0B\2\5\1K\0\1\0\aga\6n\bset\vkeymap\bvim\1\0\2\fnoremap\2\vsilent\1\0\0", "setup", "telescope-ui-select.nvim")
-time([[Setup for telescope-ui-select.nvim]], false)
+-- Setup for: telescope-media-files.nvim
+time([[Setup for telescope-media-files.nvim]], true)
+try_loadstring("\27LJ\2\nk\0\0\4\2\4\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0-\3\0\0B\1\2\0019\1\3\0-\2\0\0008\1\2\1-\2\1\0008\1\2\0014\3\0\0D\1\2\0\0À\1À\15extensions\19load_extension\14telescope\frequire\20\1\2\3\0\1\0\0033\2\0\0002\0\0€L\2\2\0\0|\1\0\n\0\b\0\0143\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0'\b\a\0'\t\a\0B\6\3\2\18\a\1\0B\2\5\1K\0\1\0\16media_files\15<Leader>fM\6n\bset\vkeymap\bvim\1\0\2\vsilent\1\fnoremap\2\0\0", "setup", "telescope-media-files.nvim")
+time([[Setup for telescope-media-files.nvim]], false)
+-- Setup for: telescope.nvim
+time([[Setup for telescope.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\1\2\0\a6\0\0\0'\2\1\0B\0\2\2-\1\0\0008\0\1\0004\2\0\0D\0\2\0\0À\22telescope.builtin\frequire\20\1\1\2\0\1\0\0033\1\0\0002\0\0€L\1\2\0\0°\2\1\0\t\0\14\0+3\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\6\0\18\6\0\0'\b\a\0B\6\2\2\18\a\1\0B\2\5\0016\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\b\0\18\6\0\0'\b\t\0B\6\2\2\18\a\1\0B\2\5\0016\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\n\0\18\6\0\0'\b\v\0B\6\2\2\18\a\1\0B\2\5\0016\2\2\0009\2\3\0029\2\4\2'\4\5\0'\5\f\0\18\6\0\0'\b\r\0B\6\2\2\18\a\1\0B\2\5\1K\0\1\0\nmarks\15<leader>fm\14help_tags\15<leader>fh\20command_history\15<leader>f:\15find_files\15<Leader>ff\6n\bset\vkeymap\bvim\1\0\2\vsilent\1\fnoremap\2\0\0", "setup", "telescope.nvim")
+time([[Setup for telescope.nvim]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.api.nvim_create_user_command, 'LspInfo', function(cmdargs)
+          require('packer.load')({'nvim-lspconfig'}, { cmd = 'LspInfo', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'nvim-lspconfig'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('LspInfo ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'LspLog', function(cmdargs)
+          require('packer.load')({'nvim-lspconfig'}, { cmd = 'LspLog', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'nvim-lspconfig'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('LspLog ', 'cmdline')
+      end})
+time([[Defining lazy-load commands]], false)
+
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
-  -- Filetype lazy-loads
-time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType php ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "php" }, _G.packer_plugins)]]
-vim.cmd [[au FileType dart ++once lua require("packer.load")({'nvim_context_vt'}, { ft = "dart" }, _G.packer_plugins)]]
-vim.cmd [[au FileType glimmer ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "glimmer" }, _G.packer_plugins)]]
-vim.cmd [[au FileType typescript ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "typescript" }, _G.packer_plugins)]]
-vim.cmd [[au FileType xml ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "xml" }, _G.packer_plugins)]]
-vim.cmd [[au FileType hbs ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "hbs" }, _G.packer_plugins)]]
-vim.cmd [[au FileType handlebars ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "handlebars" }, _G.packer_plugins)]]
-vim.cmd [[au FileType html ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "html" }, _G.packer_plugins)]]
-vim.cmd [[au FileType lua ++once lua require("packer.load")({'nvim_context_vt'}, { ft = "lua" }, _G.packer_plugins)]]
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "markdown" }, _G.packer_plugins)]]
-vim.cmd [[au FileType tsx ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "tsx" }, _G.packer_plugins)]]
-vim.cmd [[au FileType rescript ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "rescript" }, _G.packer_plugins)]]
-vim.cmd [[au FileType typescriptreact ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "typescriptreact" }, _G.packer_plugins)]]
-vim.cmd [[au FileType jsx ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "jsx" }, _G.packer_plugins)]]
-vim.cmd [[au FileType javascriptreact ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "javascriptreact" }, _G.packer_plugins)]]
-vim.cmd [[au FileType svelte ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "svelte" }, _G.packer_plugins)]]
-vim.cmd [[au FileType javascript ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "javascript" }, _G.packer_plugins)]]
-vim.cmd [[au FileType vue ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "vue" }, _G.packer_plugins)]]
-time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufAdd * ++once lua require("packer.load")({'mason-lspconfig.nvim'}, { event = "BufAdd *" }, _G.packer_plugins)]]
-vim.cmd [[au BufNewFile * ++once lua require("packer.load")({'mason-lspconfig.nvim'}, { event = "BufNewFile *" }, _G.packer_plugins)]]
-vim.cmd [[au VimEnter * ++once lua require("packer.load")({'nvim-notify', 'nightfox.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au InsertLeave * ++once lua require("packer.load")({'vim-auto-save'}, { event = "InsertLeave *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-colorizer.lua', 'nvim-scrollbar', 'nvim-ts-rainbow', 'fidget.nvim', 'hlargs.nvim', 'lspsaga.nvim', 'nvim-ts-autotag'}, { event = "BufRead *" }, _G.packer_plugins)]]
-vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'nvim-lspconfig'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'cmp-emoji', 'cmp-nvim-lsp', 'vim-surround', 'cmp_luasnip', 'cmp-path', 'cmp-buffer', 'cmp-dictionary', 'nvim-autopairs'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au CursorHold * ++once lua require("packer.load")({'vim-matchup', 'which-key.nvim'}, { event = "CursorHold *" }, _G.packer_plugins)]]
-vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'mason-lspconfig.nvim'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
+vim.cmd [[au VimEnter * ++once lua require("packer.load")({'nvim-treesitter', 'nightfox.nvim', 'noice.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertLeave * ++once lua require("packer.load")({'vim-auto-save'}, { event = "InsertLeave *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'cmp-buffer', 'nvim-autopairs', 'cmp-dictionary', 'vim-surround', 'cmp-nvim-lsp', 'cmp-path', 'cmp_luasnip', 'cmp-emoji'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'fidget.nvim', 'hlargs.nvim', 'lspsaga.nvim', 'nvim-scrollbar', 'nvim-lspconfig', 'nvim-ts-rainbow', 'nvim-colorizer.lua', 'nvim-ts-autotag'}, { event = "BufRead *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

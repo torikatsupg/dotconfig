@@ -90,7 +90,6 @@ M.config_cmp_nvim_lsp = function()
   local cmp = require 'cmp'
   local nvim_lsp = require 'cmp_nvim_lsp'
   local lspconfig = require 'lspconfig'
-  local mason_lspconfig = require 'mason-lspconfig'
   local luasnip = require 'luasnip'
 
   local config = cmp.get_config()
@@ -100,14 +99,12 @@ M.config_cmp_nvim_lsp = function()
     end
   }
 
-  mason_lspconfig.setup_handlers({
-    function(server)
-      local capabilities = nvim_lsp.default_capabilities()
-      lspconfig[server].setup({
-        capabilities = capabilities,
-      })
-    end
-  })
+  lspconfig.util.default_config = vim.tbl_extend(
+    "force",
+    lspconfig.util.default_config,
+    { capabilities = nvim_lsp.default_capabilities }
+  )
+
   table.insert(config.sources, { name = 'nvim_lsp' })
   cmp.setup(config)
 end

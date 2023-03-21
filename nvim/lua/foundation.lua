@@ -28,11 +28,7 @@ vim.opt.termguicolors = true
 -- vim.opt.foldmethod='indent'
 -- vim.opt.nofoldenable=true
 
-vim.g.camelcasemotion_key = '<leader>'
-
-vim.cmd [[:command E NeoTreeFloat]]
-
-vim.cmd [[:command F Telescope find_files]]
+-- vim.g.camelcasemotion_key = '<leader>'
 
 -- vim.opt.cmdheight = 0
 vim.opt.clipboard = 'unnamedplus'
