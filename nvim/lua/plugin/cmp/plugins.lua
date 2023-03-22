@@ -15,7 +15,7 @@ M.buffer = {
   'hrsh7th/cmp-buffer',
   commit = '3022dbc9166796b644a841a02de8dd1cc1d311fa',
   opt = true,
-  event = { 'InsertEnter' },
+  event = { 'InsertEnter', 'CmdlineEnter' },
   requires = { cmp },
   wants = { 'nvim-cmp' },
   config = rc.config_buffer
@@ -37,7 +37,7 @@ M.path = {
   'hrsh7th/cmp-path',
   commit = '91ff86cd9c29299a64f968ebb45846c485725f23',
   opt = true,
-  event = { 'InsertEnter' },
+  event = { 'InsertEnter', 'CmdlineEnter' },
   requires = { cmp },
   wants = { 'nvim-cmp' },
   config = rc.config_cmp_path,
@@ -101,5 +101,21 @@ M.nvim_lsp_signature_help = {
       'nvim-cmp',
      },
     }
+
+M.cmp_cmdline = {
+  'hrsh7th/cmp-cmdline',
+  commit = '8fcc934a52af96120fe26358985c10c035984b53',
+  opt = true,
+  event = { 'CmdlineEnter' },
+  config = rc.config_cmp_cmdline,
+  requires = {
+    cmp,
+    M.path
+  },
+  wants = {
+    'nvim-cmp',
+    'cmp-path'
+  }
+}
 
 return M

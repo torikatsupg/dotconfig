@@ -2,19 +2,25 @@ local M = {}
 
 M.config_cmp = function()
   local cmp = require 'cmp'
-  local config = cmp.get_config()
-  config.window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  }
-  config.mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  cmp.setup({
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+    experimental = {
+      ghost_text = true -- TODO(torikatsu): check
+    },
+    mapping = {
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-p>'] = cmp.mapping.select_prev_item(),
+      ['<C-n>'] = cmp.mapping.select_next_item(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), 
+      -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<C-y>'] = cmp.mapping.complete(),
+    }
   })
-  cmp.setup(config)
 end
 
 M.config_buffer = function()
@@ -25,6 +31,22 @@ M.config_buffer = function()
     option = { keyword_length = 10 },
   })
   cmp.setup(config)
+
+  local opts = require 'cmp.config'.cmdline['/'] or {}
+  local extended_opts = vim.tbl_extend('force', opts, {
+    sources = {
+      { name = 'buffer' }
+    },
+  })
+
+  require 'cmp'.setup.cmdline('/', extended_opts)
+  local opts = require 'cmp.config'.cmdline['?'] or {}
+  local extended_opts = vim.tbl_extend('force', opts, {
+    sources = {
+      { name = 'buffer' }
+    },
+  })
+  require 'cmp'.setup.cmdline('?', extended_opts)
 end
 
 M.config_cmp_dictionary = function()
@@ -57,6 +79,15 @@ M.config_cmp_path = function()
     name = 'path',
   })
   cmp.setup(config)
+
+
+  local opts = require 'cmp.config'.cmdline[':'] or {}
+  local extended_opts = vim.tbl_extend('force', opts, {
+    sources = {
+      { name = 'path' }
+    },
+  })
+  require 'cmp'.setup.cmdline(':', extended_opts)
 end
 
 M.config_cmp_emoji = function()
@@ -116,6 +147,16 @@ M.config_nvim_lsp_signature_help = function()
     name = 'nvim_lsp_signature_help',
   })
   cmp.setup(config)
+end
+
+M.config_cmp_cmdline = function()
+  local opts = require 'cmp.config'.cmdline[':'] or {}
+  local extended_opts = vim.tbl_extend('force', opts, {
+    sources = {
+      { name = 'cmdline' }
+    },
+  })
+  require 'cmp'.setup.cmdline(':', extended_opts)
 end
 
 return M

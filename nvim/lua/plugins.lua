@@ -27,7 +27,6 @@ local function init()
     }
   })
 
-
   packer.reset()
   local use = packer.use
 
@@ -68,6 +67,7 @@ local function init()
   use(cmp.emoji)
   use(cmp.luasnip)
   use(cmp.nvim_lsp)
+  use(cmp.cmp_cmdline)
 
   local noice = require 'plugin.noice.plugins'
   use(noice.noice)
@@ -83,15 +83,6 @@ local function init()
   -- }
 
   use {
-    'j-hui/fidget.nvim',
-    config = function()
-      require "fidget".setup {}
-    end,
-    opt = true,
-    event = { 'BufRead' }
-  }
-
-  use {
     'norcalli/nvim-colorizer.lua',
     commit = '36c610a9717cc9ec426a07c8e6bf3b3abcb139d6',
     config = function()
@@ -100,7 +91,6 @@ local function init()
     opt = true,
     event = { 'BufRead' },
   }
-
 
   -- dap
   -- use {

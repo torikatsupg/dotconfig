@@ -16,6 +16,7 @@ m.setup = function()
   vim.keymap.set("n", "<leader>f:", builtin "command_history", opts)
   vim.keymap.set("n", "<leader>fh", builtin "help_tags", opts)
   vim.keymap.set("n", "<leader>fm", builtin "marks", opts)
+  vim.keymap.set("n", "<leader>fj", builtin "jumplist", opts)
 end
 
 m.config = function()
