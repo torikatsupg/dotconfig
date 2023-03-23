@@ -40,6 +40,9 @@ M.config_nvim_lspconfig = function()
   mason_lspconfig.setup_handlers({
     function (server)
       local opts = {
+        handlers = {
+          ["textDocument/publishDiagnostics"] = vim.lsp.with( vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+        }
       }
       if server == 'lua_ls' then
         opts.settings = {

@@ -47,5 +47,7 @@ vim.opt.swapfile = false
 
 vim.opt.completeopt = 'noselect'
 
+vim.opt.signcolumn = 'yes'
+
 
 -- TODO(torikatsu): keymap in completion window

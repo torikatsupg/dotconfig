@@ -9,6 +9,16 @@ local cmp = {
   opt = true,
   module = { 'cmp' },
   config = rc.config_cmp,
+  requires = {
+    {
+      "onsails/lspkind.nvim",
+      opts = true,
+    }
+  },
+  wants = {
+    "lspkind.nvim",
+    opts = true,
+  },
 }
 
 M.buffer = {
@@ -89,18 +99,18 @@ M.nvim_lsp = {
 } -- depend on built-in lsp
 
 M.nvim_lsp_signature_help = {
-     'nvim_lsp_signature_help' ,
-     commit = '3d8912ebeb56e5ae08ef0906e3a54de1c66b92f1',
-     opt = true,
-     event = { 'LspAttach' },
-     config = rc.config_nvim_lsp_signature_help,
-     requires = {
-      cmp,
-     },
-     wants = {
-      'nvim-cmp',
-     },
-    }
+  'nvim_lsp_signature_help',
+  commit = '3d8912ebeb56e5ae08ef0906e3a54de1c66b92f1',
+  opt = true,
+  event = { 'LspAttach' },
+  config = rc.config_nvim_lsp_signature_help,
+  requires = {
+    cmp,
+  },
+  wants = {
+    'nvim-cmp',
+  },
+}
 
 M.cmp_cmdline = {
   'hrsh7th/cmp-cmdline',
