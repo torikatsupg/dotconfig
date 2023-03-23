@@ -128,4 +128,24 @@ M.cmp_cmdline = {
   }
 }
 
+M.cmp_copilot = {
+  'zbirenbaum/copilot-cmp',
+  opt = true,
+  commit = '92535dfd9c430b49ca7d9a7da336c5db65826b65',
+  cmd = { 'Copilot' },
+  event = { 'InsertEnter' },
+  run = 'Copilot auth',
+  config = rc.config_cmp_copilot,
+  requires = {
+    cmp,
+    "zbirenbaum/copilot.lua",
+    opt = true,
+    commit = 'db62371b6eac73954c194f3c8faee36cffee8135',
+  },
+  wants = {
+    'nvim-cmp',
+    'copilot.lua',
+  }
+}
+
 return M

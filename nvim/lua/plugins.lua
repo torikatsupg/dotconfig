@@ -23,7 +23,7 @@ local function init()
     disable_commands = true,
     display = { open_fn = require('packer.util').float },
     profile = {
-      enable = false
+      enable = false,
     }
   })
 
@@ -68,6 +68,7 @@ local function init()
   use(cmp.luasnip)
   use(cmp.nvim_lsp)
   use(cmp.cmp_cmdline)
+  use(cmp.cmp_copilot)
 
   local noice = require 'plugin.noice.plugins'
   use(noice.noice)
@@ -219,6 +220,10 @@ local plugins = setmetatable({}, {
     return packer[key]
   end
 })
+
+local function encode_to_base64(str)
+end
+
 
 local cmd = vim.api.nvim_create_user_command
 cmd("PackerInstall", function() plugins.install() end, { bang = true })

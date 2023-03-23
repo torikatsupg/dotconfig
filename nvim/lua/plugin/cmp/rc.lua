@@ -3,6 +3,14 @@ local M = {}
 M.config_cmp = function()
   local cmp = require 'cmp'
   local lspkind = require 'lspkind'
+
+  lspkind.init({
+    symbol_map = {
+      Copilot = "",
+    },
+  })
+  vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
   cmp.setup({
     window = {
       completion = cmp.config.window.bordered(),
@@ -16,7 +24,10 @@ M.config_cmp = function()
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-p>'] = cmp.mapping.select_prev_item(),
       ['<C-n>'] = cmp.mapping.select_next_item(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<CR>'] = cmp.mapping.confirm({
+        select = false,
+        behavior = cmp.ConfirmBehavior.Replace,
+      }),
       -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ['<C-e>'] = cmp.mapping.abort(),
       ['<C-y>'] = cmp.mapping.complete(),
@@ -168,6 +179,49 @@ M.config_cmp_cmdline = function()
     },
   })
   require 'cmp'.setup.cmdline(':', extended_opts)
+end
+
+M.config_cmp_copilot = function()
+  require("copilot").setup({
+    suggestion = { enabled = false },
+    panel = { enabled = false },
+  })
+  require("copilot_cmp").setup()
+
+  local cmp = require 'cmp'
+  local config = cmp.get_config()
+  table.insert(config.sources, {
+    name = "copilot",
+    max_item_count = 3,
+    trigger_characters = {
+      {
+        ".",
+        ":",
+        "(",
+        "'",
+        '"',
+        "[",
+        ",",
+        "#",
+        "*",
+        "@",
+        "|",
+        "=",
+        "-",
+        "{",
+        "/",
+        "\\",
+        "+",
+        "?",
+        " ",
+        "\t",
+        "\n",
+        "a",
+      },
+    },
+    group_index = 2,
+  })
+  cmp.setup(config)
 end
 
 return M
