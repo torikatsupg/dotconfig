@@ -221,10 +221,6 @@ local plugins = setmetatable({}, {
   end
 })
 
-local function encode_to_base64(str)
-end
-
-
 local cmd = vim.api.nvim_create_user_command
 cmd("PackerInstall", function() plugins.install() end, { bang = true })
 cmd("PackerUpdate", function() plugins.update() end, { bang = true })

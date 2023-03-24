@@ -9,7 +9,16 @@ M.config_cmp = function()
       Copilot = "",
     },
   })
+
   vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
+  local has_words_before = function()
+    if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+  end
+
+
 
   cmp.setup({
     window = {
@@ -21,16 +30,26 @@ M.config_cmp = function()
     },
     mapping = {
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-      ['<Tab>'] = cmp.mapping.select_next_item(),
+      ['<C-f>'] = cmp.mapping.complete(),
+      ['<C-p>'] = cmp.mapping.select_prev_item(),
+      ['<C-n>'] = cmp.mapping.select_next_item(),
+      ['<C-k>'] = cmp.mapping.complete(),
+      ["<Tab>"] = vim.schedule_wrap(function(fallback)
+        if cmp.visible() and has_words_before() then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        else
+          fallback()
+        end
+      end),
       ['<CR>'] = cmp.mapping.confirm({
-        select = false,
-        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+        behavior = cmp.ConfirmBehavior.Insert,
       }),
       -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ['<C-e>'] = cmp.mapping.abort(),
-      ['<C-y>'] = cmp.mapping.complete(),
+      ['<C-y>'] = cmp.mapping.complete({
+        select = true,
+      }),
     },
     formatting = {
       format = lspkind.cmp_format({
@@ -183,45 +202,29 @@ end
 
 M.config_cmp_copilot = function()
   require("copilot").setup({
-    suggestion = { enabled = false },
+    suggestion = { enabled = false, },
     panel = { enabled = false },
+    filetypes = {
+      ['*'] = true
+    }
   })
-  require("copilot_cmp").setup()
+  require("copilot_cmp").setup({
+    formatters = {
+      insert_text = require("copilot_cmp.format").remove_existing
+    },
+  })
 
   local cmp = require 'cmp'
   local config = cmp.get_config()
-  table.insert(config.sources, {
-    name = "copilot",
-    max_item_count = 3,
-    trigger_characters = {
-      {
-        ".",
-        ":",
-        "(",
-        "'",
-        '"',
-        "[",
-        ",",
-        "#",
-        "*",
-        "@",
-        "|",
-        "=",
-        "-",
-        "{",
-        "/",
-        "\\",
-        "+",
-        "?",
-        " ",
-        "\t",
-        "\n",
-        "a",
-      },
-    },
-    group_index = 2,
-  })
+  table.insert(config.sources, { name = "copilot", })
   cmp.setup(config)
+
+  -- If you want insert `(` after select function or method item
+  local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+  cmp.event:on(
+    'confirm_done',
+    cmp_autopairs.on_confirm_done()
+  )
 end
 
 return M
