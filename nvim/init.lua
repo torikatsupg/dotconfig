@@ -72,7 +72,7 @@ local function init()
     'bufferline.plugins',
     'colorizer.plugins',
     'lspsaga.plugins',
-    'nvim_scrollbar.plugins',
+    '_nvim_scrollbar.plugins',
     'indent_blankline.plugins',
     'camel_case_motion.plugins',
     'vim_surround.plugins',
