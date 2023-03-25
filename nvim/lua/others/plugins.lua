@@ -1,6 +1,4 @@
 local M = {}
-local rc = require 'others/rc'
-
 
 M.vim_better_whitespace =  {
     'ntpeters/vim-better-whitespace',
@@ -12,28 +10,21 @@ M.vim_better_whitespace =  {
 M.gitsigns = {
     'lewis6991/gitsigns.nvim',
     commit = 'ca473e28382f1524aa3d2b6f04bcf54f2e6a64cb',
-    config = rc.config_gitsigns,
+    config = function()require'others.config'.gitsigns()end,
     opt = true,
     event = { 'Bufread' },
   }
 
   M.which_key_nvim = {
     'folke/which-key.nvim',
-    config = function ()
-        require("which-key").setup {}
-    end,
+    config = function ()require'others.config'.which_key()end,
     opt = true,
     event = { 'CursorHold' },
   }
 
   M.vim_auto_save = {
     'vim-scripts/vim-auto-save',
-    config = function ()
-      vim.g.auto_save = 1  -- enable AutoSave on Vim startup
-      vim.g.auto_save_silent = 1  -- enable AutoSave on Vim startup
-      vim.g.auto_save_in_insert_mode = 0
-      vim.g.auto_save_events = {"InsertLeave"}
-    end,
+    config = function ()require'others.config'.auto_save()end,
     opt = true,
     event = { 'InsertLeave' },
   }
