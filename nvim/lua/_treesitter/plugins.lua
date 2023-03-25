@@ -1,7 +1,7 @@
 local M = {}
 
-local foundation = require 'plugin.foundations.foundations'
-local rc = require 'plugin._treesitter.rc'
+local foundation = require 'foundations.foundations'
+local rc = require '_treesitter.rc'
 
 M.nvim_ts_context_commentstring = {
   'JoosepAlviste/nvim-ts-context-commentstring',

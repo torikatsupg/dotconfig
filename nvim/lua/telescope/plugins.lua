@@ -1,6 +1,6 @@
 local M = {}
-local rc = require 'plugin.telescope.rc'
-local foundations = require 'plugin.foundations.foundations'
+local rc = require 'telescope.rc'
+local foundations = require 'foundations.foundations'
 
 M.telescope = {
   'nvim-telescope/telescope.nvim',

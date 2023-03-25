@@ -1,6 +1,6 @@
 local M = {}
 
-local rc = require 'plugin.foundations.rc'
+local rc = require 'foundations.rc'
 M.plenary = {
   'nvim-lua/plenary.nvim',
   tag = 'v0.1.3',

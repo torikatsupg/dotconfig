@@ -39,7 +39,7 @@ end
 
 -- frecency
 m.setup_frecency = function()
-  -- local helper = require 'plugin.telescope.helper'
+  -- local helper = require 'telescope.helper'
 
   local extensions = function(name, prop)
     return function()

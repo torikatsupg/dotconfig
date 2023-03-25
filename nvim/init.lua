@@ -81,11 +81,11 @@ local function init()
     opt = true,
   }
 
-  local foundations = require 'plugin.foundations.foundations'
+  local foundations = require 'foundations.foundations'
   use(foundations.treesitter)
   use(foundations.nvim_lspconfig)
 
-  local treesitter = require 'plugin._treesitter.plugins'
+  local treesitter = require '_treesitter.plugins'
   use(treesitter.nvim_ts_context_commentstring)
   -- use(treesitter.nvim_context_vt)
   use(treesitter.nvim_ts_rainbow)
@@ -95,7 +95,7 @@ local function init()
   use(treesitter.nvim_ts_autotag)
   use(treesitter.hlargs)
 
-  local telescope = require 'plugin.telescope.plugins'
+  local telescope = require 'telescope.plugins'
   use(telescope.telescope)
   use(telescope.ghq)
   use(telescope.frecency)
@@ -103,7 +103,7 @@ local function init()
   use(telescope.media_files)
   use(telescope.ui_select)
 
-  local cmp = require 'plugin.cmp.plugins'
+  local cmp = require 'cmp.plugins'
   use(cmp.buffer)
   use(cmp.path)
   use(cmp.dictionary)
@@ -113,7 +113,7 @@ local function init()
   use(cmp.cmp_cmdline)
   use(cmp.cmp_copilot)
 
-  local noice = require 'plugin.noice.plugins'
+  local noice = require 'noice.plugins'
   use(noice.noice)
 
   use {
@@ -121,7 +121,7 @@ local function init()
     tag = "v3.*",
     opt = true,
     event = { 'BufRead' },
-    config = require 'plugin.bufferline_rc'.config,
+    config = require 'bufferline_rc'.config,
     requires = {
       M.nvim_web_devicons,
     },
@@ -148,27 +148,27 @@ local function init()
   -- dap
   -- use {
   --   'mfussenegger/nvim-dap',
-  --   config = require 'plugin.dap_rc',
+  --   config = require 'dap_rc',
   --   requires = {
   --     {
   --       'theHamsta/nvim-dap-virtual-text',
-  --       config = require 'plugin.nvim-dap-virtual-text_rc',
+  --       config = require 'nvim-dap-virtual-text_rc',
   --     },
   --     {
   --       'rcarriga/nvim-dap-ui',
-  --       config = require 'plugin.nvim-da-ui_rc'
+  --       config = require 'nvim-da-ui_rc'
   --     }
   --   }
   -- }
   -- use {
   --   'akinsho/flutter-tools.nvim',
-  --   config = require 'plugin.flutter-tools_rc',
+  --   config = require 'flutter-tools_rc',
   --   ft = { 'dart' }
   -- }
   use {
     "glepnir/lspsaga.nvim",
     commit = 'bd55b175a4546334a197821cd4bfc19ba94e1a82',
-    config = require 'plugin.lspsaga_rc',
+    config = require 'lspsaga_rc',
     requires = {
       { "nvim-tree/nvim-web-devicons" },
     },
@@ -179,10 +179,10 @@ local function init()
 
   use {
     'petertriho/nvim-scrollbar',
-    config = require 'plugin.nvim-scrollbar_rc',
+    config = require 'nvim-scrollbar_rc',
     requires = {
       'kevinhwang91/nvim-hlslens',
-      config = require 'plugin.hlslens_rc'
+      config = require 'hlslens_rc'
     },
     wants = { 'nvim-hlslens' },
     opt = true,
@@ -191,7 +191,7 @@ local function init()
 
   -- use {
   --   'phaazon/hop.nvim',
-  --   config = require 'plugin.hop_rc',
+  --   config = require 'hop_rc',
   --   branch = 'v2',
   --
   -- }
@@ -201,7 +201,7 @@ local function init()
     tag = 'v2.20.4',
     opt = true,
     event = { 'BufRead' },
-    config = require 'plugin.indent-blankline_rc',
+    config = require 'indent-blankline_rc',
     requires = {
       treesitter.nightfox
     },
@@ -212,7 +212,7 @@ local function init()
 
   -- use {
   --   "folke/todo-comments.nvim",
-  --   config = require 'plugin.todo-comments_rc',
+  --   config = require 'todo-comments_rc',
   --   requires = {
   --     'nvim-lua/plenary.nvim',
   --     'folke/trouble.nvim',            -- TODO(torikatsu): configure
@@ -279,7 +279,7 @@ local function init()
     end,
     requires = {
       'tpope/vim-repeat',
-      config = require 'plugin.vim-repeat_rc',
+      config = require 'vim-repeat_rc',
       opt = true,
     },
     wants = {
@@ -300,21 +300,21 @@ local function init()
   use {
     'lewis6991/gitsigns.nvim',
     commit = 'ca473e28382f1524aa3d2b6f04bcf54f2e6a64cb',
-    config = require 'plugin.gitsigns_rc',
+    config = require 'gitsigns_rc',
     opt = true,
     event = { 'Bufread' },
   }
 
   use {
     'folke/which-key.nvim',
-    config = require 'plugin.which-key_rc',
+    config = require 'which-key_rc',
     opt = true,
     event = { 'CursorHold' },
   }
 
   use {
     'vim-scripts/vim-auto-save',
-    config = require 'plugin.vim-auto-save_rc',
+    config = require 'vim-auto-save_rc',
     opt = true,
     event = { 'InsertLeave' },
   }

@@ -1,7 +1,7 @@
 local M = {}
 M.noice =  {
   "folke/noice.nvim",
-  config = require 'plugin.noice.rc'.config_noice,
+  config = require 'noice.rc'.config_noice,
   requires = {
     {
       "MunifTanjim/nui.nvim",
