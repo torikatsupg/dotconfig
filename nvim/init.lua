@@ -102,25 +102,29 @@ cmd("PackerRemove", [[:! rm -rf ~/.local/share/nvim]], { bang = true })
 cmd("PackerStatus", function() plugins.status() end, { bang = true })
 
 local opt = vim.opt
-opt.encoding = 'utf-8'
-opt.number = true
-opt.ruler = true
-opt.showmatch = true
-opt.hidden = true
-opt.virtualedit = 'block'
-opt.wildmenu = true
-opt.tabstop = 2
-opt.expandtab = true
-opt.shiftwidth = 2
-opt.smartindent = true
-opt.termguicolors = true
-opt.clipboard = 'unnamedplus'
-opt.hlsearch = true
-opt.incsearch = true
-opt.ignorecase = true
-opt.smartcase = true
-opt.infercase = true
+for _, v in ipairs(
+'number',
+'ruler',
+'showmatch',
+'hidden',
+'wildmenu',
+'tabstop',
+'expandtab',
+'shiftwidth',
+'smartindent',
+'termguicolors',
+'hlsearch',
+'incsearch',
+'ignorecase',
+'smartcase',
+'infercase',
+) do
+  opt[v] = true
+end
 opt.swapfile = false
+opt.encoding = 'utf-8'
+opt.virtualedit = 'block'
+opt.clipboard = 'unnamedplus'
 opt.completeopt = 'noselect'
 opt.signcolumn = 'yes'
 opt.cmdheight = 0
