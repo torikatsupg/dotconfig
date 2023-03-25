@@ -38,6 +38,7 @@ M.config = function()
   keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
   keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
   keymap({ "n", "t" }, "∂", "<cmd>Lspsaga term_toggle<CR>")
+  keymap('n', '<space>f', vim.lsp.buf.format, opts)
 end
 
 return M

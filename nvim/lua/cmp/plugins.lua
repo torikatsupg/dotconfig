@@ -98,19 +98,19 @@ M.nvim_lsp = {
   },
 } -- depend on built-in lsp
 
-M.nvim_lsp_signature_help = {
-  'nvim_lsp_signature_help',
-  commit = '3d8912ebeb56e5ae08ef0906e3a54de1c66b92f1',
-  opt = true,
-  event = { 'LspAttach' },
-  config = rc.config_nvim_lsp_signature_help,
-  requires = {
-    cmp,
-  },
-  wants = {
-    'nvim-cmp',
-  },
-}
+ M.nvim_lsp_signature_help = {
+  'hrsh7th/cmp-nvim-lsp-signature-help',
+   commit = '3d8912ebeb56e5ae08ef0906e3a54de1c66b92f1',
+   opt = true,
+   event = { 'InsertEnter' },
+    config = rc.config_nvim_lsp_signature_help,
+   requires = {
+     cmp,
+   },
+   wants = {
+     'nvim-cmp',
+   },
+ }
 
 M.cmp_cmdline = {
   'hrsh7th/cmp-cmdline',
