@@ -69,7 +69,7 @@ local function init()
     '_telescope.plugins',
     'cmp.plugins',
     'noice.plugins',
-    'bufferline.plugins',
+    '_bufferline.plugins',
     'colorizer.plugins',
     'lspsaga.plugins',
     '_nvim_scrollbar.plugins',
