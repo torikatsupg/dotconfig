@@ -64,7 +64,7 @@ local function init()
     opt = true,
   }
   local configs = {
-    'foundations.foundations',
+    'foundations.plugins',
     '_treesitter.plugins',
     '_telescope.plugins',
     'cmp.plugins',

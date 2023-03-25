@@ -1,9 +1,10 @@
 local M = {}
-M.config_treesitter = function()
+
+M.treesitter = function()
   require('nvim-treesitter.configs').setup({})
 end
 
-M.config_luasnip = function()
+M.luasnip = function()
   local ls = require("luasnip")
   -- some shorthands...
   local snip = ls.snippet
@@ -29,7 +30,7 @@ M.config_luasnip = function()
   })
 end
 
-M.config_nvim_lspconfig = function()
+M.lspconfig = function()
   local lspconfig = require 'lspconfig'
   require 'mason'.setup()
   local mason_lspconfig = require 'mason-lspconfig'

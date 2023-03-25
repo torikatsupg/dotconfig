@@ -1,6 +1,5 @@
 local M = {}
 
-local rc = require 'foundations.rc'
 M.plenary = {
   'nvim-lua/plenary.nvim',
   tag = 'v0.1.3',
@@ -21,9 +20,7 @@ M.treesitter = {
   opt = true,
   module_pattern = { 'nvim-treesitter.*' },
   run = ':TSUpdate',
-  config = rc.config_treesitter,
-  -- event = { 'LspAttach' },
-  -- event = { 'BufRead' }
+  config = function () require 'foundations.config'.treesitter() end,
   event = { 'VimEnter' }
 }
 
@@ -33,7 +30,7 @@ M.nvim_lspconfig = {
   module = { 'lspconfig' },
   cmd = { "LspInfo", "LspLog" },
   event = { 'BufRead' },
-  config = rc.config_nvim_lspconfig,
+  config = function () require 'foundations.config'.lspconfig() end,
   requires = {
     {
       'williamboman/mason.nvim',
@@ -58,7 +55,7 @@ M.luasnip = {
   opt = true,
   run = "make install_jsregexp",
   module = { 'luasnip' },
-  config = rc.config_luasnip,
+  config = function () require 'foundations.config'.luasnip() end,
 }
 
 return M

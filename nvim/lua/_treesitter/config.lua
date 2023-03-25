@@ -1,7 +1,6 @@
 M = {}
 
--- TODO(torikatus): setup with https://github.com/numToStr/Comment.nvim
-M.config_nvim_ts_context_commentstring = function()
+M.nvim_ts_context_commentstring = function()
   local config = require 'nvim-treesitter.configs'
   config.setup = {
     context_commentstring = {
@@ -10,7 +9,7 @@ M.config_nvim_ts_context_commentstring = function()
   }
 end
 
-M.config_nvim_context_vt = function()
+M.context_vt = function()
   require('nvim_context_vt').setup({
     enabled = true,
     disable_ft = { 'markdown' },
@@ -25,26 +24,23 @@ M.config_nvim_context_vt = function()
   })
 end
 
-M.config_nvim_ts_rainbow = function()
-end
-
-M.config_hlargs = function ()
+M.hlargs = function ()
   require('hlargs').setup()
 end
 
-M.config_nvim_ts_autotag = function()
+M.ts_autotag = function()
   require'nvim-ts-autotag'.setup({})
 
 end
 
-M.config_nvim_autopairs = function()
+M.autopairs = function()
   require "nvim-autopairs".setup {
     disable_filetype = { "TelescopePrompt" },
     check_ts = true,
   }
 end
 
-M.config_matchup = function()
+M.matchup = function()
   local config = require 'nvim-treesitter.configs'
   config.setup {
     matchup = {
@@ -53,7 +49,7 @@ M.config_matchup = function()
   }
 end
 
-M.config_nightfox = function ()
+M.nightfox = function ()
   require('nightfox').setup({
     options = {
       transparent = true,

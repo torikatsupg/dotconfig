@@ -1,5 +1,5 @@
 local M = {}
-local foundations = require 'foundations.foundations'
+local foundations = require 'foundations.plugins'
 local setup = require '_telescope.setup'
 
 M.telescope = {

@@ -1,7 +1,7 @@
 local M = {}
 local rc = require 'cmp.rc'
 
-local foundations = require 'foundations.foundations'
+local foundations = require 'foundations.plugins'
 
 local cmp = {
   'hrsh7th/nvim-cmp',
