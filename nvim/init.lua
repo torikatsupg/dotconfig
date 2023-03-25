@@ -116,78 +116,32 @@ local function init()
   local noice = require 'noice.plugins'
   use(noice.noice)
 
-  use {
-    'akinsho/bufferline.nvim',
-    tag = "v3.*",
-    opt = true,
-    event = { 'BufRead' },
-    config = require 'bufferline_rc'.config,
-    requires = {
-      M.nvim_web_devicons,
-    },
-    wants = {
-      'nvim-web-devicons',
-    },
-  }
+  local bufferline = require 'bufferline.plugins'
+  use(bufferline.bufferline)
 
+  local colorizer = require 'colorizer.plugins'
+  use(colorizer.nvim_colorizer)
 
-  use {
-    'NvChad/nvim-colorizer.lua',
-    commit = 'dde3084106a70b9a79d48f426f6d6fec6fd203f7',
-    config = function()
-      require 'colorizer'.setup({
-        user_default_options = {
-          mode = 'virtualtext'
-        }
-      })
-    end,
-    opt = true,
-    event = { 'BufRead' },
-  }
+  local lspsaga = require 'lspsaga.plugins'
+  use(lspsaga.lspsaga)
 
-  -- dap
-  -- use {
-  --   'mfussenegger/nvim-dap',
-  --   config = require 'dap_rc',
-  --   requires = {
-  --     {
-  --       'theHamsta/nvim-dap-virtual-text',
-  --       config = require 'nvim-dap-virtual-text_rc',
-  --     },
-  --     {
-  --       'rcarriga/nvim-dap-ui',
-  --       config = require 'nvim-da-ui_rc'
-  --     }
-  --   }
-  -- }
-  -- use {
-  --   'akinsho/flutter-tools.nvim',
-  --   config = require 'flutter-tools_rc',
-  --   ft = { 'dart' }
-  -- }
-  use {
-    "glepnir/lspsaga.nvim",
-    commit = 'bd55b175a4546334a197821cd4bfc19ba94e1a82',
-    config = require 'lspsaga_rc',
-    requires = {
-      { "nvim-tree/nvim-web-devicons" },
-    },
-    opt = true,
-    event = { 'BufRead' },
-    cmd = { 'Lspsaga' },
-  }
+  local nvim_scrollbar = require'nvim_scrollbar.plugins'
+  use(nvim_scrollbar.nvim_scrollbar)
 
-  use {
-    'petertriho/nvim-scrollbar',
-    config = require 'nvim-scrollbar_rc',
-    requires = {
-      'kevinhwang91/nvim-hlslens',
-      config = require 'hlslens_rc'
-    },
-    wants = { 'nvim-hlslens' },
-    opt = true,
-    event = { 'BufRead' }
-  }
+  local indent_blankline = require 'indent_blankline.plugins'
+  use(indent_blankline.indent_blankline)
+
+  local camelcasemotion = require 'camel_case_motion.plugins'
+  use(camelcasemotion.camel_case_motion)
+
+  local vim_surround = require 'vim_surround.plugins'
+  use(vim_surround.vim_surround)
+
+  local others = require 'others.plugins'
+  use(others.gitsigns)
+  use(others.vim_auto_save)
+  use(others.vim_better_whitespace)
+  use(others.which_key_nvim)
 
   -- use {
   --   'phaazon/hop.nvim',
@@ -196,19 +150,6 @@ local function init()
   --
   -- }
   --
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    tag = 'v2.20.4',
-    opt = true,
-    event = { 'BufRead' },
-    config = require 'indent-blankline_rc',
-    requires = {
-      treesitter.nightfox
-    },
-    wants = {
-      'nightfox.nvim'
-    }
-  }
 
   -- use {
   --   "folke/todo-comments.nvim",
@@ -220,104 +161,8 @@ local function init()
   --   },
   -- }
 
-  use {
-    'bkad/CamelCaseMotion',
-    commit = 'de439d7c06cffd0839a29045a103fe4b44b15cdc',
-    opt = true,
-    keys = {
-      '<Plug>CamelCaseMotion_w',
-      '<Plug>CamelCaseMotion_b',
-      '<Plug>CamelCaseMotion_e',
-      '<Plug>CamelCaseMotion_ge',
-      '<Plug>CamelCaseMotion_iw',
-      '<Plug>CamelCaseMotion_ib',
-      '<Plug>CamelCaseMotion_ie',
-    },
-    setup = function()
-      local keymap = vim.keymap.set
-      local opts = { noremap = true, silent = true }
-      keymap({ "n", "s" }, "∑", "<Plug>CamelCaseMotion_w", opts)
-      keymap({ "n", "s" }, "∫", "<Plug>CamelCaseMotion_b", opts)
-      keymap({ "n", "s" }, "´", "<Plug>CamelCaseMotion_e", opts)
-      keymap({ "n", "s" }, "g´", "<Plug>CamelCaseMotion_ge", opts)
-
-      keymap({ "o", "x" }, "i∑", "<Plug>CamelCaseMotion_iw", opts)
-      keymap({ "o", "x" }, "i∫", "<Plug>CamelCaseMotion_ib", opts)
-    end
-  }
-
-  use {
-    'tpope/vim-surround',
-    opt = true,
-    keys = {
-      '<Plug>Dsurround',
-      '<Plug>CSurround',
-      '<Plug>YSurround',
-      '<Plug>Yssurround',
-      '<Plug>VSurround',
-      '<Plug>VgSurround',
-    },
-    setup = function()
-      vim.g.surround_no_mappings = true
-
-      local keymap = vim.keymap.set
-      local opts = { noremap = true, silent = true }
-      keymap('n', 'ds', '<Plug>Dsurround', opts)
-      keymap('n', 'cs', '<Plug>Csurround', opts)
-      keymap('n', 'cS', '<Plug>CSurround', opts)
-      keymap('n', 'ys', '<Plug>Ysurround', opts)
-      keymap('n', 'yS', '<Plug>YSurround', opts)
-      keymap('n', 'yss', '<Plug>Yssurround', opts)
-      keymap('n', 'ySs', '<Plug>YSsurround', opts)
-      keymap('n', 'ySS', '<Plug>YSsurround', opts)
-      keymap('x', 'S', '<Plug>VSurround', opts)
-      keymap('x', 'gS', '<Plug>VgSurround', opts)
-
-      keymap('i', '<C-S>', '<Plug>Isurround', opts)
-      keymap('i', '<C-G>s', '<Plug>Isurround', opts)
-      keymap('i', '<C-G>S', '<Plug>ISurround', opts)
-    end,
-    requires = {
-      'tpope/vim-repeat',
-      config = require 'vim-repeat_rc',
-      opt = true,
-    },
-    wants = {
-      'vim-repeat'
-    }
-  }
 
 
-  use {
-    'ntpeters/vim-better-whitespace',
-    commit = '1b22dc57a2751c7afbc6025a7da39b7c22db635d',
-    opt = true,
-    event = { 'BufRead' },
-  }
-
-  -- TODO(torikatsu): いれたい https://github.com/segeljakt/vim-silicon
-
-  use {
-    'lewis6991/gitsigns.nvim',
-    commit = 'ca473e28382f1524aa3d2b6f04bcf54f2e6a64cb',
-    config = require 'gitsigns_rc',
-    opt = true,
-    event = { 'Bufread' },
-  }
-
-  use {
-    'folke/which-key.nvim',
-    config = require 'which-key_rc',
-    opt = true,
-    event = { 'CursorHold' },
-  }
-
-  use {
-    'vim-scripts/vim-auto-save',
-    config = require 'vim-auto-save_rc',
-    opt = true,
-    event = { 'InsertLeave' },
-  }
 end
 
 -- Define ex commands

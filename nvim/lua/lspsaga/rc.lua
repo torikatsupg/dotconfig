@@ -1,4 +1,5 @@
-return function()
+local M = {}
+M.config = function()
   require("lspsaga").setup({
     ui = {
       border = 'rounded',
@@ -38,3 +39,5 @@ return function()
   keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
   keymap({ "n", "t" }, "∂", "<cmd>Lspsaga term_toggle<CR>")
 end
+
+return M
