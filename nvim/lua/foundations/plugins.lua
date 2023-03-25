@@ -58,4 +58,10 @@ M.luasnip = {
   config = function () require 'foundations.config'.luasnip() end,
 }
 
+M.nui = {
+  "MunifTanjim/nui.nvim",
+  commit = '0dc148c6ec06577fcf06cbab3b7dac96d48ba6be',
+  opt = true,
+}
+
 return M

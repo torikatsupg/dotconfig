@@ -1,5 +1,4 @@
 local M = {}
-local rc = require 'cmp.rc'
 
 local foundations = require 'foundations.plugins'
 
@@ -8,16 +7,13 @@ local cmp = {
   tag = 'v0.0.1',
   opt = true,
   module = { 'cmp' },
-  config = rc.config_cmp,
+  config = function () require '_cmp.config'.cmp() end,
   requires = {
-    {
       "onsails/lspkind.nvim",
       opts = true,
-    }
   },
   wants = {
     "lspkind.nvim",
-    opts = true,
   },
 }
 
@@ -28,7 +24,7 @@ M.buffer = {
   event = { 'InsertEnter', 'CmdlineEnter' },
   requires = { cmp },
   wants = { 'nvim-cmp' },
-  config = rc.config_buffer
+  config = function() require '_cmp.config'.buffer() end,
 }
 
 M.dictionary = {
@@ -39,7 +35,7 @@ M.dictionary = {
   event = { 'InsertEnter' },
   requires = { cmp },
   wants = { 'nvim-cmp' },
-  config = rc.config_cmp_dictionary,
+  config = function () require '_cmp.config'.dictionary() end
 }
 
 
@@ -50,7 +46,7 @@ M.path = {
   event = { 'InsertEnter', 'CmdlineEnter' },
   requires = { cmp },
   wants = { 'nvim-cmp' },
-  config = rc.config_cmp_path,
+  config = function () require '_cmp.config'.path() end,
 }
 
 M.emoji = {
@@ -60,7 +56,7 @@ M.emoji = {
   event = { 'InsertEnter' },
   requires = { cmp },
   wants = { 'nvim-cmp' },
-  config = rc.config_cmp_emoji,
+  config = function () require '_cmp.config'.emoji() end,
 }
 
 M.luasnip = {
@@ -69,7 +65,7 @@ M.luasnip = {
   opt = true,
   module = { 'cmp_luasnip' },
   event = { 'InsertEnter' },
-  config = rc.config_cmp_luasnip,
+  config = function () require '_cmp.config'.luasnip() end,
   requires = {
     cmp,
     foundations.luasnip,
@@ -85,7 +81,7 @@ M.nvim_lsp = {
   commit = '0e6b2ed705ddcff9738ec4ea838141654f12eeef',
   opt = true,
   event = { 'InsertEnter' },
-  config = rc.config_cmp_nvim_lsp,
+  config = function() require '_cmp.config'.lsp() end,
   requires = {
     cmp,
     foundations.nvim_lspconfig,
@@ -96,14 +92,14 @@ M.nvim_lsp = {
     'nvim-lspconfig',
     'cmp_luasnip',
   },
-} -- depend on built-in lsp
+}
 
  M.nvim_lsp_signature_help = {
   'hrsh7th/cmp-nvim-lsp-signature-help',
    commit = '3d8912ebeb56e5ae08ef0906e3a54de1c66b92f1',
    opt = true,
    event = { 'InsertEnter' },
-    config = rc.config_nvim_lsp_signature_help,
+    config = function () require '_cmp.config'.lsp_signature_help() end,
    requires = {
      cmp,
    },
@@ -117,7 +113,7 @@ M.cmp_cmdline = {
   commit = '8fcc934a52af96120fe26358985c10c035984b53',
   opt = true,
   event = { 'CmdlineEnter' },
-  config = rc.config_cmp_cmdline,
+  config = function () require '_cmp.config'.cmdline() end,
   requires = {
     cmp,
     M.path
@@ -135,7 +131,7 @@ M.cmp_copilot = {
   cmd = { 'Copilot' },
   event = { 'InsertEnter' },
   run = 'Copilot auth',
-  config = rc.config_cmp_copilot,
+  config = function () require '_cmp.config'.copilot() end,
   requires = {
     cmp,
     "zbirenbaum/copilot.lua",

@@ -1,5 +1,4 @@
 local M = {}
-local rc = require 'indent_blankline.rc'
 local treesitter = require '_treesitter.plugins'
 
   M.indent_blankline =  {
@@ -7,7 +6,7 @@ local treesitter = require '_treesitter.plugins'
     tag = 'v2.20.4',
     opt = true,
     event = { 'BufRead' },
-    config = rc.config_indent_blankline,
+    config = function () require '_indent_blankline.config'.indent_blankline() end,
     requires = {
       treesitter.nightfox
     },

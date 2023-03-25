@@ -1,5 +1,5 @@
 local M = {}
-M.config_noice = function()
+M.noice = function()
   require("noice").setup({
     lsp = {
       override = {

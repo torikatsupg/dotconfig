@@ -1,11 +1,9 @@
 local M = {}
 
 local vim_repeat = {
-      'tpope/vim-repeat',
-      opt = true,
-      config = function ()
-        require 'vim_surround.config'.vim_repeat()
-      end,
+    'tpope/vim-repeat',
+    opt = true,
+    config = function () require '_vim_surround.config'.vim_repeat() end,
 }
 
 M.vim_surround = {
@@ -19,7 +17,7 @@ M.vim_surround = {
       '<Plug>VSurround',
       '<Plug>VgSurround',
     },
-    setup = require'vim_surround.setup'.vim_surround,
+    setup = require'_vim_surround.setup'.vim_surround,
     requires = vim_repeat,
     wants = {
       'vim-repeat'

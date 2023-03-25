@@ -1,5 +1,5 @@
 local M = {}
-M.config = function()
+M.lspsaga = function()
   require("lspsaga").setup({
     ui = {
       border = 'rounded',

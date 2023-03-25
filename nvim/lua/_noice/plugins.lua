@@ -1,7 +1,10 @@
 local M = {}
 M.noice =  {
   "folke/noice.nvim",
-  config = require 'noice.rc'.config_noice,
+  tag = 'v1.10.1',
+  opt = true,
+  config = function () require '_noice.config'.noice() end,
+  event = { 'VimEnter' },
   requires = {
     {
       "MunifTanjim/nui.nvim",
@@ -18,7 +21,5 @@ M.noice =  {
     'nui.nvim',
     'nvim-notify',
   },
-  opt = true,
-  event = { 'VimEnter' },
 }
 return M

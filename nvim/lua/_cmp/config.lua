@@ -1,6 +1,6 @@
 local M = {}
 
-M.config_cmp = function()
+M.cmp = function()
   local cmp = require 'cmp'
   local lspkind = require 'lspkind'
 
@@ -64,7 +64,7 @@ M.config_cmp = function()
   })
 end
 
-M.config_buffer = function()
+M.buffer = function()
   local cmp = require 'cmp'
   local config = cmp.get_config()
   table.insert(config.sources, {
@@ -90,7 +90,7 @@ M.config_buffer = function()
   require 'cmp'.setup.cmdline('?', extended_opts)
 end
 
-M.config_cmp_dictionary = function()
+M.dictionary = function()
   local cmp = require 'cmp'
   local config = cmp.get_config()
   table.insert(config.sources, {
@@ -113,7 +113,7 @@ M.config_cmp_dictionary = function()
   })
 end
 
-M.config_cmp_path = function()
+M.path = function()
   local cmp = require 'cmp'
   local config = cmp.get_config()
   table.insert(config.sources, {
@@ -131,7 +131,7 @@ M.config_cmp_path = function()
   require 'cmp'.setup.cmdline(':', extended_opts)
 end
 
-M.config_cmp_emoji = function()
+M.emoji = function()
   local cmp = require 'cmp'
   local config = cmp.get_config()
   table.insert(config.sources, {
@@ -140,7 +140,7 @@ M.config_cmp_emoji = function()
   cmp.setup(config)
 end
 
-M.config_cmp_luasnip = function()
+M.luasnip = function()
   local cmp = require 'cmp'
   local luasnip = require 'luasnip'
   local config = cmp.get_config()
@@ -158,7 +158,7 @@ M.config_cmp_luasnip = function()
   cmp.setup(config)
 end
 
-M.config_cmp_nvim_lsp = function()
+M.lsp = function()
   local cmp = require 'cmp'
   local nvim_lsp = require 'cmp_nvim_lsp'
   local lspconfig = require 'lspconfig'
@@ -181,7 +181,7 @@ M.config_cmp_nvim_lsp = function()
   cmp.setup(config)
 end
 
-M.config_nvim_lsp_signature_help = function()
+M.lsp_signature_help = function()
   local cmp = require 'cmp'
   local config = cmp.get_config()
   table.insert(config.sources, {
@@ -190,7 +190,7 @@ M.config_nvim_lsp_signature_help = function()
   cmp.setup(config)
 end
 
-M.config_cmp_cmdline = function()
+M.cmdline = function()
   local opts = require 'cmp.config'.cmdline[':'] or {}
   local extended_opts = vim.tbl_extend('force', opts, {
     sources = {
@@ -200,7 +200,7 @@ M.config_cmp_cmdline = function()
   require 'cmp'.setup.cmdline(':', extended_opts)
 end
 
-M.config_cmp_copilot = function()
+M.copilot = function()
   require("copilot").setup({
     suggestion = { enabled = false, },
     panel = { enabled = false },
@@ -218,13 +218,6 @@ M.config_cmp_copilot = function()
   local config = cmp.get_config()
   table.insert(config.sources, { name = "copilot", })
   cmp.setup(config)
-
-  -- If you want insert `(` after select function or method item
-  -- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-  -- cmp.event:on(
-  --   'confirm_done',
-  --   cmp_autopairs.on_confirm_done()
-  -- )
 end
 
 return M
