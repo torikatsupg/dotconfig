@@ -66,7 +66,7 @@ local function init()
   local configs = {
     'foundations.foundations',
     '_treesitter.plugins',
-    'telescope.plugins',
+    '_telescope.plugins',
     'cmp.plugins',
     'noice.plugins',
     'bufferline.plugins',

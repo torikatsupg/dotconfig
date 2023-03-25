@@ -1,15 +1,15 @@
 local M = {}
-local rc = require 'telescope.rc'
 local foundations = require 'foundations.foundations'
+local setup = require '_telescope.setup'
 
 M.telescope = {
   'nvim-telescope/telescope.nvim',
-  config = rc.config,
+  config = function() require'_telescope.config'.config() end,
   tag = '0.1.1',
   opt = true,
   run = 'brew install ripgrep && brew install fd',
   module_pattern = { "telescope.*" },
-  setup = rc.setup,
+  setup = setup.telescope,
   requires = {
     foundations.plenary,
     foundations.treesitter,
@@ -26,7 +26,7 @@ M.ghq = {
   opt = true,
   run = 'brew install ghq',
   module = { 'telescope._extensions.ghq' },
-  setup = rc.setup_ghq,
+  setup = setup.ghq,
   requires = { M.telescope }
 }
 
@@ -35,6 +35,7 @@ M.frecency = {
   commit = 'e5696afabd8753d772987ea48434d9c0d8b0aa6b',
   opt = true,
   module = { 'telescope._extensions.frecency' },
+  setup = setup.frecency,
   requires = {
     {
       "kkharji/sqlite.lua",
@@ -44,7 +45,6 @@ M.frecency = {
     M.telescope
   },
   wants = { "sqlite.lua", },
-  setup = rc.setup_frecency,
 }
 
 M.live_grep_args = {
@@ -52,7 +52,7 @@ M.live_grep_args = {
   commit = '7de3baef1ec4fb77f7a8195fe87bebd513244b6a',
   opt = true,
   module = { 'telescope._extensions.live_grep_args' },
-  setup = rc.setup_live_grep_args,
+  setup = setup.live_grep_args,
   requires = { M.telescope }
 }
 
@@ -63,7 +63,7 @@ M.media_files =  {
   run =
   'brew install chafa && brew install imagemagic@6 && brew install ffmpegthumbnailer && brew install pdftoppm',
   module = { 'telescop._extensions.media_files' },
-  setup = rc.setup_media_files,
+  setup = setup.setup_media_files,
   requires = { M.telescope }
 }
 
@@ -72,8 +72,8 @@ M.ui_select = {
   commit = '62ea5e58c7bbe191297b983a9e7e89420f581369',
   opt = true,
   module = { 'telescope._extensions.ui-select' },
-  setup = rc.setup_ui_select,
-  config = rc.config_ui_select,
+  setup = setup.ui_select,
+  config = function() require'_telescope.config'.ui_select() end,
   requires = { M.telescope }
 }
 
