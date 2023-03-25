@@ -59,6 +59,7 @@ M.config_nightfox = function ()
       transparent = true,
     }
   })
+  
   vim.cmd("colorscheme duskfox")
 end
 

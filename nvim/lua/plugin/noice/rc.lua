@@ -64,5 +64,9 @@ M.config_noice = function()
   end
   local opts = { noremap = true, silent = false }
   vim.keymap.set("n", "<Leader>fn", extensions("noice", "noice"), opts)
+
+  require 'notify'.setup ({
+background_colour = "#000000",
+  })
 end
 return M

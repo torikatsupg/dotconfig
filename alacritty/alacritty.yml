@@ -3,7 +3,7 @@ window:
   #   dimensions:
   #     columns: 200
   #     lines: 60
-  opacity: 0.97
+  opacity: 1
 
 scrolling:
   history: 100000
