@@ -1,6 +1,6 @@
 local M = {}
 
-M.config = function()
+M.bufferline = function()
   require 'bufferline'.setup {
     highlights = {
       buffer_selected = { italic = false, bold = false, },

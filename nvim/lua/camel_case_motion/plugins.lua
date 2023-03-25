@@ -14,15 +14,16 @@ M.camel_case_motion =  {
       '<Plug>CamelCaseMotion_ie',
     },
     setup = function()
-      local keymap = vim.keymap.set
-      local opts = { noremap = true, silent = true }
-      keymap({ "n", "s" }, "∑", "<Plug>CamelCaseMotion_w", opts)
-      keymap({ "n", "s" }, "∫", "<Plug>CamelCaseMotion_b", opts)
-      keymap({ "n", "s" }, "´", "<Plug>CamelCaseMotion_e", opts)
-      keymap({ "n", "s" }, "g´", "<Plug>CamelCaseMotion_ge", opts)
-
-      keymap({ "o", "x" }, "i∑", "<Plug>CamelCaseMotion_iw", opts)
-      keymap({ "o", "x" }, "i∫", "<Plug>CamelCaseMotion_ib", opts)
+      local set = vim.keymap.set
+      local o = { noremap = true, silent = true }
+      local ns = { 'n', 's'}
+      local ox = { 'o', 'x'}
+      set(ns, "∑", "<Plug>CamelCaseMotion_w", o)
+      set(ns, "∫", "<Plug>CamelCaseMotion_b", o)
+      set(ns, "´", "<Plug>CamelCaseMotion_e", o)
+      set(ns, "g´", "<Plug>CamelCaseMotion_ge", o)
+      set(ox, "i∑", "<Plug>CamelCaseMotion_iw", o)
+      set(ox, "i∫", "<Plug>CamelCaseMotion_ib", o)
     end
   }
 return M
