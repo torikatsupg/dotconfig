@@ -1,4 +1,3 @@
-
 local M = {}
 
 M.config = function()
@@ -17,10 +16,14 @@ M.config = function()
       }
     }
   }
+  vim.api.nvim_create_autocmd(
+    "FileType", {
+      pattern = "qf",
+      command = [[nnoremap <buffer> <CR> <CR>:cclose<CR>]]
+    })
 end
 
 M.ui_select = function()
-
   local t = require 'telescope'
   t.setup {
     extensions = {
@@ -32,3 +35,4 @@ end
 
 
 return M
+

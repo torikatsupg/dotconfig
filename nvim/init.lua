@@ -8,12 +8,12 @@ local function init()
   end
 
   if packer == nil then
-    packer = require('packer')
+    packer = require 'packer'
   end
 
   packer.init({
     disable_commands = true,
-    display = { open_fn = require('packer.util').float },
+    display = { open_fn = require 'packer.util'.float },
     profile = {
       enable = false,
     }
@@ -54,14 +54,13 @@ local plugins = setmetatable({}, {
 
 local b = { bang = true }
 local cmd = vim.api.nvim_create_user_command
-cmd("PackerClean", function() plugins.clean() end, b)
-cmd("PackerCompile", function() plugins.compile() end, b)
-cmd("PackerInstall", function() plugins.install() end, b)
-cmd("PackerRemove", [[:! rm -rf ~/.local/share/nvim]], b)
-cmd("PackerStatus", function() plugins.status() end, b)
-cmd("PackerSync", function() plugins.sync() end, b)
-cmd("PackerUpdate", function() plugins.update() end, b)
-
+local prefix = "Packer"
+cmd(prefix .. "Clean", function() plugins.clean() end, b)
+cmd(prefix .. "Compile", function() plugins.compile() end, b)
+cmd(prefix .. "Install", function() plugins.install() end, b)
+cmd(prefix .. "Status", function() plugins.status() end, b)
+cmd(prefix .. "Sync", function() plugins.sync() end, b)
+cmd(prefix .. "Update", function() plugins.update() end, b)
 
 local disable_plugins = {
   'loaded_2html_plugin',
@@ -72,6 +71,7 @@ local disable_plugins = {
   'loaded_zipPlugin',
   'loaded_vimball',
   'loaded_vimballPlugin',
+  'loaded_netrw',
   'loaded_netrwPlugin',
   'loaded_netrwSettings',
   'loaded_netrwFileHandlers',
@@ -101,7 +101,6 @@ for _, v in ipairs({
   'ruler',
   'showmatch',
   'hidden',
-  'wildmenu',
   'expandtab',
   'smartindent',
   'termguicolors',
@@ -109,7 +108,7 @@ for _, v in ipairs({
   'incsearch',
   'ignorecase',
   'smartcase',
-  'infercase'
+  'infercase',
 }) do
   o[v] = true
 end
@@ -127,7 +126,7 @@ o.laststatus = 0
 o.sd = ""
 local ag = 'cmdentergroup'
 local api = vim.api
-api.nvim_create_augroup(ag, {} )
+api.nvim_create_augroup(ag, {})
 api.nvim_create_autocmd('CmdlineEnter', {
   group = ag,
   callback = function()

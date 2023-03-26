@@ -1,16 +1,21 @@
 local M = {}
 
-M.cmp = function()
-  local cmp = require 'cmp'
+M.lspkind = function()
   local lspkind = require 'lspkind'
 
   lspkind.init({
+    mode = 'symbol',
     symbol_map = {
       Copilot = "",
     },
   })
-
   vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+end
+
+M.cmp = function()
+  local cmp = require 'cmp'
+  local o = { 'i', 'c' }
+  local map = cmp.mapping
 
   local has_words_before = function()
     if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
@@ -18,7 +23,39 @@ M.cmp = function()
     return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
   end
 
+  local confirm = map({
+    i = cmp.mapping.confirm({
+      select = true,
+      behavior = cmp.ConfirmBehavior.Replace,
+    }),
+    c = cmp.mapping.confirm({
+      select = false,
+      behavior = cmp.ConfirmBehavior.Replace,
+    }),
+  })
 
+  local next = map(cmp.mapping.select_next_item(), o)
+  local prev = map(cmp.mapping.select_prev_item(), o)
+  local mapping = {
+    ['<C-b>'] = map(cmp.mapping.scroll_docs(-4), o),
+    ['<C-f>'] = map(cmp.mapping.scroll_docs(4), o),
+    ['<C-p>'] = prev,
+    ['<C-n>'] = next,
+    ["<Tab>"] = map({
+      i = function(fallback)
+        if cmp.visible() and has_words_before() then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        else
+          fallback()
+        end
+      end,
+      c = cmp.mapping.select_next_item(),
+    }),
+    ['<S-Tab>'] = prev,
+    ['<CR>'] = confirm,
+    ['<C-e>'] = map(cmp.mapping.abort(), o),
+    ['<C-y>'] = confirm,
+  }
 
   cmp.setup({
     window = {
@@ -26,41 +63,17 @@ M.cmp = function()
       documentation = cmp.config.window.bordered(),
     },
     experimental = {
-      ghost_text = true -- TODO(torikatsu): check
+      ghost_text = true
     },
-    mapping = {
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.complete(),
-      ['<C-p>'] = cmp.mapping.select_prev_item(),
-      ['<C-n>'] = cmp.mapping.select_next_item(),
-      ['<C-k>'] = cmp.mapping.complete(),
-      ["<Tab>"] = vim.schedule_wrap(function(fallback)
-        if cmp.visible() and has_words_before() then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        else
-          fallback()
-        end
-      end),
-      ['<CR>'] = cmp.mapping.confirm({
-        select = true,
-        behavior = cmp.ConfirmBehavior.Insert,
-      }),
-      -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<C-y>'] = cmp.mapping.complete({
-        select = true,
-      }),
-    },
+    mapping = cmp.mapping.preset.insert(mapping),
     formatting = {
-      format = lspkind.cmp_format({
+      format = require 'lspkind'.cmp_format({
         mode = 'symbol',
-        maxwidth = 50,
-        ellipsis_char = '...',
-        -- before = function (entry, vim_item)
-        --   return vim_item
-        -- end
       })
     }
+  })
+  cmp.setup.cmdline({ '/', '?', ':' }, {
+    mapping = cmp.mapping.preset.cmdline(mapping),
   })
 end
 
@@ -81,13 +94,13 @@ M.buffer = function()
   })
 
   require 'cmp'.setup.cmdline('/', extended_opts)
-  local opts = require 'cmp.config'.cmdline['?'] or {}
-  local extended_opts = vim.tbl_extend('force', opts, {
+  local opts_ = require 'cmp.config'.cmdline['?'] or {}
+  local extended_opts_ = vim.tbl_extend('force', opts_, {
     sources = {
       { name = 'buffer' }
     },
   })
-  require 'cmp'.setup.cmdline('?', extended_opts)
+  require 'cmp'.setup.cmdline('?', extended_opts_)
 end
 
 M.dictionary = function()
@@ -220,4 +233,13 @@ M.copilot = function()
   cmp.setup(config)
 end
 
+M.cmdline_history = function()
+  local opts = require 'cmp.config'.cmdline[':'] or {}
+  local extended_opts = vim.tbl_extend('force', opts, {
+    sources = {
+      { name = 'cmdline_history' }
+    },
+  })
+  require 'cmp'.setup.cmdline(':', extended_opts)
+end
 return M

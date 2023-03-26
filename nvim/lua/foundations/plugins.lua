@@ -5,6 +5,7 @@ M.plenary = {
   tag = 'v0.1.3',
   opt = true,
   module_pattern = { 'plenary.*' },
+  name = 'plenary.nvim',
 }
 
 M.nvim_web_devicions = {
@@ -12,6 +13,7 @@ M.nvim_web_devicions = {
   commit = '4af94fec29f508159ceab5413383e5dedd6c24e3',
   opt = true,
   module = { 'nvim-web-devicons' },
+  name = 'nvim-web-devicons',
 }
 
 M.treesitter = {
@@ -20,8 +22,9 @@ M.treesitter = {
   opt = true,
   module_pattern = { 'nvim-treesitter.*' },
   run = ':TSUpdate',
-  config = function () require 'foundations.config'.treesitter() end,
-  event = { 'VimEnter' }
+  config = function() require 'foundations.config'.treesitter() end,
+  event = { 'VimEnter' },
+  name = 'nvim-treesitter',
 }
 
 M.nvim_lspconfig = {
@@ -30,7 +33,7 @@ M.nvim_lspconfig = {
   module = { 'lspconfig' },
   cmd = { "LspInfo", "LspLog" },
   event = { 'BufRead' },
-  config = function () require 'foundations.config'.lspconfig() end,
+  config = function() require 'foundations.config'.lspconfig() end,
   requires = {
     {
       'williamboman/mason.nvim',
@@ -46,7 +49,8 @@ M.nvim_lspconfig = {
   wants = {
     'mason.nvim',
     'mason-lspconfig.nvim',
-  }
+  },
+  name = 'nvim-lspconfig',
 }
 
 M.luasnip = {
@@ -55,13 +59,15 @@ M.luasnip = {
   opt = true,
   run = "make install_jsregexp",
   module = { 'luasnip' },
-  config = function () require 'foundations.config'.luasnip() end,
+  config = function() require 'foundations.config'.luasnip() end,
+  name = 'LuaSnip',
 }
 
 M.nui = {
   "MunifTanjim/nui.nvim",
   commit = '0dc148c6ec06577fcf06cbab3b7dac96d48ba6be',
   opt = true,
+  name = 'nui.nvim',
 }
 
 return M
