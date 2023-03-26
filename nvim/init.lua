@@ -113,7 +113,6 @@ for _, v in ipairs({
 }) do
   o[v] = true
 end
--- vim.o.runtimepath = ''
 o.tabstop = 2
 o.shiftwidth = 2
 o.swapfile = false

@@ -104,7 +104,6 @@ _G.packer_plugins = {
     wants = { "nvim-web-devicons" }
   },
   ["cmp-buffer"] = {
-    after = { "nvim-cmp" },
     after_files = { "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/cmp-buffer/after/plugin/cmp_buffer.lua" },
     config = { "\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\vbuffer\16_cmp.config\frequire\0" },
     loaded = false,
@@ -115,6 +114,7 @@ _G.packer_plugins = {
     wants = { "nvim-cmp" }
   },
   ["cmp-cmdline"] = {
+    after = { "cmp-path" },
     after_files = { "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/cmp-cmdline/after/plugin/cmp_cmdline.lua" },
     config = { "\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\fcmdline\16_cmp.config\frequire\0" },
     loaded = false,
@@ -145,7 +145,7 @@ _G.packer_plugins = {
     wants = { "nvim-cmp" }
   },
   ["cmp-nvim-lsp"] = {
-    after = { "nvim-lspconfig", "cmp_luasnip" },
+    after = { "nvim-lspconfig" },
     after_files = { "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua" },
     config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\blsp\16_cmp.config\frequire\0" },
     loaded = false,
@@ -168,6 +168,9 @@ _G.packer_plugins = {
   ["cmp-path"] = {
     after_files = { "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/cmp-path/after/plugin/cmp_path.lua" },
     config = { "\27LJ\2\n8\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\tpath\16_cmp.config\frequire\0" },
+    load_after = {
+      ["cmp-cmdline"] = true
+    },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -176,12 +179,9 @@ _G.packer_plugins = {
     wants = { "nvim-cmp" }
   },
   cmp_luasnip = {
-    after = { "LuaSnip" },
+    after = { "LuaSnip", "nvim-cmp" },
     after_files = { "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/cmp_luasnip/after/plugin/cmp_luasnip.lua" },
     config = { "\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\fluasnip\16_cmp.config\frequire\0" },
-    load_after = {
-      ["cmp-nvim-lsp"] = true
-    },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -328,7 +328,7 @@ _G.packer_plugins = {
     after = { "lspkind.nvim" },
     config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\bcmp\16_cmp.config\frequire\0" },
     load_after = {
-      ["cmp-buffer"] = true
+      cmp_luasnip = true
     },
     loaded = false,
     needs_bufread = false,
@@ -356,7 +356,7 @@ _G.packer_plugins = {
     url = "https://github.com/kevinhwang91/nvim-hlslens"
   },
   ["nvim-lspconfig"] = {
-    after = { "mason-lspconfig.nvim", "mason.nvim" },
+    after = { "mason.nvim", "mason-lspconfig.nvim" },
     commands = { "LspInfo", "LspLog" },
     config = { "\27LJ\2\nD\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\14lspconfig\23foundations.config\frequire\0" },
     load_after = {
@@ -469,7 +469,7 @@ _G.packer_plugins = {
     url = "https://github.com/kkharji/sqlite.lua"
   },
   ["telescope-frecency.nvim"] = {
-    after = { "sqlite.lua" },
+    after = { "telescope.nvim", "sqlite.lua" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -492,7 +492,6 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope-live-grep-args.nvim"
   },
   ["telescope-media-files.nvim"] = {
-    after = { "telescope.nvim" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -510,7 +509,7 @@ _G.packer_plugins = {
   ["telescope.nvim"] = {
     config = { "\27LJ\2\n@\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\vconfig\22_telescope.config\frequire\0" },
     load_after = {
-      ["telescope-media-files.nvim"] = true
+      ["telescope-frecency.nvim"] = true
     },
     loaded = false,
     needs_bufread = true,
@@ -553,6 +552,14 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
+  },
+  ["vim-startuptime"] = {
+    commands = { "StartupTime" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/torikatsu/.local/share/nvim/site/pack/packer/opt/vim-startuptime",
+    url = "https://github.com/dstein64/vim-startuptime"
   },
   ["vim-surround"] = {
     after = { "vim-repeat" },
@@ -616,41 +623,69 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Setup for: telescope-ghq.nvim
-time([[Setup for telescope-ghq.nvim]], true)
-try_loadstring("\27LJ\2\nd\0\0\4\0\6\0\n6\0\0\0'\2\1\0B\0\2\0029\1\2\0'\3\3\0B\1\2\0019\1\4\0009\1\3\0019\1\5\1D\1\1\0\tlist\15extensions\bghq\19load_extension\14telescope\frequire\\\1\0\6\0\a\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\1K\0\1\0\1\0\2\vsilent\1\fnoremap\2\0\15<Leader>fq\6n\bset\vkeymap\bvim\0", "setup", "telescope-ghq.nvim")
-time([[Setup for telescope-ghq.nvim]], false)
--- Setup for: telescope-media-files.nvim
-time([[Setup for telescope-media-files.nvim]], true)
-try_loadstring("\27LJ\2\ng\0\0\4\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\1\2\0'\3\3\0B\1\2\0019\1\4\0009\1\3\0019\1\3\1D\1\1\0\15extensions\16media_files\19load_extension\14telescope\frequire\\\1\0\6\0\a\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\1K\0\1\0\1\0\2\vsilent\1\fnoremap\2\0\15<Leader>fM\6n\bset\vkeymap\bvim\0", "setup", "telescope-media-files.nvim")
-time([[Setup for telescope-media-files.nvim]], false)
 -- Setup for: telescope-ui-select.nvim
 time([[Setup for telescope-ui-select.nvim]], true)
 try_loadstring("\27LJ\2\no\2\0\3\0\6\0\n6\0\0\0'\2\1\0B\0\2\0016\0\2\0009\0\3\0009\0\4\0009\0\5\0G\2\0\0A\0\0\1K\0\1\0\16code_action\bbuf\blsp\bvim$telescope._extensions.ui-select\frequireT\1\0\6\0\a\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\1K\0\1\0\1\0\2\vsilent\1\fnoremap\2\0\aga\6n\bset\vkeymap\bvim\0", "setup", "telescope-ui-select.nvim")
 time([[Setup for telescope-ui-select.nvim]], false)
--- Setup for: telescope-frecency.nvim
-time([[Setup for telescope-frecency.nvim]], true)
-try_loadstring("\27LJ\2\nd\0\0\4\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\1\2\0'\3\3\0B\1\2\0019\1\4\0009\1\3\0019\1\3\1D\1\1\0\15extensions\rfrecency\19load_extension\14telescope\frequire\\\1\0\6\0\a\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\1K\0\1\0\1\0\2\vsilent\1\fnoremap\2\0\15<Leader>fr\6n\bset\vkeymap\bvim\0", "setup", "telescope-frecency.nvim")
-time([[Setup for telescope-frecency.nvim]], false)
--- Setup for: telescope.nvim
-time([[Setup for telescope.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\1\2\0\a6\0\0\0'\2\1\0B\0\2\2-\1\0\0008\0\1\0004\2\0\0D\0\2\0\0À\22telescope.builtin\frequire\20\1\1\2\0\1\0\0033\1\0\0002\0\0€L\1\2\0\0Ô\2\1\0\v\0\16\0/3\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\3\5\0\18\4\2\0\18\6\3\0'\a\6\0\18\b\0\0'\n\a\0B\b\2\2\18\t\1\0B\4\5\1\18\4\2\0\18\6\3\0'\a\b\0\18\b\0\0'\n\t\0B\b\2\2\18\t\1\0B\4\5\1\18\4\2\0\18\6\3\0'\a\n\0\18\b\0\0'\n\v\0B\b\2\2\18\t\1\0B\4\5\1\18\4\2\0\18\6\3\0'\a\f\0\18\b\0\0'\n\r\0B\b\2\2\18\t\1\0B\4\5\1\18\4\2\0\18\6\3\0'\a\14\0\18\b\0\0'\n\15\0B\b\2\2\18\t\1\0B\4\5\1K\0\1\0\rjumplist\15<leader>fj\nmarks\15<leader>fm\14help_tags\15<leader>fh\20command_history\15<leader>f:\15find_files\15<Leader>ff\6n\bset\vkeymap\bvim\1\0\2\vsilent\1\fnoremap\2\0\0", "setup", "telescope.nvim")
-time([[Setup for telescope.nvim]], false)
--- Setup for: CamelCaseMotion
-time([[Setup for CamelCaseMotion]], true)
-try_loadstring("\27LJ\2\n’\3\0\0\n\0\18\0+6\0\0\0009\0\1\0009\0\2\0005\1\3\0005\2\4\0005\3\5\0\18\4\0\0\18\6\2\0'\a\6\0'\b\a\0\18\t\1\0B\4\5\1\18\4\0\0\18\6\2\0'\a\b\0'\b\t\0\18\t\1\0B\4\5\1\18\4\0\0\18\6\2\0'\a\n\0'\b\v\0\18\t\1\0B\4\5\1\18\4\0\0\18\6\2\0'\a\f\0'\b\r\0\18\t\1\0B\4\5\1\18\4\0\0\18\6\3\0'\a\14\0'\b\15\0\18\t\1\0B\4\5\1\18\4\0\0\18\6\3\0'\a\16\0'\b\17\0\18\t\1\0B\4\5\1K\0\1\0\29<Plug>CamelCaseMotion_ib\tiâˆ«\29<Plug>CamelCaseMotion_iw\tiâˆ‘\29<Plug>CamelCaseMotion_ge\bgÂ´\28<Plug>CamelCaseMotion_e\aÂ´\28<Plug>CamelCaseMotion_b\bâˆ«\28<Plug>CamelCaseMotion_w\bâˆ‘\1\3\0\0\6o\6x\1\3\0\0\6n\6s\1\0\2\vsilent\2\fnoremap\2\bset\vkeymap\bvim\0", "setup", "CamelCaseMotion")
-time([[Setup for CamelCaseMotion]], false)
 -- Setup for: telescope-live-grep-args.nvim
 time([[Setup for telescope-live-grep-args.nvim]], true)
 try_loadstring("\27LJ\2\nj\0\0\4\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\1\2\0'\3\3\0B\1\2\0019\1\4\0009\1\3\0019\1\3\1D\1\1\0\15extensions\19live_grep_args\19load_extension\14telescope\frequire\\\1\0\6\0\a\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\1K\0\1\0\1\0\2\vsilent\1\fnoremap\2\0\15<Leader>fg\6n\bset\vkeymap\bvim\0", "setup", "telescope-live-grep-args.nvim")
 time([[Setup for telescope-live-grep-args.nvim]], false)
+-- Setup for: CamelCaseMotion
+time([[Setup for CamelCaseMotion]], true)
+try_loadstring("\27LJ\2\n’\3\0\0\n\0\18\0+6\0\0\0009\0\1\0009\0\2\0005\1\3\0005\2\4\0005\3\5\0\18\4\0\0\18\6\2\0'\a\6\0'\b\a\0\18\t\1\0B\4\5\1\18\4\0\0\18\6\2\0'\a\b\0'\b\t\0\18\t\1\0B\4\5\1\18\4\0\0\18\6\2\0'\a\n\0'\b\v\0\18\t\1\0B\4\5\1\18\4\0\0\18\6\2\0'\a\f\0'\b\r\0\18\t\1\0B\4\5\1\18\4\0\0\18\6\3\0'\a\14\0'\b\15\0\18\t\1\0B\4\5\1\18\4\0\0\18\6\3\0'\a\16\0'\b\17\0\18\t\1\0B\4\5\1K\0\1\0\29<Plug>CamelCaseMotion_ib\tiâˆ«\29<Plug>CamelCaseMotion_iw\tiâˆ‘\29<Plug>CamelCaseMotion_ge\bgÂ´\28<Plug>CamelCaseMotion_e\aÂ´\28<Plug>CamelCaseMotion_b\bâˆ«\28<Plug>CamelCaseMotion_w\bâˆ‘\1\3\0\0\6o\6x\1\3\0\0\6n\6s\1\0\2\vsilent\2\fnoremap\2\bset\vkeymap\bvim\0", "setup", "CamelCaseMotion")
+time([[Setup for CamelCaseMotion]], false)
 -- Setup for: vim-surround
 time([[Setup for vim-surround]], true)
 try_loadstring("\27LJ\2\nŽ\5\0\0\t\0!\0X6\0\0\0009\0\1\0+\1\2\0=\1\2\0005\0\3\0'\1\4\0006\2\0\0009\2\5\0029\2\6\2\18\3\2\0\18\5\1\0'\6\a\0'\a\b\0\18\b\0\0B\3\5\1\18\3\2\0\18\5\1\0'\6\t\0'\a\n\0\18\b\0\0B\3\5\1\18\3\2\0\18\5\1\0'\6\v\0'\a\f\0\18\b\0\0B\3\5\1\18\3\2\0\18\5\1\0'\6\r\0'\a\14\0\18\b\0\0B\3\5\1\18\3\2\0\18\5\1\0'\6\15\0'\a\16\0\18\b\0\0B\3\5\1\18\3\2\0\18\5\1\0'\6\17\0'\a\18\0\18\b\0\0B\3\5\1\18\3\2\0\18\5\1\0'\6\19\0'\a\20\0\18\b\0\0B\3\5\1\18\3\2\0\18\5\1\0'\6\21\0'\a\20\0\18\b\0\0B\3\5\1\18\3\2\0'\5\22\0'\6\23\0'\a\24\0\18\b\0\0B\3\5\1\18\3\2\0'\5\22\0'\6\25\0'\a\26\0\18\b\0\0B\3\5\1\18\3\2\0'\5\27\0'\6\28\0'\a\29\0\18\b\0\0B\3\5\1\18\3\2\0'\5\27\0'\6\30\0'\a\29\0\18\b\0\0B\3\5\1\18\3\2\0'\5\27\0'\6\31\0'\a \0\18\b\0\0B\3\5\1K\0\1\0\20<Plug>ISurround\v<C-G>S\v<C-G>s\20<Plug>Isurround\n<C-S>\6i\21<Plug>VgSurround\agS\20<Plug>VSurround\6S\6x\bySS\21<Plug>YSsurround\bySs\21<Plug>Yssurround\byss\20<Plug>YSurround\ayS\20<Plug>Ysurround\ays\20<Plug>CSurround\acS\20<Plug>Csurround\acs\20<Plug>Dsurround\ads\bset\vkeymap\6n\1\0\2\vsilent\2\fnoremap\2\25surround_no_mappings\6g\bvim\0", "setup", "vim-surround")
 time([[Setup for vim-surround]], false)
+-- Setup for: telescope-media-files.nvim
+time([[Setup for telescope-media-files.nvim]], true)
+try_loadstring("\27LJ\2\ng\0\0\4\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\1\2\0'\3\3\0B\1\2\0019\1\4\0009\1\3\0019\1\3\1D\1\1\0\15extensions\16media_files\19load_extension\14telescope\frequire\\\1\0\6\0\a\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\1K\0\1\0\1\0\2\vsilent\1\fnoremap\2\0\15<Leader>fM\6n\bset\vkeymap\bvim\0", "setup", "telescope-media-files.nvim")
+time([[Setup for telescope-media-files.nvim]], false)
+-- Setup for: telescope.nvim
+time([[Setup for telescope.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\1\2\0\a6\0\0\0'\2\1\0B\0\2\2-\1\0\0008\0\1\0004\2\0\0D\0\2\0\0À\22telescope.builtin\frequire\20\1\1\2\0\1\0\0033\1\0\0002\0\0€L\1\2\0\0Ô\2\1\0\v\0\16\0/3\0\0\0005\1\1\0006\2\2\0009\2\3\0029\2\4\2'\3\5\0\18\4\2\0\18\6\3\0'\a\6\0\18\b\0\0'\n\a\0B\b\2\2\18\t\1\0B\4\5\1\18\4\2\0\18\6\3\0'\a\b\0\18\b\0\0'\n\t\0B\b\2\2\18\t\1\0B\4\5\1\18\4\2\0\18\6\3\0'\a\n\0\18\b\0\0'\n\v\0B\b\2\2\18\t\1\0B\4\5\1\18\4\2\0\18\6\3\0'\a\f\0\18\b\0\0'\n\r\0B\b\2\2\18\t\1\0B\4\5\1\18\4\2\0\18\6\3\0'\a\14\0\18\b\0\0'\n\15\0B\b\2\2\18\t\1\0B\4\5\1K\0\1\0\rjumplist\15<leader>fj\nmarks\15<leader>fm\14help_tags\15<leader>fh\20command_history\15<leader>f:\15find_files\15<Leader>ff\6n\bset\vkeymap\bvim\1\0\2\vsilent\1\fnoremap\2\0\0", "setup", "telescope.nvim")
+time([[Setup for telescope.nvim]], false)
+-- Setup for: telescope-ghq.nvim
+time([[Setup for telescope-ghq.nvim]], true)
+try_loadstring("\27LJ\2\nd\0\0\4\0\6\0\n6\0\0\0'\2\1\0B\0\2\0029\1\2\0'\3\3\0B\1\2\0019\1\4\0009\1\3\0019\1\5\1D\1\1\0\tlist\15extensions\bghq\19load_extension\14telescope\frequire\\\1\0\6\0\a\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\1K\0\1\0\1\0\2\vsilent\1\fnoremap\2\0\15<Leader>fq\6n\bset\vkeymap\bvim\0", "setup", "telescope-ghq.nvim")
+time([[Setup for telescope-ghq.nvim]], false)
+-- Setup for: telescope-frecency.nvim
+time([[Setup for telescope-frecency.nvim]], true)
+try_loadstring("\27LJ\2\nd\0\0\4\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\1\2\0'\3\3\0B\1\2\0019\1\4\0009\1\3\0019\1\3\1D\1\1\0\15extensions\rfrecency\19load_extension\14telescope\frequire\\\1\0\6\0\a\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\1K\0\1\0\1\0\2\vsilent\1\fnoremap\2\0\15<Leader>fr\6n\bset\vkeymap\bvim\0", "setup", "telescope-frecency.nvim")
+time([[Setup for telescope-frecency.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
+pcall(vim.api.nvim_create_user_command, 'NeoTree', function(cmdargs)
+          require('packer.load')({'neo-tree.nvim'}, { cmd = 'NeoTree', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'neo-tree.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('NeoTree ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'StartupTime', function(cmdargs)
+          require('packer.load')({'vim-startuptime'}, { cmd = 'StartupTime', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'vim-startuptime'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('StartupTime ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Copilot', function(cmdargs)
+          require('packer.load')({'copilot-cmp'}, { cmd = 'Copilot', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'copilot-cmp'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Copilot ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Lspsaga', function(cmdargs)
+          require('packer.load')({'lspsaga.nvim'}, { cmd = 'Lspsaga', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'lspsaga.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Lspsaga ', 'cmdline')
+      end})
 pcall(vim.api.nvim_create_user_command, 'LspInfo', function(cmdargs)
           require('packer.load')({'nvim-lspconfig'}, { cmd = 'LspInfo', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
@@ -665,57 +700,36 @@ pcall(vim.api.nvim_create_user_command, 'LspLog', function(cmdargs)
           require('packer.load')({'nvim-lspconfig'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('LspLog ', 'cmdline')
       end})
-pcall(vim.api.nvim_create_user_command, 'NeoTree', function(cmdargs)
-          require('packer.load')({'neo-tree.nvim'}, { cmd = 'NeoTree', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'neo-tree.nvim'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('NeoTree ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'Lspsaga', function(cmdargs)
-          require('packer.load')({'lspsaga.nvim'}, { cmd = 'Lspsaga', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'lspsaga.nvim'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('Lspsaga ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'Copilot', function(cmdargs)
-          require('packer.load')({'copilot-cmp'}, { cmd = 'Copilot', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'copilot-cmp'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('Copilot ', 'cmdline')
-      end})
 time([[Defining lazy-load commands]], false)
 
 -- Keymap lazy-loads
 time([[Defining lazy-load keymaps]], true)
-vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_ge <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_ge", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_b <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_b", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <Plug>VgSurround <cmd>lua require("packer.load")({'vim-surround'}, { keys = "<lt>Plug>VgSurround", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> <Plug>VSurround <cmd>lua require("packer.load")({'vim-surround'}, { keys = "<lt>Plug>VSurround", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <Plug>Yssurround <cmd>lua require("packer.load")({'vim-surround'}, { keys = "<lt>Plug>Yssurround", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <Plug>YSurround <cmd>lua require("packer.load")({'vim-surround'}, { keys = "<lt>Plug>YSurround", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_w <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_w", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <Plug>Dsurround <cmd>lua require("packer.load")({'vim-surround'}, { keys = "<lt>Plug>Dsurround", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <Plug>CSurround <cmd>lua require("packer.load")({'vim-surround'}, { keys = "<lt>Plug>CSurround", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_e <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_e", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_iw <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_iw", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_ib <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_ib", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <Plug>Dsurround <cmd>lua require("packer.load")({'vim-surround'}, { keys = "<lt>Plug>Dsurround", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <Plug>VgSurround <cmd>lua require("packer.load")({'vim-surround'}, { keys = "<lt>Plug>VgSurround", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <Plug>CSurround <cmd>lua require("packer.load")({'vim-surround'}, { keys = "<lt>Plug>CSurround", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <Plug>Yssurround <cmd>lua require("packer.load")({'vim-surround'}, { keys = "<lt>Plug>Yssurround", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_b <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_b", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_ie <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_ie", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_ib <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_ib", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_iw <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_iw", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_ge <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_ge", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <Plug>CamelCaseMotion_w <cmd>lua require("packer.load")({'CamelCaseMotion'}, { keys = "<lt>Plug>CamelCaseMotion_w", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <Plug>YSurround <cmd>lua require("packer.load")({'vim-surround'}, { keys = "<lt>Plug>YSurround", prefix = "" }, _G.packer_plugins)<cr>]]
 time([[Defining lazy-load keymaps]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'bufferline.nvim', 'indent-blankline.nvim', 'lspsaga.nvim', 'nvim-ts-rainbow', 'nvim-lspconfig', 'vim-better-whitespace', 'nvim-colorizer.lua', 'nvim-scrollbar', 'nvim-ts-autotag', 'hlargs.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-scrollbar', 'hlargs.nvim', 'bufferline.nvim', 'lspsaga.nvim', 'nvim-ts-rainbow', 'vim-better-whitespace', 'nvim-colorizer.lua', 'indent-blankline.nvim', 'nvim-lspconfig', 'nvim-ts-autotag'}, { event = "BufRead *" }, _G.packer_plugins)]]
 vim.cmd [[au CursorHold * ++once lua require("packer.load")({'which-key.nvim', 'vim-matchup'}, { event = "CursorHold *" }, _G.packer_plugins)]]
-vim.cmd [[au Bufread * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "Bufread *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'cmp_luasnip', 'cmp-buffer', 'cmp-path', 'cmp-dictionary', 'cmp-nvim-lsp', 'cmp-nvim-lsp-signature-help', 'cmp-emoji', 'nvim-autopairs', 'copilot-cmp'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au VimEnter * ++once lua require("packer.load")({'nvim-treesitter', 'nightfox.nvim', 'noice.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertLeave * ++once lua require("packer.load")({'vim-auto-save'}, { event = "InsertLeave *" }, _G.packer_plugins)]]
 vim.cmd [[au CmdlineEnter * ++once lua require("packer.load")({'cmp-buffer', 'cmp-cmdline', 'cmp-path'}, { event = "CmdlineEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au VimEnter * ++once lua require("packer.load")({'nightfox.nvim', 'noice.nvim', 'nvim-treesitter'}, { event = "VimEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'cmp-buffer', 'cmp-path', 'cmp-dictionary', 'cmp-nvim-lsp', 'cmp-nvim-lsp-signature-help', 'nvim-autopairs', 'copilot-cmp', 'cmp-emoji', 'cmp_luasnip'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au Bufread * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "Bufread *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

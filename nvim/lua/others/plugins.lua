@@ -29,4 +29,11 @@ M.gitsigns = {
     event = { 'InsertLeave' },
   }
 
+  M.startup_time = {
+    'dstein64/vim-startuptime',
+    commit = '6580cf539c33a212f4f5542068a3b4dd2b3ad834',
+    opt = true,
+    cmd = { 'StartupTime' },
+  }
+
   return M
