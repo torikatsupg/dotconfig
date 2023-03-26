@@ -1,6 +1,6 @@
 local M = {}
 
-M.config_nvim_scrollbar=  function()
+M.config_nvim_scrollbar = function()
   require("scrollbar").setup()
   require("scrollbar.handlers.search").setup()
 end
@@ -16,3 +16,4 @@ end
 
 
 return M
+

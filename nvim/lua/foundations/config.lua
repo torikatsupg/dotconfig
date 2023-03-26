@@ -6,7 +6,6 @@ end
 
 M.luasnip = function()
   local ls = require("luasnip")
-  -- some shorthands...
   local snip = ls.snippet
   local node = ls.snippet_node
   local text = ls.text_node
@@ -39,10 +38,10 @@ M.lspconfig = function()
     automatic_installation = true,
   })
   mason_lspconfig.setup_handlers({
-    function (server)
+    function(server)
       local opts = {
         handlers = {
-          ["textDocument/publishDiagnostics"] = vim.lsp.with( vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+          ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
         }
       }
       if server == 'lua_ls' then
@@ -65,7 +64,7 @@ M.lspconfig = function()
         }
       end
       lspconfig[server].setup(opts)
-      end
+    end
   })
 end
 

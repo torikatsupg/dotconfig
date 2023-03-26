@@ -83,12 +83,12 @@ local disable_plugins = {
   'loaded_shada_plugin',
   'loaded_spellfile_plugin',
   'loaded_tutor_mode_plugin',
+  'loaded_rrhelper',
   'did_install_default_menus',
   'did_install_syntax_menu',
   'skip_loading_mswin',
   'did_indent_on',
   'did_load_ftplugin',
-  'loaded_rrhelper',
   'did_ftplugin'
 }
 for _, value in ipairs(disable_plugins) do
@@ -135,4 +135,3 @@ api.nvim_create_autocmd('CmdlineEnter', {
     vim.cmd [[rshada ~/.local/state/nvim/shada/main.shada]]
   end
 })
-

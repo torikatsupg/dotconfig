@@ -11,4 +11,3 @@ M.indent_blankline = {
   wants = treesitter.nightfox.name,
 }
 return M
-

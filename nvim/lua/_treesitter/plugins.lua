@@ -57,11 +57,11 @@ M.nvim_autopairs = {
   config = function() require '_treesitter.config'.autopairs() end,
   requires = {
     foundation.treesitter,
-    require'_cmp.plugins'.cmp,
+    require '_cmp.plugins'.cmp,
   },
   wants = {
     foundation.treesitter.name,
-    require'_cmp.plugins'.cmp.name,
+    require '_cmp.plugins'.cmp.name,
   }
 }
 

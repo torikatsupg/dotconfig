@@ -22,7 +22,6 @@ M.vim_surround = {
   setup = require '_vim_surround.setup'.vim_surround,
   requires = vim_repeat,
   wants = 'vim-repeat'
-
 }
 
 return M
