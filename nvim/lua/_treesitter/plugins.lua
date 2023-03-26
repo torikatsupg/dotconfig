@@ -15,7 +15,6 @@ M.nvim_context_vt = {
   'haringsrob/nvim_context_vt',
   commit = 'e592a9142fbfe0878ce886cd0d745963604c61d2',
   opt = true,
-  ft = { 'dart', 'lua' },
   config = function () require '_treesitter.config'.context_vt() end,
   requires = foundation.treesitter,
   wants = 'nvim-treesitter',
