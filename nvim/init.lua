@@ -1,4 +1,5 @@
 local packer
+
 local function init()
   local fn = vim.fn
   local path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -6,11 +7,9 @@ local function init()
     fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', path })
     vim.cmd [[packadd packer.nvim]]
   end
-
   if packer == nil then
     packer = require 'packer'
   end
-
   packer.init({
     disable_commands = true,
     display = { open_fn = require 'packer.util'.float },
@@ -35,9 +34,11 @@ local function init()
     '_telescope',
     '_treesitter',
     '_vim_surround',
+    '_deepl',
     'foundations',
     'others',
   }
+
   for _, config in ipairs(configs) do
     for _, plugin in pairs(require(config .. '.plugins')) do
       use(plugin)
@@ -96,32 +97,19 @@ for _, value in ipairs(disable_plugins) do
 end
 
 local o = vim.opt
-for _, v in ipairs({
-  'number',
-  'ruler',
-  'showmatch',
-  'hidden',
-  'expandtab',
-  'smartindent',
-  'termguicolors',
-  'hlsearch',
-  'incsearch',
-  'ignorecase',
-  'smartcase',
-  'infercase',
-}) do
+for _, v in ipairs({ 'nu', 'ru', 'sm', 'hid', 'et', 'si', 'tgc', 'hls', 'is', 'ic', 'scs', 'inf', }) do
   o[v] = true
 end
-o.tabstop = 2
-o.shiftwidth = 2
-o.swapfile = false
-o.encoding = 'utf-8'
-o.virtualedit = 'block'
-o.clipboard = 'unnamedplus'
-o.completeopt = 'noselect'
-o.signcolumn = 'yes'
-o.cmdheight = 0
-o.laststatus = 0
+o.ts = 2
+o.sw = 2
+o.enc = 'utf-8'
+o.ve = 'block'
+o.cb = 'unnamedplus'
+o.cot = 'noselect'
+o.scl = 'yes'
+o.ch = 0
+o.ls = 0
+
 
 o.sd = ""
 local ag = 'cmdentergroup'
@@ -135,3 +123,4 @@ api.nvim_create_autocmd('CmdlineEnter', {
     vim.cmd [[rshada ~/.local/state/nvim/shada/main.shada]]
   end
 })
+vim.env.LANG = 'C'

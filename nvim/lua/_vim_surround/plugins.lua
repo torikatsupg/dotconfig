@@ -12,6 +12,7 @@ M.vim_surround = {
   keys = {
     '<Plug>Dsurround',
     '<Plug>CSurround',
+    '<Plug>Ysurround',
     '<Plug>YSurround',
     '<Plug>Yssurround',
     '<Plug>VSurround',

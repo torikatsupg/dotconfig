@@ -1,5 +1,17 @@
 local M = {}
 M.noice = function()
+  local function myMiniView(pattern, kind)
+    kind = kind or ""
+    return {
+      view = "mini",
+      filter = {
+        event = "msg_show",
+        kind = kind,
+        find = pattern,
+      },
+    }
+  end
+
   require("noice").setup({
     lsp = {
       override = {
@@ -45,6 +57,21 @@ M.noice = function()
           winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
         },
       },
+    },
+    routes = {
+      myMiniView("Already at .* change"),
+      myMiniView("written"),
+      myMiniView("yanked"),
+      myMiniView("more lines?"),
+      myMiniView("fewer lines?"),
+      myMiniView("fewer lines?", "lua_error"),
+      myMiniView("change; before"),
+      myMiniView("change; after"),
+      myMiniView("line less"),
+      myMiniView("lines indented"),
+      myMiniView("No lines in buffer"),
+      myMiniView("search hit .*, continuing at", "wmsg"),
+      myMiniView("E486: Pattern not found", "emsg"),
     },
   })
 
