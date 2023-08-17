@@ -1,3 +1,9 @@
+# for profile
+if [ "$ZSHRC_PROFILE" != "" ]; then
+  zmodload zsh/zprof && zprof > /dev/null
+fi
+
+
 #s bind key type
 bindkey -v # zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -77,8 +83,12 @@ function vi-yank-xclip {
 zle -N vi-yank-xclip
 
 
+# completation with ignroe case
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
 # backward-kill-word with directory delimiter
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>|'
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>|"'
 
 # peco setting
 function peco-history-selection() {
@@ -119,15 +129,15 @@ function peco-ghq () {
 zle -N peco-ghq
 
 # tmux
-# function peco-tmux () {
-#   local selected_session=$(tmux ls -F '#S' | peco --query "$LBUFFER")
-#   if [ -n "$selected_session" ]; then
-#     BUFFER="tmux a -t${selected_session}"
-#     zle accept-line
-#   fi
-#   zle clear-screen
-# }
-# zle -N peco-tmux
+function peco-tmux () {
+  local selected_session=$(tmux ls -F '#S' | peco --query "$LBUFFER")
+  if [ -n "$selected_session" ]; then
+    BUFFER="tmux a -t${selected_session}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-tmux
 
 # memo
 function memo() {
@@ -286,3 +296,30 @@ if (( $+commands[sw_vers] )) && (( $+commands[arch] )); then
 		exec arch -arch $arch /bin/zsh
 	}
 fi
+
+# function application-selection() {
+#     BUFFER=`find /System/Applications -name "*.app" | sed 's!^.*/!!' | tail -r  | awk '!a[$0]++' | peco`
+#     CURSOR=$#BUFFER
+#     zle reset-prompt
+# }
+# zle -N application-selection
+# bindkey -M viins '^E' application-selection
+
+
+function zsh-startuptime-slower-than-default() {
+  local time_rc
+  time_rc=$((TIMEFMT="%mE"; time zsh -i -c exit) &> /dev/stdout)
+  # time_norc=$((TIMEFMT="%mE"; time zsh -df -i -c exit) &> /dev/stdout)
+  # compinit is slow
+  local time_norc
+  time_norc=$((TIMEFMT="%mE"; time zsh -df -i -c "autoload -Uz compinit && compinit -C; exit") &> /dev/stdout)
+  echo "my zshrc: ${time_rc}\ndefault zsh: ${time_norc}\n"
+
+  local result
+  result=$(scale=3 echo "${time_rc%ms} / ${time_norc%ms}" | bc)
+  echo "${result}x slower your zsh than the default."
+}
+
+function zsh-profiler() {
+  ZSHRC_PROFILE=1 zsh -i -c zprof
+}

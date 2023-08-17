@@ -1,9 +1,9 @@
 window:
-  decorations: none
+  # decorations: none
   #   dimensions:
   #     columns: 200
   #     lines: 60
-  opacity: 1
+  opacity: 0.75
 
 scrolling:
   history: 100000
