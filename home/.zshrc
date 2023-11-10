@@ -22,10 +22,8 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light paulirish/git-open
 zinit light reegnz/jq-zsh-plugin
 zinit light hlissner/zsh-autopair
+zinit light rupa/z
 
-# $HOME/development/flutter/bin(N-/) # flutter path
-# $HOME/.pub-cache/bin(N-/) # pub-cache for fvm
-# $HOME/.pub-cache/bin(N-/)
 # ==================== config =======================
 typeset -U path PATH
 path=(
@@ -251,8 +249,8 @@ bindkey -M vicmd '^G' peco-cdr
 bindkey -M viins '^]' peco-ghq
 bindkey -M vicmd '^]' peco-ghq
 
-# bindkey -M vicmd '^A' peco-tmux
-# bindkey -M viins '^A' peco-tmux
+bindkey -M vicmd '^T' peco-tmux
+bindkey -M viins '^T' peco-tmux
 
 bindkey -M viins '∆' jq-complete
 bindkey -M vicmd '∆' jq-complete
@@ -272,13 +270,13 @@ if (( $+commands[sw_vers] )) && (( $+commands[arch] )); then
 	}
 fi
 
-# function application-selection() {
-#     BUFFER=`find /System/Applications -name "*.app" | sed 's!^.*/!!' | tail -r  | awk '!a[$0]++' | peco`
-#     CURSOR=$#BUFFER
-#     zle reset-prompt
-# }
-# zle -N application-selection
-# bindkey -M viins '^E' application-selection
+function launch-app() {
+    BUFFER="open -a$(`find /System/Applications -name "*.app" | sed 's!^.*/!!' | tail -r  | awk '!a[$0]++' | peco`)"
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N launch-app
+alias app="launch-app"
 
 
 function zsh-startuptime-slower-than-default() {
