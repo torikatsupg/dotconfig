@@ -18,4 +18,8 @@ M.auto_save = function()
   vim.g.auto_save_events = { "InsertLeave" }
 end
 
+M.comment = function ()
+  require('Comment').setup {}
+end
+
 return M

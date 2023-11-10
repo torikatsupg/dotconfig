@@ -36,4 +36,22 @@ M.startup_time = {
   cmd = { 'StartupTime' },
 }
 
+M.firenvim = {
+  'glacambre/firenvim',
+  run = function() vim.fn['firenvim#install'](0) end
+}
+
+M.nvim_context_commentstring = {
+  'suy/vim-context-commentstring',
+  opt = true,
+  event = { 'BufRead' },
+  requires = {
+    { 'numToStr/Comment.nvim',
+      tag = 'v0.8.0',
+      opt = true,
+      config = function() require 'others.config'.comment() end,
+    }
+  },
+}
+
 return M

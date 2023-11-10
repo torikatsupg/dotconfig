@@ -66,6 +66,15 @@ M.lspconfig = function()
       lspconfig[server].setup(opts)
     end
   })
+
+  -- setup format config
+  local keymap = vim.keymap.set
+  local o = { noremap = true, silent = false }
+  keymap('n', '<space>f', function()
+    vim.lsp.buf.format()
+    vim.cmd('EslintFixAll')
+    vim.cmd('PrettierASync')
+  end, o)
 end
 
 return M

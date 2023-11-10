@@ -3,7 +3,7 @@ local foundation = require 'foundations.plugins'
 
 M.nvim_ts_context_commentstring = {
   'JoosepAlviste/nvim-ts-context-commentstring',
-  commit = '729d83ecb990dc2b30272833c213cc6d49ed5214',
+  commit = '7241635869b7a8115893ffa67bab3907756caf4f',
   opt = true,
   module_pattern = 'ts_context_commentstring.*',
   config = function() require '_treesitter.config'.nvim_ts_context_commentstring() end,
@@ -13,7 +13,7 @@ M.nvim_ts_context_commentstring = {
 
 M.nvim_context_vt = {
   'haringsrob/nvim_context_vt',
-  commit = 'e592a9142fbfe0878ce886cd0d745963604c61d2',
+  commit = 'a14f9292b4bd68ceed433fc513f287641816dc6d',
   opt = true,
   config = function() require '_treesitter.config'.context_vt() end,
   requires = foundation.treesitter,
@@ -21,8 +21,8 @@ M.nvim_context_vt = {
 }
 
 M.nvim_ts_rainbow = {
-  'mrjones2014/nvim-ts-rainbow',
-  commit = '840039440e012ad798ef31349b93a5d4365023ff',
+  'HiPhish/nvim-ts-rainbow2',
+  tag = 'v2.3.0',
   opt = true,
   event = 'BufRead',
   requires = foundation.treesitter,
@@ -31,7 +31,7 @@ M.nvim_ts_rainbow = {
 
 M.hlargs = {
   'm-demare/hlargs.nvim',
-  commit = 'a7ad6ed8d6e27ea4dd13fda63fa732e9196ba4ea',
+  commit = '6218a401824c5733ac50b264991b62d064e85ab2',
   opt = true,
   event = 'BufRead',
   config = function() require '_treesitter.config'.hlargs() end,
@@ -41,7 +41,7 @@ M.hlargs = {
 
 M.nvim_ts_autotag = {
   'windwp/nvim-ts-autotag',
-  commit = 'fdefe46c6807441460f11f11a167a2baf8e4534b',
+  commit = '6be1192965df35f94b8ea6d323354f7dc7a557e4',
   opt = true,
   event = 'BufRead',
   config = function() require '_treesitter.config'.ts_autotag() end,
@@ -51,7 +51,7 @@ M.nvim_ts_autotag = {
 
 M.nvim_autopairs = {
   'windwp/nvim-autopairs',
-  commit = 'e755f366721bc9e189ddecd39554559045ac0a18',
+  commit = 'de4f7138a68d5d5063170f2182fd27faf06b0b54',
   opt = true,
   event = 'InsertEnter',
   config = function() require '_treesitter.config'.autopairs() end,
@@ -67,7 +67,7 @@ M.nvim_autopairs = {
 
 M.vim_matchup = {
   'andymass/vim-matchup',
-  tag = 'v0.7.2',
+  commit = '6dbe108230c7dbbf00555b7d4d9f6a891837ef07',
   opt = true,
   event = 'CursorHold',
   config = function() require '_treesitter.config'.matchup() end,
@@ -77,7 +77,7 @@ M.vim_matchup = {
 
 M.nightfox = {
   'EdenEast/nightfox.nvim',
-  tag = 'v3.3.0',
+  tag = 'v3.6.1',
   opt = true,
   event = 'VimEnter',
   config = function() require '_treesitter.config'.nightfox() end,

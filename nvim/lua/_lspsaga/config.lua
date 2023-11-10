@@ -17,7 +17,8 @@ M.lspsaga = function()
   local o = { noremap = true, silent = false }
   local n = 'n'
   keymap(n, "gh", "<cmd>Lspsaga lsp_finder<CR>", o)
-  keymap("v", "ga", "<cmd>Lspsaga range_code_action<CR>", o)
+  keymap("v", "ga", "<cmd>Lspsaga code_action<CR>", o)
+  keymap(n, "ga", "<cmd>Lspsaga code_action<CR>", o)
   keymap(n, "gr", "<cmd>Lspsaga rename<CR>", o)
   keymap(n, "gr", "<cmd>Lspsaga rename ++project<CR>", o)
   keymap(n, "gd", "<cmd>Lspsaga peek_definition<CR>", o)
@@ -37,7 +38,6 @@ M.lspsaga = function()
   keymap(n, "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>", o)
   keymap(n, "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>", o)
   keymap({ n, "t" }, "∂", "<cmd>Lspsaga term_toggle<CR>", o)
-  keymap(n, '<space>f', vim.lsp.buf.format, o)
 end
 
 return M

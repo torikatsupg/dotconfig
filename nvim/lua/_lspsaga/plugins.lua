@@ -2,7 +2,7 @@
 local M = {}
   M.lspsaga = {
     "glepnir/lspsaga.nvim",
-    commit = 'bd55b175a4546334a197821cd4bfc19ba94e1a82',
+    commit = '71c1793c86a3fbf405c3100577b72c148ca91d9e',
     config = function ()
       require '_lspsaga.config'.lspsaga()
     end,

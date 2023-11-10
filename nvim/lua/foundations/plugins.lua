@@ -18,7 +18,7 @@ M.nvim_web_devicions = {
 
 M.treesitter = {
   'nvim-treesitter/nvim-treesitter',
-  tag = 'v0.8.5.2',
+  tag = 'v0.9.1',
   opt = true,
   module_pattern = { 'nvim-treesitter.*' },
   run = ':TSUpdate',
@@ -39,10 +39,16 @@ M.nvim_lspconfig = {
       'williamboman/mason.nvim',
       commit = '698cd0c4f10480991e665f31977650858d625af1',
       opt = true,
+      wants = { 'mason-lspconfig.nvim', 'formatter.nvim' },
+      cmd = { "Mason" },
     },
     {
       'williamboman/mason-lspconfig.nvim',
       commit = 'a81503f0019942111fe464209237f8b4e85f4687',
+      opt = true,
+    },
+    {
+      'mhartington/formatter.nvim',
       opt = true,
     },
   },

@@ -35,13 +35,15 @@ path=(
   $HOME/.cargo/bin(N-/) # rust
   $HOME/development/android-platform-tools(N-/) # android tools
   $HOME/Library/Android/sdk/emulator(N-/) # android emulator tool
-  $HOME/.jenv/bin(N-/)
   $HOME/development/monarch/bin(N-/)
   /Applications/Alacritty.app/Contents/MacOS(N-/)
 	/usr/local/bin(N-/)
   $HOME/gobin(N-/)
+  $HOME/.cargo/env(N-/)
 	$path
 )
+
+
 
 export GOBIN=$HOME/gobin
 
@@ -51,11 +53,6 @@ eval "$(anyenv init -)"
 # nodenv setting
 eval "$(nodenv init -)"
 
-# jenv setting
-eval "$(jenv init -)"
-enable JAVA_HOME
-jenv enable-plugin export
-export ANDROID_HOME=$HOME/Library/Android/sdk
 
 # no beep
 setopt no_beep
@@ -205,13 +202,13 @@ alias -g nproc="sysctl -n hw.logicalcpu"
 alias -g vim=nvim
 alias zshrc="vim ~/.zshrc"
 alias Alacritty="vim ~/dotconfig/alacritty/alacritty.yml"
-alias code=code-insiders
 # git alias
 alias gis="git status"
 alias gic="git commit -m $1"
 alias gip="git push -u origin $1"
 alias gia="git add"
 alias giaa="git add -A"
+alias gch='git branch  | peco | xargs git checkout'
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -260,28 +257,6 @@ bindkey -M vicmd '^]' peco-ghq
 bindkey -M viins '∆' jq-complete
 bindkey -M vicmd '∆' jq-complete
 
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/torikatsu/development/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/torikatsu/development/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/torikatsu/development/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/torikatsu/development/google-cloud-sdk/completion.zsh.inc'; fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/katsuya_torii/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/katsuya_torii/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/katsuya_torii/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/katsuya_torii/google-cloud-sdk/completion.zsh.inc'; fi
-
-# for asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
-# initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
-
-
-
 # switch arch
 if (( $+commands[sw_vers] )) && (( $+commands[arch] )); then
 	[[ -x /usr/local/bin/brew ]] && alias brew="arch -arch x86_64 /usr/local/bin/brew"
@@ -323,3 +298,8 @@ function zsh-startuptime-slower-than-default() {
 function zsh-profiler() {
   ZSHRC_PROFILE=1 zsh -i -c zprof
 }
+
+
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
