@@ -1,4 +1,4 @@
-local function handleEvent(event)
+function handleEvent(event)
     local keyCode = event:getKeyCode()
     local flags = event:getFlags()
 
@@ -29,6 +29,5 @@ local function handleEvent(event)
     return false
 end
 
-local eventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, handleEvent)
+eventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, handleEvent)
 eventtap:start()
-
