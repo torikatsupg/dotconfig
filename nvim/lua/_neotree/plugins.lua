@@ -6,13 +6,7 @@ M.neotree = {
   opt = true,
   module = { 'neo-tree' },
   setup = function()
-    vim.api.nvim_create_user_command(
-      "E",
-      function() require("neo-tree.command").execute({
-        position = "float",
-      }) end,
-      { bang = true }
-    )
+    vim.api.nvim_create_user_command("E", function() require '_neotree.config'.open_filesystem() end, {})
   end,
   config = function()
     require '_neotree.config'.neotree()
