@@ -1,8 +1,8 @@
 local M = {}
 
 M.indent_blankline = function()
-  require("indent_blankline").setup {
-    show_end_of_line = true,
+  require("ibl").setup {
+    scope = { enabled = true },
   }
 end
 

@@ -6,8 +6,9 @@ M.neotree = function()
     enable_diagnostics = true,
     mappings = {
       ['q'] = "revert_preview"
-    }
+    },
   })
+
 end
 
 return M

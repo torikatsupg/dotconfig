@@ -4,7 +4,6 @@ local foundations = require 'foundations.plugins'
 
 M.cmp = {
   'hrsh7th/nvim-cmp',
-  tag = 'v0.0.1',
   opt = true,
   module = { 'cmp' },
   config = function() require '_cmp.config'.cmp() end,
@@ -21,7 +20,6 @@ M.cmp = {
 
 M.buffer = {
   'hrsh7th/cmp-buffer',
-  commit = '3022dbc9166796b644a841a02de8dd1cc1d311fa',
   opt = true,
   event = { 'InsertEnter', 'CmdlineEnter' },
   requires = M.cmp,
@@ -31,7 +29,6 @@ M.buffer = {
 
 M.dictionary = {
   'uga-rosa/cmp-dictionary',
-  tag = 'v2.0.0',
   opt = true,
   run = 'brew install wordnet',
   event = 'InsertEnter',
@@ -43,7 +40,6 @@ M.dictionary = {
 
 M.path = {
   'hrsh7th/cmp-path',
-  commit = '91ff86cd9c29299a64f968ebb45846c485725f23',
   opt = true,
   event = { 'InsertEnter', 'CmdlineEnter' },
   requires = M.cmp,
@@ -54,7 +50,6 @@ M.path = {
 
 M.emoji = {
   'hrsh7th/cmp-emoji',
-  commit = '19075c36d5820253d32e2478b6aaf3734aeaafa0',
   opt = true,
   event = 'InsertEnter',
   requires = M.cmp,
@@ -64,7 +59,6 @@ M.emoji = {
 
 M.luasnip = {
   'saadparwaiz1/cmp_luasnip',
-  commit = '18095520391186d634a0045dacaa346291096566',
   opt = true,
   module = 'cmp_luasnip',
   event = 'InsertEnter',
@@ -81,7 +75,6 @@ M.luasnip = {
 
 M.nvim_lsp = {
   'hrsh7th/cmp-nvim-lsp',
-  commit = '0e6b2ed705ddcff9738ec4ea838141654f12eeef',
   opt = true,
   event = 'InsertEnter',
   config = function() require '_cmp.config'.lsp() end,
@@ -99,7 +92,6 @@ M.nvim_lsp = {
 
 M.nvim_lsp_signature_help = {
   'hrsh7th/cmp-nvim-lsp-signature-help',
-  commit = '3d8912ebeb56e5ae08ef0906e3a54de1c66b92f1',
   opt = true,
   event = 'InsertEnter',
   config = function() require '_cmp.config'.lsp_signature_help() end,
@@ -109,7 +101,6 @@ M.nvim_lsp_signature_help = {
 
 M.cmp_cmdline = {
   'hrsh7th/cmp-cmdline',
-  commit = '8fcc934a52af96120fe26358985c10c035984b53',
   opt = true,
   event = 'CmdlineEnter',
   config = function() require '_cmp.config'.cmdline() end,
@@ -126,7 +117,6 @@ M.cmp_cmdline = {
 M.cmp_copilot = {
   'zbirenbaum/copilot-cmp',
   opt = true,
-  commit = '92535dfd9c430b49ca7d9a7da336c5db65826b65',
   cmd = 'Copilot',
   event = 'InsertEnter',
   run = 'Copilot auth',
@@ -135,7 +125,6 @@ M.cmp_copilot = {
     M.cmp,
     "zbirenbaum/copilot.lua",
     opt = true,
-    commit = 'db62371b6eac73954c194f3c8faee36cffee8135',
   },
   wants = {
     M.cmp.name,
@@ -145,7 +134,6 @@ M.cmp_copilot = {
 
 M.cmdline_history = {
   'dmitmel/cmp-cmdline-history',
-  commit = '003573b72d4635ce636234a826fa8c4ba2895ffe',
   opt = true,
   event = 'CmdlineEnter',
   config = function() require '_cmp.config'.cmdline_history() end,

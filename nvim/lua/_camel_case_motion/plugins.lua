@@ -1,7 +1,6 @@
 local M = {}
 M.camel_case_motion = {
   'bkad/CamelCaseMotion',
-  commit = 'de439d7c06cffd0839a29045a103fe4b44b15cdc',
   opt = true,
   keys = {
     '<Plug>CamelCaseMotion_w',
