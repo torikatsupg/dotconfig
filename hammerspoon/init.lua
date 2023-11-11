@@ -3,15 +3,18 @@ local function handleEvent(event)
     local flags = event:getFlags()
 
     if keyCode == hs.keycodes.map['['] and flags.ctrl then
-        hs.eventtap.keyStroke({}, 'eisu')
-        return false
+      hs.eventtap.keyStroke({}, 'escape')
+      return true
     end
+
+
 
     if keyCode == hs.keycodes.map['escape'] then
+      hs.timer.doAfter(0.01, function()
         hs.eventtap.keyStroke({}, 'eisu')
-        return false
+      end)
+      return false
     end
-
 
     -- ⌘ + space: Toggle alacritty
     if keyCode == hs.keycodes.map['space'] and flags.cmd then
@@ -28,3 +31,4 @@ end
 
 local eventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, handleEvent)
 eventtap:start()
+
