@@ -1,10 +1,9 @@
 local packer
-
+Fn = vim.fn
 local function init()
-  local fn = vim.fn
-  local path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', path })
+  local path = Fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  if Fn.empty(Fn.glob(path)) > 0 then
+    Fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', path })
     vim.cmd [[packadd packer.nvim]]
   end
   if packer == nil then
@@ -124,3 +123,11 @@ api.nvim_create_autocmd('CmdlineEnter', {
   end
 })
 vim.env.LANG = 'C'
+
+local args = Fn.argv()
+if #args > 0 then
+  local stat = vim.loop.fs_stat(args[1])
+  if stat and stat.type == 'directory' then
+    vim.cmd('cd ' .. Fn.fnameescape(args[1]))
+  end
+end
