@@ -17,12 +17,14 @@ function handleEvent(event)
     end
 
     -- ⌘ + space: Toggle alacritty
-    if keyCode == hs.keycodes.map['space'] and flags.cmd then
+    if keyCode == hs.keycodes.map['space'] and flags.cmd and not flags.shift and not flags.alt then
       local alacritty = hs.application.find('alacritty')
       if alacritty:isFrontmost() then
         alacritty:hide()
       else
         hs.application.launchOrFocus("/Applications/Alacritty.app")
+        -- TODO: everyware send eisu. cmd + tab, spotlight...etc
+        hs.eventtap.keyStroke({}, 'eisu')
       end
     end
 
