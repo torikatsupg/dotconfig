@@ -39,6 +39,18 @@ M.neotree = function()
       },
       hijack_netrw_behavior = "disabled" -- lazy load requires
     },
+    event_handlers = {
+      {
+        event = 'after_render',
+        handler = function()
+          local state = require('neo-tree.sources.manager').get_state('filesystem')
+          if not require('neo-tree.sources.common.preview').is_active() then
+             state.config = { use_float = true }
+            state.commands.toggle_preview(state)
+          end
+        end
+      },
+    }
   })
 end
 
