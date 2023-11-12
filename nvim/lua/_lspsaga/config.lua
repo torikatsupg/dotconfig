@@ -16,7 +16,7 @@ M.lspsaga = function()
   local keymap = vim.keymap.set
   local o = { noremap = true, silent = false }
   local n = 'n'
-  keymap(n, "gh", "<cmd>Lspsaga lsp_finder<CR>", o)
+  keymap(n, "gh", "<cmd>Lspsaga finder<CR>", o)
   keymap("v", "ga", "<cmd>Lspsaga code_action<CR>", o)
   keymap(n, "ga", "<cmd>Lspsaga code_action<CR>", o)
   keymap(n, "gr", "<cmd>Lspsaga rename<CR>", o)
