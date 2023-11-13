@@ -7,8 +7,6 @@ function handleEvent(event)
       return true
     end
 
-
-
     if keyCode == hs.keycodes.map['escape'] then
       hs.timer.doAfter(0.01, function()
         hs.eventtap.keyStroke({}, 'eisu')
@@ -23,13 +21,22 @@ function handleEvent(event)
         alacritty:hide()
       else
         hs.application.launchOrFocus("/Applications/Alacritty.app")
-        -- TODO: everyware send eisu. cmd + tab, spotlight...etc
-        hs.eventtap.keyStroke({}, 'eisu')
       end
+      return true
     end
 
     return false
 end
 
-eventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, handleEvent)
-eventtap:start()
+Eventtap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, handleEvent)
+Eventtap:start()
+
+AppWatcher = hs.application.watcher.new(function(applicationName, eventType, applicationObject)
+    if eventType == hs.application.watcher.activated and applicationName == "Alacritty" then
+      hs.timer.doAfter(0.01, function()
+        hs.eventtap.keyStroke({}, 'eisu')
+      end)
+    end
+end)
+AppWatcher:start()
+
