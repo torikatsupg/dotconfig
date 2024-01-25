@@ -24,6 +24,9 @@ zinit light reegnz/jq-zsh-plugin
 zinit light hlissner/zsh-autopair
 zinit light rupa/z
 
+zinit ice as"program" atclone"make" atpull"%atclone"
+zinit light minoki/InputSourceSelector
+
 # ==================== config =======================
 typeset -U path PATH
 path=(
@@ -50,6 +53,10 @@ eval "$(anyenv init -)"
 
 # nodenv setting
 eval "$(nodenv init -)"
+
+
+# for rtx
+eval "$(~/.cargo/bin/rtx activate zsh)"
 
 
 # no beep
@@ -199,7 +206,8 @@ function rddpm() {
 alias -g nproc="sysctl -n hw.logicalcpu"
 alias -g vim=nvim
 alias zshrc="vim ~/.zshrc"
-alias Alacritty="vim ~/dotconfig/alacritty/alacritty.yml"
+alias Alacritty="vim ~/.config/alacritty/alacritty.toml"
+
 # git alias
 alias gis="git status"
 alias gic="git commit -m $1"
@@ -297,7 +305,7 @@ function zsh-profiler() {
   ZSHRC_PROFILE=1 zsh -i -c zprof
 }
 
-
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
 
