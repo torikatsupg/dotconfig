@@ -3,7 +3,6 @@ if [ "$ZSHRC_PROFILE" != "" ]; then
   zmodload zsh/zprof && zprof > /dev/null
 fi
 
-
 #s bind key type
 bindkey -v # zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -32,15 +31,21 @@ typeset -U path PATH
 path=(
 	/opt/homebrew/bin(N-/) # homebrew path
 	$HOME/.nodenv/bin(N-/) # nodenv path
-	$HOME/development/deopt_tools/(N-/) # deopt_tools
-  $HOME/.cargo/bin(N-/) # rust
+
   $HOME/development/android-platform-tools(N-/) # android tools
+	$HOME/development/deopt_tools/(N-/) # deopt_tools
+  $HOME/Library/Android/sdk/platform-tools(N-/) # for adb
   $HOME/Library/Android/sdk/emulator(N-/) # android emulator tool
+
+  $HOME/.pub-cache/bin(N-/) # for flutter
+
+  $HOME/.cargo/bin(N-/) # rust
   $HOME/development/monarch/bin(N-/)
   /Applications/Alacritty.app/Contents/MacOS(N-/)
 	/usr/local/bin(N-/)
   $HOME/gobin(N-/)
   $HOME/.cargo/env(N-/)
+  /opt/homebrew/opt/postgresql@16/bin(N-/) # for postgresql
 	$path
 )
 
@@ -309,3 +314,10 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 
+
+# bun completions
+[ -s "/Users/toriikatsuya/.bun/_bun" ] && source "/Users/toriikatsuya/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
