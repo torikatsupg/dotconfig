@@ -32,6 +32,7 @@ M.nvim_lspconfig = {
   event = { 'BufRead' },
   config = function() require 'foundations.config'.lspconfig() end,
   requires = {
+    M.plenary,
     {
       'williamboman/mason.nvim',
       opt = true,
@@ -46,13 +47,20 @@ M.nvim_lspconfig = {
       'mhartington/formatter.nvim',
       opt = true,
     },
+    {
+      'nvimtools/none-ls.nvim',
+      opt = true,
+    }
   },
   wants = {
+    M.plenary.name,
+    'none-ls.nvim',
     'mason.nvim',
     'mason-lspconfig.nvim',
   },
   name = 'nvim-lspconfig',
 }
+
 
 M.luasnip = {
   'L3MON4D3/LuaSnip',
