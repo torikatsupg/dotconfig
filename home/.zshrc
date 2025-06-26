@@ -285,7 +285,7 @@ function zsh-profiler() {
   ZSHRC_PROFILE=1 zsh -i -c zprof
 }
 
-function showQR() {
+function showqr() {
   qrencode -m 2 -t utf8 $@
 }
 
