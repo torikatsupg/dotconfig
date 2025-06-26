@@ -3,7 +3,6 @@ if [ "$ZSHRC_PROFILE" != "" ]; then
   zmodload zsh/zprof && zprof > /dev/null
 fi
 
-
 #s bind key type
 bindkey -v # zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -14,6 +13,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+# Plugins
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 zinit light zsh-users/zsh-autosuggestions
@@ -25,6 +25,7 @@ zinit light hlissner/zsh-autopair
 zinit light rupa/z
 
 # ==================== config =======================
+# env
 typeset -U path PATH
 path=(
 	/opt/homebrew/bin(N-/) # homebrew path
@@ -40,17 +41,14 @@ path=(
   $HOME/.cargo/env(N-/)
 	$path
 )
-
-
-
 export GOBIN=$HOME/gobin
+# set -x EDITOR nvim
 
-# anyenv
-eval "$(anyenv init -)"
-
-# nodenv setting
-eval "$(nodenv init -)"
-
+# hooks
+eval "$(anyenv init -)" # anyenv
+eval "$(nodenv init -)" # nodenv setting
+eval "$(/opt/homebrew/bin/rtx activate zsh)" # rtx
+eval "$(direnv hook zsh)"
 
 # no beep
 setopt no_beep
@@ -102,6 +100,7 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
     zstyle ':chpwd:*' recent-dirs-max 1000
     zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
 fi
+
 function peco-cdr () {
   local selected_dir="$(cdr -l | sed 's/^[0-9]\+ \+//' | peco --prompt="cdr >" --query "$LBUFFER")"
   if [ -n "$selected_dir" ]; then
@@ -136,15 +135,7 @@ zle -N peco-tmux
 
 # memo
 function memo() {
-  MEMO_HOME=$HOME/memo
-  MEMO_FILE=$MEMO_HOME/$(date +%Y_%m_%d).md
-  if [[ -d $MEMO_HOME ]] then
-    mkdir $MEMO_HOME -P
-  fi
-  if [[ -f $MEMO_FILE ]] then
-    touch $MEMO_FILE
-  fi
-  vim $MEMO_HOME/`date +%Y_%m_%d`.md
+  nvim ~/Desktop/memo.md
 }
 
 function mkcd() {
@@ -194,13 +185,12 @@ function rddpm() {
   open -addpm;
 }
 
-
-
 alias -g nproc="sysctl -n hw.logicalcpu"
 alias -g vim=nvim
 alias zshrc="vim ~/.zshrc"
 alias Alacritty="vim ~/dotconfig/alacritty/alacritty.yml"
 # git alias
+alias jj="git"
 alias gis="git status"
 alias gic="git commit -m $1"
 alias gip="git push -u origin $1"
@@ -220,7 +210,6 @@ bindkey -M viins "^B" backward-char
 bindkey -M viins "^D" delete-char-or-list
 bindkey -M viins "^E" end-of-line
 bindkey -M viins "^F" forward-char
-bindkey -M vicmd "^F" forward-char
 bindkey -M viins "^H" backward-delete-char
 bindkey -M viins "^?" backward-delete-char
 
@@ -278,7 +267,6 @@ function launch-app() {
 zle -N launch-app
 alias app="launch-app"
 
-
 function zsh-startuptime-slower-than-default() {
   local time_rc
   time_rc=$((TIMEFMT="%mE"; time zsh -i -c exit) &> /dev/stdout)
@@ -297,7 +285,22 @@ function zsh-profiler() {
   ZSHRC_PROFILE=1 zsh -i -c zprof
 }
 
+function showQR() {
+  qrencode -m 2 -t utf8 $@
+}
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+function beep () {
+  afplay ~/Music/level_up.mp3 &
+}
+
+function urlencode {
+  echo "$1" | nkf -WwMQ | sed 's/=$//g' | tr = % | tr -d '\n'
+}
+
+
+export EDITOR=vim
+
+alias claude="/Users/katsuyatorii/.claude/local/claude"

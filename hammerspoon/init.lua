@@ -15,7 +15,7 @@ function handleEvent(event)
     end
 
     -- ⌘ + space: Toggle alacritty
-    if keyCode == hs.keycodes.map['space'] and flags.cmd and not flags.shift and not flags.alt then
+    if keyCode == hs.keycodes.map['space'] and flags.cmd and not flags.shift and not flags.alt and not flags.ctrl then
       local alacritty = hs.application.find('alacritty')
       if alacritty:isFrontmost() then
         alacritty:hide()
