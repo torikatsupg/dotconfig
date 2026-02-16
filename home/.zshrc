@@ -303,4 +303,3 @@ function urlencode {
 
 export EDITOR=vim
 
-alias claude="/Users/katsuyatorii/.claude/local/claude"
