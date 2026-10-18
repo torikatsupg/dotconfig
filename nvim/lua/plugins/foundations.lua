@@ -69,7 +69,7 @@ return {
       'williamboman/mason-lspconfig.nvim',
     },
     config = function()
-      local lspconfig = require('lspconfig')
+      require('lspconfig')
       require('mason').setup()
       local mason_lspconfig = require('mason-lspconfig')
 
@@ -98,26 +98,59 @@ return {
 
       -- Neovim 0.11: automatic_enable でMasonのサーバーを自動有効化
       mason_lspconfig.setup({
-        ensure_installed = { 'lua_ls', 'rust_analyzer' },
+        ensure_installed = { 'lua_ls', 'rust_analyzer', 'tailwindcss' },
         automatic_installation = true,
       })
-
-      -- フォーマットキーマップ
-      vim.keymap.set('n', '<space>f', function()
-        vim.lsp.buf.format()
-        vim.cmd('EslintFixAll')
-        vim.cmd('PrettierASync')
-      end, { noremap = true, silent = false, desc = 'Format buffer' })
     end,
   },
 
   ------------------------------------------------------------------------------
-  -- formatter.nvim: コードフォーマッター
-  -- 様々な言語のフォーマッターを統一的に管理・実行
+  -- typescript-tools.nvim: 高速TypeScript LSP
+  -- tsserverより高速なTypeScript/JavaScript言語サーバー
   ------------------------------------------------------------------------------
   {
-    'mhartington/formatter.nvim',
-    lazy = true,
+    'pmizio/typescript-tools.nvim',
+    ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
+    },
+    opts = {},
+  },
+
+  ------------------------------------------------------------------------------
+  -- conform.nvim: コードフォーマッター
+  -- プロジェクトのフォーマッターを自動検出して実行
+  ------------------------------------------------------------------------------
+  {
+    'stevearc/conform.nvim',
+    event = 'BufWritePre',
+    cmd = 'ConformInfo',
+    keys = {
+      {
+        '<space>f',
+        function()
+          require('conform').format({ async = true, lsp_fallback = true })
+        end,
+        desc = 'Format buffer',
+      },
+    },
+    opts = {
+      formatters_by_ft = {
+        javascript = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        jsonc = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        css = { 'prettierd', 'prettier', stop_after_first = true },
+        html = { 'prettierd', 'prettier', stop_after_first = true },
+        yaml = { 'prettierd', 'prettier', stop_after_first = true },
+        markdown = { 'prettierd', 'prettier', stop_after_first = true },
+        lua = { 'stylua' },
+        rust = { 'rustfmt' },
+      },
+    },
   },
 
   ------------------------------------------------------------------------------
@@ -154,7 +187,7 @@ return {
 
   ------------------------------------------------------------------------------
   -- nui.nvim: UIコンポーネントライブラリ
-  -- ポップアップやメニューなどのUI部品を提供（noice等が依存）
+  -- ポップアップやメニューなどのUI部品を提供（neo-tree等が依存）
   ------------------------------------------------------------------------------
   {
     'MunifTanjim/nui.nvim',

@@ -52,17 +52,45 @@ return {
   },
 
   ------------------------------------------------------------------------------
-  -- vim-auto-save: 自動保存
-  -- InsertLeave時に自動的にファイルを保存
+  -- auto-save.nvim: 自動保存
+  -- InsertLeave時に自動的にファイルを保存（Luaネイティブ）
   ------------------------------------------------------------------------------
   {
-    'vim-scripts/vim-auto-save',
-    event = 'InsertLeave',
-    config = function()
-      vim.g.auto_save = 1
-      vim.g.auto_save_silent = 1
-      vim.g.auto_save_in_insert_mode = 0
-      vim.g.auto_save_events = { 'InsertLeave' }
-    end,
+    'okuuva/auto-save.nvim',
+    event = { 'InsertLeave', 'TextChanged' },
+    opts = {
+      trigger_events = {
+        immediate_save = {},
+        defer_save = { 'InsertLeave' },
+      },
+    },
+  },
+
+  ------------------------------------------------------------------------------
+  -- todo-comments.nvim: TODO/FIXMEハイライト
+  -- TODO, FIXME, HACK等をハイライト表示しTelescope検索可能
+  ------------------------------------------------------------------------------
+  {
+    'folke/todo-comments.nvim',
+    event = 'BufRead',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    keys = {
+      { '<leader>ft', '<cmd>TodoTelescope<CR>', desc = 'Search TODOs (Telescope)' },
+      { '<leader>xt', '<cmd>Trouble todo toggle<CR>', desc = 'TODOs (Trouble)' },
+    },
+    opts = {},
+  },
+
+  ------------------------------------------------------------------------------
+  -- lazygit.nvim: lazygit統合
+  -- Neovim内でlazygitを起動してGit操作
+  ------------------------------------------------------------------------------
+  {
+    'kdheepak/lazygit.nvim',
+    cmd = 'LazyGit',
+    keys = {
+      { '<leader>gg', '<cmd>LazyGit<CR>', desc = 'LazyGit' },
+    },
+    dependencies = { 'nvim-lua/plenary.nvim' },
   },
 }

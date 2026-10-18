@@ -5,25 +5,6 @@
 
 return {
   ------------------------------------------------------------------------------
-  -- bufferline.nvim: バッファタブ表示
-  -- 開いているバッファをタブのように表示
-  ------------------------------------------------------------------------------
-  {
-    'akinsho/bufferline.nvim',
-    version = '*',
-    event = 'BufRead',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
-      options = {
-        max_name_length = 20,
-        diagnostics = 'nvim_lsp',
-        separator_style = 'slant',
-        always_show_bufferline = true,
-      },
-    },
-  },
-
-  ------------------------------------------------------------------------------
   -- neo-tree.nvim: ファイルエクスプローラー
   -- サイドバー形式のファイルツリー表示（フロートウィンドウ）
   ------------------------------------------------------------------------------
@@ -141,88 +122,91 @@ return {
   },
 
   ------------------------------------------------------------------------------
-  -- noice.nvim: コマンドラインUI刷新
-  -- コマンドライン、メッセージ、通知を美しいUIで表示
+  -- fidget.nvim: 軽量LSP進捗表示
+  -- 画面右下に小さくLSP進捗を表示
   ------------------------------------------------------------------------------
   {
-    'folke/noice.nvim',
+    'j-hui/fidget.nvim',
     event = 'VeryLazy',
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-      'rcarriga/nvim-notify',
+    opts = {},
+  },
+
+  ------------------------------------------------------------------------------
+  -- trouble.nvim: 診断・quickfix一覧表示
+  -- LSP診断やquickfixをきれいな一覧で表示
+  ------------------------------------------------------------------------------
+  {
+    'folke/trouble.nvim',
+    cmd = 'Trouble',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    keys = {
+      { '<leader>xx', '<cmd>Trouble diagnostics toggle<CR>', desc = 'Diagnostics (Trouble)' },
+      { '<leader>xq', '<cmd>Trouble qflist toggle<CR>', desc = 'Quickfix (Trouble)' },
+      {
+        '<leader>xp',
+        function()
+          vim.notify('Running tsc --noEmit ...', vim.log.levels.INFO)
+          local output = vim.fn.system('npx tsc --noEmit 2>&1')
+          local lines = vim.split(output, '\n')
+          local items = {}
+          for _, line in ipairs(lines) do
+            local file, lnum, col, msg = line:match('^(.-)%((%d+),(%d+)%):%s*(.+)$')
+            if file then
+              table.insert(items, {
+                filename = file,
+                lnum = tonumber(lnum),
+                col = tonumber(col),
+                text = msg,
+              })
+            end
+          end
+          vim.fn.setqflist(items, 'r')
+          if #items == 0 then
+            vim.notify('No errors found', vim.log.levels.INFO)
+          else
+            vim.notify(#items .. ' errors found', vim.log.levels.WARN)
+            vim.cmd('Trouble qflist open focus=true')
+          end
+        end,
+        desc = 'Project diagnostics (tsc)',
+      },
     },
-    config = function()
-      local function myMiniView(pattern, kind)
-        kind = kind or ''
-        return {
-          view = 'mini',
-          filter = {
-            event = 'msg_show',
-            kind = kind,
-            find = pattern,
-          },
-        }
-      end
+    opts = {},
+  },
 
-      require('noice').setup({
-        lsp = {
-          override = {
-            ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-            ['vim.lsp.util.stylize_markdown'] = true,
-            ['cmp.entry.get_documentation'] = true,
-          },
-        },
-        presets = {
-          bottom_search = false,
-          command_palette = true,
-          long_message_to_split = true,
-          inc_rename = false,
-          lsp_doc_border = false,
-        },
-        views = {
-          cmdline_popup = {
-            position = { row = '50%', col = '50%' },
-            size = { width = 60, height = 'auto' },
-          },
-          popupmenu = {
-            relative = 'editor',
-            backend = 'cmp',
-            position = { row = '50%', col = '50%' },
-            size = { width = 60, height = 10 },
-            border = { style = 'rounded', padding = { 0, 1 } },
-            win_options = {
-              winhighlight = { Normal = 'Normal', FloatBorder = 'DiagnosticInfo' },
-            },
-          },
-        },
-        routes = {
-          myMiniView('Already at .* change'),
-          myMiniView('written'),
-          myMiniView('yanked'),
-          myMiniView('more lines?'),
-          myMiniView('fewer lines?'),
-          myMiniView('fewer lines?', 'lua_error'),
-          myMiniView('change; before'),
-          myMiniView('change; after'),
-          myMiniView('line less'),
-          myMiniView('lines indented'),
-          myMiniView('No lines in buffer'),
-          myMiniView('search hit .*, continuing at', 'wmsg'),
-          myMiniView('E486: Pattern not found', 'emsg'),
-        },
-      })
+  ------------------------------------------------------------------------------
+  -- diffview.nvim: Git diff表示
+  -- ファイルツリー形式でGit diffを確認（Claude Code変更確認に便利）
+  ------------------------------------------------------------------------------
+  {
+    'sindrets/diffview.nvim',
+    cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
+    keys = {
+      { '<leader>gd', '<cmd>DiffviewOpen<CR>', desc = 'Diffview open' },
+      { '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', desc = 'File history' },
+      { '<leader>gq', '<cmd>DiffviewClose<CR>', desc = 'Diffview close' },
+    },
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {},
+  },
 
-      -- Noice履歴表示キーマップ
-      vim.keymap.set('n', '<Leader>fn', function()
-        local telescope = require('telescope')
-        telescope.load_extension('noice')
-        return telescope.extensions.noice.noice({})
-      end, { noremap = true, silent = false, desc = 'Noice history' })
-
-      -- nvim-notify設定
-      require('notify').setup({
-        background_colour = '#000000',
-      })
-    end,
+  ------------------------------------------------------------------------------
+  -- toggleterm.nvim: ターミナル管理
+  -- 複数ターミナルの管理・切り替え
+  ------------------------------------------------------------------------------
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    keys = {
+      { '<C-\\>', '<cmd>ToggleTerm<CR>', desc = 'Toggle terminal' },
+      { '<leader>tf', '<cmd>ToggleTerm direction=float<CR>', desc = 'Float terminal' },
+      { '<leader>th', '<cmd>ToggleTerm direction=horizontal size=15<CR>', desc = 'Horizontal terminal' },
+      { '<leader>tv', '<cmd>ToggleTerm direction=vertical size=80<CR>', desc = 'Vertical terminal' },
+    },
+    opts = {
+      open_mapping = [[<C-\>]],
+      direction = 'float',
+      float_opts = { border = 'rounded' },
+    },
   },
 }
