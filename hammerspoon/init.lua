@@ -14,6 +14,15 @@ function handleEvent(event)
       return false
     end
 
+    -- tmux prefix (C-t) in Alacritty: switch IME to eisu
+    if keyCode == hs.keycodes.map['t'] and flags.ctrl and not flags.cmd and not flags.alt and not flags.shift then
+      local front = hs.application.frontmostApplication()
+      if front and front:name() == "Alacritty" then
+        hs.eventtap.keyStroke({}, 'eisu', 0)
+      end
+      return false
+    end
+
     -- ⌘ + space: Toggle alacritty
     if keyCode == hs.keycodes.map['space'] and flags.cmd and not flags.shift and not flags.alt and not flags.ctrl then
       local alacritty = hs.application.find('alacritty')
