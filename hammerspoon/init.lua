@@ -1,3 +1,5 @@
+ResendingPrefix = false
+
 function handleEvent(event)
     local keyCode = event:getKeyCode()
     local flags = event:getFlags()
@@ -15,10 +17,20 @@ function handleEvent(event)
     end
 
     -- tmux prefix (C-t) in Alacritty: switch IME to eisu
+    -- 変換中だと C-t が IME に吸われるので、英数で確定させてから C-t を送り直す
     if keyCode == hs.keycodes.map['t'] and flags.ctrl and not flags.cmd and not flags.alt and not flags.shift then
+      if ResendingPrefix then
+        ResendingPrefix = false
+        return false
+      end
       local front = hs.application.frontmostApplication()
-      if front and front:name() == "Alacritty" then
+      if front and front:name() == "Alacritty" and hs.keycodes.currentMethod() ~= nil then
         hs.eventtap.keyStroke({}, 'eisu', 0)
+        hs.timer.doAfter(0.02, function()
+          ResendingPrefix = true
+          hs.eventtap.keyStroke({'ctrl'}, 't', 0)
+        end)
+        return true
       end
       return false
     end
