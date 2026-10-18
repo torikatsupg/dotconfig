@@ -29,7 +29,7 @@ zinit light rupa/z
 typeset -U path PATH
 path=(
 	/opt/homebrew/bin(N-/) # homebrew path
-	$HOME/.nodenv/bin(N-/) # nodenv path
+	# $HOME/.nodenv/bin(N-/) # nodenv path（mise に移行済み）
 	$HOME/development/deopt_tools/(N-/) # deopt_tools
   $HOME/.cargo/bin(N-/) # rust
   $HOME/development/android-platform-tools(N-/) # android tools
@@ -45,10 +45,14 @@ export GOBIN=$HOME/gobin
 # set -x EDITOR nvim
 
 # hooks
-eval "$(anyenv init -)" # anyenv
-eval "$(nodenv init -)" # nodenv setting
-eval "$(/opt/homebrew/bin/rtx activate zsh)" # rtx
-eval "$(direnv hook zsh)"
+eval "$(mise activate zsh)"
+# eval "$(direnv hook zsh)"
+# anyenv/nodenv は mise に移行済みのため無効化
+# eval "$(anyenv init -)" # anyenv
+# eval "$(nodenv init -)" # nodenv setting
+# rtx は mise にリネームされたため不要
+# eval "$(/opt/homebrew/bin/rtx activate zsh)" # rtx
+
 
 # no beep
 setopt no_beep
@@ -302,4 +306,47 @@ function urlencode {
 
 
 export EDITOR=vim
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/toriikatsuya/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/toriikatsuya/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/toriikatsuya/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/toriikatsuya/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Created by `pipx` on 2026-04-06 02:33:09
+export PATH="$PATH:/Users/toriikatsuya/.local/bin"
+
+
+# git worktree utilities
+# # checkout or cd wrapper
+gc() {
+  local wt
+  wt=$(git worktree list | grep "\[$1\]" | awk '{print $1}')
+  if [[ -n "$wt" ]]; then
+    cd "$wt"
+  else
+    git checkout "$1"
+  fi
+}
+
+
+# move directory by fzf
+gw() {
+    local dir
+    dir=$(git worktree list --porcelain | grep '^worktree ' | sed 's/worktree //' | fzf) && cd "$dir"
+}
+
+# remove worktree
+gwr() {
+    local wt
+    wt=$(git worktree list | grep "\[$1\]" | awk '{print $1}')
+    if [[ -n "$wt" ]]; then
+      git worktree remove "$wt"
+      echo "Removed worktree for branch '$1' at $wt"
+    else
+      echo "No worktree found for branch '$1'"
+    fi
+  }
+
 
