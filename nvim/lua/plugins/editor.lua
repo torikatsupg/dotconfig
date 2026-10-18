@@ -5,47 +5,30 @@
 
 return {
   ------------------------------------------------------------------------------
-  -- vim-surround: テキスト囲み操作
+  -- nvim-surround: テキスト囲み操作（Luaネイティブ）
   -- 括弧やクォートで囲む・囲みを変更・削除
   -- ds" 囲みを削除 / cs"' 囲みを変更 / ys<motion>" 囲みを追加
+  -- dot-repeat内蔵のためvim-repeat不要
   ------------------------------------------------------------------------------
   {
-    'tpope/vim-surround',
-    keys = {
-      { 'ds', desc = 'Delete surrounding' },
-      { 'cs', desc = 'Change surrounding' },
-      { 'cS', desc = 'Change surrounding (newline)' },
-      { 'ys', desc = 'Add surrounding' },
-      { 'yS', desc = 'Add surrounding (newline)' },
-      { 'yss', desc = 'Add surrounding to line' },
-      { 'S', mode = 'x', desc = 'Add surrounding (visual)' },
-    },
-    dependencies = { 'tpope/vim-repeat' },
+    'kylechui/nvim-surround',
+    version = '*',
+    event = 'VeryLazy',
+    opts = {},
   },
 
   ------------------------------------------------------------------------------
-  -- vim-repeat: ドット繰り返し対応
-  -- プラグインの操作も.で繰り返し可能に
-  ------------------------------------------------------------------------------
-  {
-    'tpope/vim-repeat',
-    lazy = true,
-  },
-
-  ------------------------------------------------------------------------------
-  -- CamelCaseMotion: キャメルケース移動
+  -- nvim-spider: サブワード移動（Luaネイティブ）
   -- CamelCaseやsnake_caseの単語単位で移動
   -- Option+w/b/eで移動
   ------------------------------------------------------------------------------
   {
-    'bkad/CamelCaseMotion',
+    'chrisgrieser/nvim-spider',
     keys = {
-      { '∑', '<Plug>CamelCaseMotion_w', mode = { 'n', 's' }, desc = 'CamelCase word' },
-      { '∫', '<Plug>CamelCaseMotion_b', mode = { 'n', 's' }, desc = 'CamelCase back' },
-      { '´', '<Plug>CamelCaseMotion_e', mode = { 'n', 's' }, desc = 'CamelCase end' },
-      { 'g´', '<Plug>CamelCaseMotion_ge', mode = { 'n', 's' }, desc = 'CamelCase ge' },
-      { 'i∑', '<Plug>CamelCaseMotion_iw', mode = { 'o', 'x' }, desc = 'CamelCase inner word' },
-      { 'i∫', '<Plug>CamelCaseMotion_ib', mode = { 'o', 'x' }, desc = 'CamelCase inner back' },
+      { '∑', function() require('spider').motion('w') end, mode = { 'n', 'o', 'x' }, desc = 'Spider w' },
+      { '∫', function() require('spider').motion('b') end, mode = { 'n', 'o', 'x' }, desc = 'Spider b' },
+      { '´', function() require('spider').motion('e') end, mode = { 'n', 'o', 'x' }, desc = 'Spider e' },
+      { 'g´', function() require('spider').motion('ge') end, mode = { 'n', 'o', 'x' }, desc = 'Spider ge' },
     },
   },
 
@@ -123,5 +106,18 @@ return {
       },
     },
     dependencies = { 'nvim-lua/plenary.nvim' },
+  },
+
+  ------------------------------------------------------------------------------
+  -- emmet-vim: HTML/JSX高速入力
+  -- 省略記法からHTML/JSXを展開（例: div.container>ul>li*3）
+  -- <C-y>, で展開
+  ------------------------------------------------------------------------------
+  {
+    'mattn/emmet-vim',
+    ft = { 'html', 'css', 'javascriptreact', 'typescriptreact', 'vue', 'svelte' },
+    init = function()
+      vim.g.user_emmet_leader_key = '<C-y>'
+    end,
   },
 }

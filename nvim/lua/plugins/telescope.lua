@@ -86,7 +86,6 @@ return {
     },
     dependencies = {
       'nvim-telescope/telescope.nvim',
-      'kkharji/sqlite.lua',
     },
   },
 
@@ -159,12 +158,4 @@ return {
     end,
   },
 
-  ------------------------------------------------------------------------------
-  -- sqlite.lua: SQLiteバインディング
-  -- telescope-frecency等が使用するデータベース
-  ------------------------------------------------------------------------------
-  {
-    'kkharji/sqlite.lua',
-    lazy = true,
-  },
 }

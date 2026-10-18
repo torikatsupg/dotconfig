@@ -45,11 +45,11 @@ return {
   },
 
   ------------------------------------------------------------------------------
-  -- nvim-ts-rainbow2: 括弧の虹色表示
-  -- ネストした括弧を色分けして表示
+  -- rainbow-delimiters.nvim: 括弧の虹色表示
+  -- ネストした括弧を色分けして表示（nvim-ts-rainbow2の後継）
   ------------------------------------------------------------------------------
   {
-    'HiPhish/nvim-ts-rainbow2',
+    'HiPhish/rainbow-delimiters.nvim',
     event = 'BufRead',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
