@@ -356,13 +356,10 @@ _alacritty_update_check() {
   local cache=~/.cache/alacritty-latest-version
   local -a fresh=( ${~cache}(N.mh-24) )
   if (( ! $#fresh )); then
-    {
-      gh release view -R alacritty/alacritty \
-        --json tagName \
-        -q '.tagName | ltrimstr("v")' \
-        >| $cache.tmp \
-        && mv $cache.tmp $cache
-    } 2>/dev/null &!
+    gh release view -R alacritty/alacritty \
+      --json tagName \
+      -q '.tagName | ltrimstr("v")' \
+      >| $cache 2>/dev/null &!
   fi
   [[ -s $cache ]] || return
   local latest=$(<$cache) current=${${=$(alacritty --version)}[2]}
