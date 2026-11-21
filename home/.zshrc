@@ -192,7 +192,6 @@ function rddpm() {
 alias -g nproc="sysctl -n hw.logicalcpu"
 alias -g vim=nvim
 alias zshrc="vim ~/.zshrc"
-alias Alacritty="vim ~/dotconfig/alacritty/alacritty.yml"
 # git alias
 alias jj="git"
 alias gis="git status"
@@ -350,3 +349,21 @@ gwr() {
   }
 
 
+
+# Alacritty の新しいリリースを起動時に知らせる。GitHub への問い合わせは 1 日 1 回、裏で行う
+_alacritty_update_check() {
+  (( $+commands[alacritty] )) || return
+  local cache=~/.cache/alacritty-latest-version
+  local -a fresh=( ${~cache}(N.mh-24) )
+  if (( ! $#fresh )); then
+    gh release view -R alacritty/alacritty \
+      --json tagName \
+      -q '.tagName | ltrimstr("v")' \
+      >| $cache 2>/dev/null &!
+  fi
+  [[ -s $cache ]] || return
+  local latest=$(<$cache) current=${${=$(alacritty --version)}[2]}
+  autoload -Uz is-at-least
+  is-at-least $latest $current || print -P "%F{yellow}Alacritty v$latest が出ています（現在 v$current）%f"
+}
+_alacritty_update_check
