@@ -350,24 +350,16 @@ gwr() {
 
 
 
-# Alacritty の新しいリリースを起動時に知らせる。GitHub API への問い合わせは 1 日 1 回、裏で行う
+# Alacritty の新しいリリースを起動時に知らせる。GitHub への問い合わせは 1 日 1 回、裏で行う
 _alacritty_update_check() {
-  local app=/Applications/Alacritty.app
-  [[ -d $app ]] || return
-  local cache=${XDG_CACHE_HOME:-$HOME/.cache}/alacritty-latest-version
+  (( $+commands[alacritty] )) || return
+  local cache=~/.cache/alacritty-latest-version
   local -a fresh=( ${~cache}(N.mh-24) )
   if (( ! $#fresh )); then
-    (
-      local tag
-      tag=$(curl -fsSL --max-time 5 https://api.github.com/repos/alacritty/alacritty/releases/latest 2>/dev/null \
-        | sed -n 's/.*"tag_name": *"v\{0,1\}\([^"]*\)".*/\1/p')
-      [[ -n $tag ]] && mkdir -p ${cache:h} && print -r -- $tag >| $cache
-    ) &!
+    { gh release view -R alacritty/alacritty --json tagName -q '.tagName | ltrimstr("v")' >| $cache.tmp && mv $cache.tmp $cache } 2>/dev/null &!
   fi
-  [[ -f $cache ]] || return
-  local latest=$(<$cache)
-  local current=$(plutil -extract CFBundleShortVersionString raw $app/Contents/Info.plist 2>/dev/null)
-  [[ -n $latest && -n $current ]] || return
+  [[ -s $cache ]] || return
+  local latest=$(<$cache) current=${${=$(alacritty --version)}[2]}
   autoload -Uz is-at-least
   is-at-least $latest $current || print -P "%F{yellow}Alacritty v$latest が出ています（現在 v$current）%f"
 }
