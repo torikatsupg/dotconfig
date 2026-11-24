@@ -367,3 +367,13 @@ _alacritty_update_check() {
   is-at-least $latest $current || print -P "%F{yellow}Alacritty v$latest が出ています（現在 v$current）%f"
 }
 _alacritty_update_check
+
+# Alacritty のアイコンを Terminal.app のものに差し替える。アプリを更新すると元に戻るので、更新後に実行し直す
+alacritty-terminal-icon() {
+  local app=/Applications/Alacritty.app
+  cp /System/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.icns \
+    $app/Contents/Resources/alacritty.icns \
+    && codesign --force -s - $app \
+    && touch $app \
+    && killall Dock
+}
